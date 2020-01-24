@@ -1,0 +1,40 @@
+.__List {
+    min-width: 30em;
+    width: 70%;
+    max-width: 50em;
+    display: flex;
+    flex: 1 1 0px;
+    overflow: hidden;
+    flex-direction: row;
+    justify-content: stretch;
+    
+    & > * {
+        flex: 1 0 0px;
+    }
+    
+    .info {
+        color: #00000060;
+        margin-bottom: 1em;
+        
+        p {
+            margin-bottom: 0.5em;
+        }
+    }
+    
+    .left, .right {
+        overflow: auto;
+        
+        .title {
+            box-sizing: border-box;
+            position: sticky;
+            top: 0px;
+            background: var(--background);
+            z-index: 2;
+            padding: 1em;
+        }
+        
+        .list {
+            padding: 0 1em;
+        }
+    }
+}

@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css?family=Gelasio&display=swap');
+
+:root {
+    --background: #fbf8dfff;
+    --background-clear: #fbf8df00;
+}
+
+body {
+    margin: 0;
+    font-family: Gelasio, serif;
+    background: var(--background);
+    overflow: hidden;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+.katex {
+    font-size: 1em !important;
+}
+
+p, a, span, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+input {
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 2px solid #d6d6d6;
+    transition: border 0.2s;
+    font-family: Gelasio, serif;
+    
+    &:hover {
+        border: 2px solid #b3b3b3;
+    }
+    
+    &:focus {
+        border: 2px solid #50dd7f;
+        outline: none;
+    }
+    
+    &.error {
+        border: 2px solid #dd5e50;
+    }
+}
