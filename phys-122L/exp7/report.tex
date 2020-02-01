@@ -1,0 +1,171 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{bm} % For \boldmath command
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage[margin=1in]{geometry}
+\usepackage{libertine}
+\usepackage[libertine]{newtxmath}
+\usepackage{pgfplots}
+\usepackage{siunitx}
+
+\pgfplotsset{compat=1.16}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{bending} % For 'flex' option on arrow tips
+\usetikzlibrary{calc}
+\usetikzlibrary{decorations}
+\usetikzlibrary{positioning}
+\pgfarrowsdeclarecombine{dist}{dist}{stealth}{stealth}{|}{|}
+
+\sisetup{separate-uncertainty=true}
+
+\title{Experiment 7: Standing Waves on a Wire}
+\author{
+    Brandon Tsang \\
+    PHYS 122L-002
+}
+\date{January 29, 2020}
+
+\begin{document}
+\maketitle
+\section*{Goals}
+    \textit{The following are quoted directly from PHYS 122L Lab Manual (Department of Physics and Astronomy, 2020).}
+    \begin{itemize}
+        \item To produce and observe standing waves on a wire.
+        \item To demonstrate that the fundamental frequencies are proportional to the square root of the tension of the wire when the length is fixed.
+        \item To observe the harmonic frequencies of a wire of fixed length and fixed tension.
+        \item To demonstrate that the fundamental frequencies of standing waves on a wire depend inversely on the length when the tension is fixed.
+        \item To analyze data graphically.
+    \end{itemize}
+\section*{\boldmath Part A: Investigation of the dependence of $f_1$ on $T$ with $L$ constant}
+    \subsection*{Experiment Summary}
+        
+    \subsection*{Results}
+        The length $L$ of the wire: \SI{1.0}{\meter}
+        \begin{table}[H]
+            \centering
+            \caption{Data for fundamental frequencies for different masses}
+            \begin{tabular}{c c c c c c c}
+                \toprule
+                $M$ (\si{\kilogram}) & $f_1$ (\si{\hertz}) & $\Delta f_1$ (\si{\hertz}) & $f_1^2$ (\si{\hertz\squared}) & $\Delta f_1^2$ (\si{\hertz\squared}) & $\log(M)$ & $\log(f_1)$ \\
+                \midrule
+                0.2 & 14.3 & 0.1 & 204 & 2.9 & -0.699 & 1.16 \\
+                0.4 & 20.1 & 0.1 & 404 & 4.0 & -0.398 & 1.30 \\
+                0.6 & 24.6 & 0.1 & 605 & 4.9 & -0.222 & 1.39 \\
+                0.8 & 28.3 & 0.1 & 801 & 5.7 & -0.0969 & 1.45 \\
+                1.0 & 31.7 & 0.1 & 1010 & 6.3 & 0.000 & 1.50 \\
+                1.2 & 34.7 & 0.1 & 1200 & 6.9 & 0.0792 & 1.54 \\
+                1.5 & 38.8 & 0.1 & 1510 & 7.8 & 0.176 & 1.59 \\
+                \bottomrule
+            \end{tabular}
+        \end{table}
+        Below is the plot of $f_1^2$ vs. $M$. The error bars are too small to be shown.
+        \begin{figure}[H]
+            \centering
+            \caption{Relationship between fundamental frequency and mass of weight}
+            \begin{tikzpicture}
+                \begin{axis}[
+                    xlabel={$M$ (\si{\kilogram})},
+                    ylabel={$f_1^2$ (\si{\hertz\squared})}
+                ]
+                    \addplot[
+                        black, only marks, mark=square*,
+                        error bars/.cd,
+                        y dir=both, y explicit
+                    ] coordinates {
+                        (1.5,1505.4) +- (7.8)
+                        (1.2,1204.1) +- (0,6.9)
+                        (1,1004.9) +- (0,6.3)
+                        (0.8,800.9) +- (0,5.7)
+                        (0.6,605.2) +- (0,4.9)
+                        (0.4,404) +- (0,4)
+                        (0.2,204.5) +- (0,2.9)
+                    };
+                    \addplot[dashed, domain=0:1.6, samples=5] {1000*x+3.54};
+                \end{axis}
+            \end{tikzpicture}
+        \end{figure}
+        Slope of the above graph: \SI{1000}{\hertz\squared\per\kilogram}
+        \par\noindent
+        The slope $m$ should be equal to $\frac{g}{4L^2\mu}$. Solving for $\mu$:
+        \begin{align*}
+            m&=\frac{g}{4L^2\mu} \\
+            4L^2\mu&=\frac{g}{m} \\
+            \mu&=\frac{g}{4L^2m} \\
+            &=\frac{\SI{9.8}{\meter\per\square\second}}{4(\SI{1.0}{\meter})^2(\SI{1000}{\hertz\squared\per\kilogram})} \\
+            &=\SI{0.00245}{\kilogram\per\meter}
+        \end{align*}
+        Logarithmic plot of $f_1$ vs $M$:
+        \begin{figure}[H]
+            \centering
+            \caption{Logarithmic relationship between fundamental frequency and mass of weight}
+            \begin{tikzpicture}
+                \begin{loglogaxis}[
+                    xlabel={$M$ (\si{\kilogram})},
+                    ylabel={$f_1$ (\si{\hertz})}
+                ]
+                    \addplot[black, only marks, mark=square*] coordinates {
+                        (14.3,0.2)
+                        (20.1,0.4)
+                        (24.6,0.6)
+                        (28.3,0.8)
+                        (31.7,1)
+                        (34.7,1.2)
+                        (38.8,1.5)
+                    };
+                \end{loglogaxis}
+            \end{tikzpicture}
+        \end{figure}
+        $M=1$ intercept: \SI{31.6}{\hertz}
+        \par\noindent
+        This intercept (call it $b$) should be equal to $\frac{1}{2L}\sqrt{\frac{g}{\mu}}$. Solving for $\mu$:
+        \begin{align*}
+            b&=\frac{1}{2L}\sqrt{\frac{g}{\mu}} \\
+            2Lb&=\sqrt{\frac{g}{\mu}} \\
+            4L^2b^2&=\frac{g}{\mu} \\
+            \mu&=\frac{g}{4L^2b^2} \\
+            &=\frac{\SI{9.8}{\meter\per\square\second}}{4(\SI{1.0}{\meter})^2(\SI{31.6}{\hertz})^2} \\
+            &=\SI{0.00245}{\kilogram\per\meter}
+        \end{align*}
+\section*{Parth B: Investigation of harmonic frequencies}
+    \subsection*{Results}
+        The following results are using a \SI{0.5}{\kilogram} weight:
+        \begin{center}
+            \begin{tabular}{c c c c}
+                \toprule
+                $n$ & $f_n$ & $\Delta f_n$ & $\frac{f_n}{f_1}$ \\
+                \midrule
+                1 & 22.7 & 0.1 & 1.00 \\
+                2 & 44.4 & 0.1 & 1.96 \\
+                3 & 67.7 & 0.1 & 2.98 \\
+                4 & 90.8 & 0.1 & 4.00 \\
+                5 & 113 & 1 & 4.98 \\
+                6 & 136 & 1 & 5.99 \\
+                7 & 160 & 1 & 7.05 \\
+                \bottomrule
+            \end{tabular}
+        \end{center}
+\section*{\boldmath Part C: Investigation of the dependence of $f_1$ on $L$ with $T$ fixed}
+    \subsection*{Results}
+        \begin{table}[H]
+            \centering
+            \caption{Using a \SI{500}{\gram} mass, the fundamental frequencies at different distances}
+            \begin{tabular}{c c c c c c c c}
+                \toprule
+                $L$ (\si{\meter}) & $\Delta L$ (\si{\meter}) & $L^{-1}$ (\si{\per\meter}) & $\Delta L^{-1}$ (\si{\per\meter}) & $f_1$ (\si{\hertz}) & $\Delta f_1$ (\si{\hertz}) & $\log(L)$ & $\log(f_1)$ \\
+                \midrule
+                0.2 & 0.1 & 5.00 & 2.50 & 113 & 1 & -0.70 & 2.05 \\
+                0.3 & 0.1 & 3.33 & 1.11 & 74.6 & 0.1 & -0.52 & 1.87 \\
+                0.4 & 0.1 & 2.50 & 0.625 & 57.5 & 0.1 & -0.40 & 1.76 \\
+                0.5 & 0.1 & 2.00 & 0.400 & 44.8 & 0.1 & -0.30 & 1.65 \\
+                0.6 & 0.1 & 1.67 & 0.278 & 38.9 & 0.1 & -0.22 & 1.59 \\
+                0.7 & 0.1 & 1.43 & 0.204 & 32.2 & 0.1 & -0.15 & 1.51 \\
+                0.8 & 0.1 & 1.25 & 0.156 & 28.2 & 0.1 & -0.10 & 1.45 \\
+                0.9 & 0.1 & 1.11 & 0.123 & 25.1 & 0.1 & -0.05 & 1.40 \\
+                1.0 & 0.1 & 1.00 & 0.100 & 22.7 & 0.1 & 0.00 & 1.36 \\
+                \bottomrule
+            \end{tabular}
+        \end{table}
+\end{document}

@@ -1,21 +1,24 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import equations from './equations';
-import Header from './Header.jsx';
+import Header from './components/Header.jsx';
 import Home from './Home.jsx';
 import List from './List.jsx';
-import Panel from './Panel.jsx';
 
 import './App.scss';
 import 'katex/dist/katex.min.css';
 
-export default function App() {
+const mapStateToProps = state => ({
+    courses: state.courses
+});
+
+export default connect(mapStateToProps)(function ({ courses }) {
     return (
         <Router>
             <Header />
             <Switch>
-                {Object.entries(equations).map(([key, value]) => (
+                {Object.entries(courses).map(([key, value]) => (
                     <Route path={`/${key}`} key={key}>
                         <List data={value} />
                     </Route>
@@ -24,7 +27,6 @@ export default function App() {
                     <Home />
                 </Route>
             </Switch>
-            <Panel />
         </Router>
     );
-}
+});

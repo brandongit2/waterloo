@@ -2,8 +2,8 @@ import katex from 'katex';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
-import equations from './equations.js';
-import katexOptions from './katexOptions.js';
+import equations from '../equations.js';
+import katexOptions from '../katexOptions.js';
 
 import './Panel.scss';
 
@@ -20,8 +20,7 @@ export default withRouter(function ({ location }) {
     const [curEqn, setCurEqn] = React.useState({ latex: '', description: '' });
     let handleChange = (evt) => {
         setText(evt.target.value);
-        let t = evt.target.value.charAt(0) === 'C' ? 'constants' : 'equations';
-        let n = evt.target.value.slice(1);
+        let n = evt.target.value;
 
         let res = equations[location.pathname.slice(1)][t][n - 1];
         if (res) {

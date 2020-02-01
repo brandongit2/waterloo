@@ -21,6 +21,21 @@
         }
     }
     
+    .left ul {
+        padding: 0;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-decoration: underline;
+        
+        li {
+            margin: 4px 0px;
+            cursor: pointer;
+            display: block;
+        }
+    }
+    
     .left, .right {
         overflow: auto;
         

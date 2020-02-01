@@ -1,0 +1,70 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage[margin=1in]{geometry}
+\usepackage{libertine}
+\usepackage[libertine]{newtxmath}
+
+\title{MATH 114 Assignment 3}
+\author{Brandon Tsang}
+\date{January 30, 2020}
+
+\begin{document}
+\maketitle
+\begin{enumerate}[label=\textbf{\arabic*.}]
+    \item
+        \textbf{\boldmath Find a set of vectors, each with a norm of 5, such that the sum of the vectors is $\begin{bmatrix}0\\1\end{bmatrix}$.}
+        \par\noindent
+        Two vectors that satisfy these conditions are $\vec{a}=\begin{bmatrix}\sqrt{\frac{99}{4}}\\\frac{1}{2}\end{bmatrix}$ and $\vec{b}=\begin{bmatrix}-\sqrt{\frac{99}{4}}\\\frac{1}{2}\end{bmatrix}$.
+        \par\noindent
+        Both vectors have norm 5:
+        \begin{align*}
+            \lVert\vec{a}\rVert&=\sqrt{\left(\sqrt{\frac{99}{4}}\right)^2+\left(\frac{1}{2}\right)^2} \\
+            &=\sqrt{\frac{99}{4}+\frac{1}{4}} \\
+            &=\sqrt{\frac{100}{4}} \\
+            &=\sqrt{25} \\
+            &=5
+        \end{align*}
+        \begin{align*}
+            \lVert\vec{b}\rVert&=\sqrt{\left(-\sqrt{\frac{99}{4}}\right)^2+\left(\frac{1}{2}\right)^2} \\
+            &=\sqrt{\frac{99}{4}+\frac{1}{4}} \\
+            &=\sqrt{\frac{100}{4}} \\
+            &=\sqrt{25} \\
+            &=5
+        \end{align*}
+        And they sum to $\begin{bmatrix}0\\1\end{bmatrix}$:
+        \begin{align*}
+            \begin{bmatrix}
+                \sqrt{\frac{99}{4}} \\
+                \frac{1}{2}
+            \end{bmatrix}
+            +
+            \begin{bmatrix}
+                -\sqrt{\frac{99}{4}} \\
+                \frac{1}{2}
+            \end{bmatrix}
+            &=
+            \begin{bmatrix}
+                \sqrt{\frac{99}{4}}-\sqrt{\frac{99}{4}} \\
+                \frac{1}{2}+\frac{1}{2}
+            \end{bmatrix} \\
+            &=
+            \begin{bmatrix}
+                0 \\
+                1
+            \end{bmatrix}
+        \end{align*}
+    \item
+        \begin{enumerate}[label=\textbf{(\alph*)}]
+            \item
+                \textbf{\boldmath Consider the vectors $\vec{u}=\begin{bmatrix}2\\3\\0\\5\end{bmatrix}$ and $\vec{v}=\begin{bmatrix}0\\1\\2\\3\end{bmatrix}$.}
+                \begin{enumerate}[label=\textbf{\roman*.}]
+                    \item
+                        \textbf{\boldmath Find a vector $\vec{x}$ such that $\vec{x}$ is orthogonal to both $\vec{u}$ and $\vec{v}$.}
+                        \par\noindent
+                        
+                \end{enumerate}
+        \end{enumerate}
+\end{enumerate}
+\end{document}
