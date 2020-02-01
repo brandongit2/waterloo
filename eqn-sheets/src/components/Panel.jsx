@@ -26,15 +26,15 @@ export default connect(mapStateToProps)(function ({ courses, curCourse }) {
         setText(evt.target.value);
         let n = evt.target.value;
 
-        let code, i;
+        let res;
         try {
-            [code, i] = n.match(/([A-Z]+|[0-9]+)/g);
+            let [code, i] = n.match(/([A-Z]+|[0-9]+)/g);
+            res = Object.entries(courses[curCourse].lists).find(el => el[1].code === code)[1].content[i - 1];
         } catch {
             return;
         }
 
-        let res = Object.entries(courses[curCourse].lists).find(el => el[1].code === code)[1].content[i - 1];
-        if (i != null && res != null) {
+        if (res != null) {
             setCurEqn(res);
         } else {
             setCurEqn({ latex: '', description: '' });
