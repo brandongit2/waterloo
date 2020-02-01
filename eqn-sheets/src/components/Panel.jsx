@@ -1,13 +1,17 @@
 import katex from 'katex';
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import equations from '../equations.js';
 import katexOptions from '../katexOptions.js';
 
 import './Panel.scss';
 
-export default withRouter(function ({ location }) {
+const mapStateToProps = state => ({
+    courses: state.courses,
+    curCourse: state.curCourse
+});
+
+export default connect(mapStateToProps)(function ({ courses, curCourse }) {
     const [isOpen, setIsOpen] = React.useState(true);
     let toggleIsOpen = () => {
         setIsOpen(isOpen ? false : true);
@@ -22,13 +26,24 @@ export default withRouter(function ({ location }) {
         setText(evt.target.value);
         let n = evt.target.value;
 
-        let res = equations[location.pathname.slice(1)][t][n - 1];
-        if (res) {
+        let code, i;
+        try {
+            [code, i] = n.match(/([A-Z]+|[0-9]+)/g);
+        } catch {
+            return;
+        }
+
+        let res = Object.entries(courses[curCourse].lists).find(el => el[1].code === code)[1].content[i - 1];
+        if (i != null && res != null) {
             setCurEqn(res);
         } else {
             setCurEqn({ latex: '', description: '' });
         }
     };
+
+    React.useEffect(() => {
+        setCurEqn({ latex: '', description: '' });
+    }, [curCourse]);
 
     return (
         <div className={`__Panel ${isOpen ? 'open' : ''}`}>

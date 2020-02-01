@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Header from './components/Header.jsx';
+import Panel from './components/Panel.jsx';
 import Home from './Home.jsx';
 import List from './List.jsx';
 
@@ -27,6 +28,7 @@ export default connect(mapStateToProps)(function ({ courses }) {
                     <Home />
                 </Route>
             </Switch>
+            <Panel />
         </Router>
     );
 });
