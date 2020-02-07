@@ -22,7 +22,7 @@ export default connect(mapStateToProps)(function ({ courses, curCourse }) {
 
     const [text, setText] = React.useState('');
     const [curEqn, setCurEqn] = React.useState({ latex: '', description: '' });
-    let handleChange = (evt) => {
+    const handleChange = (evt) => {
         setText(evt.target.value);
         let n = evt.target.value;
 
@@ -43,6 +43,8 @@ export default connect(mapStateToProps)(function ({ courses, curCourse }) {
 
     React.useEffect(() => {
         setCurEqn({ latex: '', description: '' });
+        handleChange({ target: { value: text } });
+        // eslint-disable-next-line
     }, [curCourse]);
 
     return (

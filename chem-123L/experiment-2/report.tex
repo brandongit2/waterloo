@@ -1,0 +1,321 @@
+\documentclass[11pt, titlepage]{article}
+
+\usepackage{amsmath}
+\usepackage{biblatex}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{gensymb} % For command \degree
+\usepackage[margin=1in]{geometry}
+\usepackage{libertine}
+\usepackage[libertine]{newtxmath}
+\usepackage{pgfplots}
+\usepackage{siunitx}
+\usepackage{xfrac} % For command \sfrac{}
+
+\pgfplotsset{compat=1.16}
+\addbibresource{res/references.bib}
+\definecolor{red}{HTML}{cc5a4b}
+\definecolor{green}{HTML}{57b555}
+\definecolor{blue}{HTML}{3d76e0}
+\pgfarrowsdeclarecombine{dist}{dist}{stealth}{stealth}{|}{|}
+\DeclareSIUnit\molar{M}
+\setlength{\belowcaptionskip}{6pt}
+
+\tikzset{trim axis left, trim axis right}
+\pgfplotsset{
+    every axis/.append style={
+        scale only axis,
+        grid=both,
+        xtick style={draw=none}, ytick style={draw=none}
+    },
+    every axis plot/.append style={mark=*}
+}
+
+\title{
+    CHEM 123L Lab 2 Report \\
+    \Large Calorimetry
+}
+\author{
+    \begin{tabular}{c c}
+        \textbf{Brandon Tsang} & Max Urban \\
+        \small{\textbf{20845794}} &
+    \end{tabular} \\[20pt]
+    University of Waterloo \\
+    CHEM 123L-011 \\
+    TA: Pinar
+}
+\date{January 22, 2020}
+
+\begin{document}
+    \maketitle
+    \noindent
+    Sorry about this being incomplete.
+    \section{Introduction}
+    \section{Procedure}
+        The experimental procedure used for this experiment was outlined in the CHEM 123L lab manual, Experiment \#2. All steps were followed without deviation.
+    \section{Observations and calculations}
+        \textit{Data tables are located in Section~\ref{sec:data}, near the end of the document.}
+        \par\noindent
+        The mass of the empty calorimeter was \SI{65.22}{\gram}.
+        \subsection{Part A: Heat of dissolution of NaOH}
+            \begin{tabular}{l l}
+                Mass of NaOH: & \SI{10.07}{\gram} \\
+                Initial temp. of water: & \SI{23.5}{\degreeCelsius} \\
+                \multicolumn{2}{c}{$m_\text{soln}=\SI{10.07}{\gram}+\SI{250}{\gram}=\SI{260.07}{\gram}$}
+            \end{tabular}
+            \vspace{8pt}
+            \par
+            The sodium hydroxide was added into \SI{250}{\milli\liter} of water, with an initial temperature of \SI{23.5}{\degreeCelsius}. The temperature of the water was then measured over the next 25 minutes. A graph for this data is shown in Figure~\ref{fig:partA}.
+            \begin{figure}[h]
+                \centering
+                \caption{Temperature in the calorimeter for 25 minutes after addition of NaOH. (Data in Table~\ref{tab:raw-partA})}
+                \label{fig:partA}
+                \begin{tikzpicture}
+                    \begin{axis}[
+                        width=0.8\textwidth,
+                        height=7cm,
+                        enlarge x limits=0,
+                        xlabel={Time (\si{\minute})},
+                        ylabel={Temperature (\si{\degreeCelsius})},
+                        y label style={at={(-0.05,0.5)}},
+                        extra y ticks={23.5,33},
+                        extra y tick labels={
+                            $T_i=\SI{23.5}{\degreeCelsius}$,
+                            $T_f=\SI{33}{\degreeCelsius}$
+                        },
+                        extra y tick style={
+                            major grid style={
+                                black!70,
+                                loosely dashed,
+                                line width=0.8pt
+                            },
+                            ticklabel pos=right
+                        }
+                    ]
+                        \addplot[green!60, mark=none, line width=1pt, dashed] (0,33) -- (25,32);
+                        \addplot[green] table[
+                            x=time, y=temp,
+                            col sep=comma
+                        ] {res/partA.csv};
+                        \draw[dist-dist] (18,33) -- (18,23.5)
+                            node[midway, anchor=west] {$\Delta T=\SI{9.5}{\degreeCelsius}$};
+                    \end{axis}
+                \end{tikzpicture}
+            \end{figure}
+            \par
+            The initial temperature in the calorimeter was measured to be $T_i=\SI{23.5}{\degreeCelsius}$, and the final temperature was extrapolated to be $T_f=\SI{33}{\degreeCelsius}$. Using this information, the molar enthalpy of solution, $\Delta_sH\degree$, can be calculated.
+            \par\noindent
+            First, the equation $q=mc\Delta T$ is used to calculate $q_\mathrm{soln}$:
+            \begin{align*}
+                q_\mathrm{soln}&=mc\Delta T \\
+                &=(\SI{260.07}{\gram})(\SI{4.184}{\joule\per\kelvin\per\gram})(\SI{9.5}{\kelvin}) \\
+                &=\SI{10337.3}{\joule}
+            \end{align*}
+            Then, $q_\mathrm{rxn}=-q\mathrm{soln}$, so:
+            \begin{equation*}
+                q_\mathrm{rxn}=-\SI{10337.3}{\joule}
+            \end{equation*}
+        \subsection{Part B: Determining heat capacity of the calorimeter}
+            \begin{tabular}{l l}
+                Temp. of cool water: & \SI{20.9}{\degreeCelsius} \\
+                Mass calorimeter + \SI{125}{\milli\liter} DI: & \SI{166.58}{\gram} \\
+                Mass calorimeter + \SI{250}{\milli\liter} DI: & \SI{289.65}{\gram} \\
+            \end{tabular}
+            \vspace{8pt}
+            \par
+            After adding the warm water to the calorimeter, the temperature was measured every minute for five minutes. Figure~\ref{fig:partB-hotwater} shows these measurements.
+            \begin{figure}[hp]
+                \centering
+                \caption{Red shows the temperature in the calorimeter for 5 minutes after addition of warm water. Data point 3 was likely a misreading. Blue shows the temperature in the calorimeter for 10 minutes after addition of cool water. (Data in Table~\ref{tab:raw-partB})}
+                \label{fig:partB-hotwater}
+                \begin{tikzpicture}
+                    \begin{axis}[
+                        width=12cm,height=10cm,
+                        xlabel={Time (\si{\minute})},
+                        ylabel={Temperature (\si{\degreeCelsius})},
+                        y label style={at={(-0.07,0.5)}},
+                        extra y ticks={51.2,55.8,39,38.5},
+                        extra y tick labels={
+                            $T_{i,\mathrm{warm}}=\SI{51.2}{\degreeCelsius}$,
+                            $T_{f,\mathrm{warm}}=\SI{55.8}{\degreeCelsius}$,
+                            $T_{i,\mathrm{cool}}=\SI{39}{\degreeCelsius}$,
+                            $T_{f,\mathrm{cool}}=\SI{38.5}{\degreeCelsius}$
+                        },
+                        extra y tick style={
+                            major grid style={
+                                black!70,
+                                loosely dashed,
+                                line width=0.8pt
+                            },
+                            ticklabel pos=right
+                        }
+                    ]
+                        \addplot[red!60, mark=none, line width=1pt, dashed] (-5,51.2) -- (0,55.5);
+                        \addplot[blue!60, mark=none, line width=1pt, dashed] (0,39) -- (11,38.5);
+                        \addplot[red] table[
+                            x=time, y=temp,
+                            col sep=comma
+                        ] {res/partB-hotwater.csv};
+                        \addplot[blue] table[
+                            x=time, y=temp,
+                            col sep=comma
+                        ] {res/partB-coldwater.csv};
+                        \draw[dist-dist] (3,51.2) -- (3,55.8)
+                            node[midway, anchor=west] {$\Delta T_\mathrm{warm}=\SI{-16.5}{\degreeCelsius}$};
+                        \draw[dist-dist] (1,39) -- (1,38.5)
+                            node[midway, anchor=east] {$\Delta T_\mathrm{cool}=\SI{-16.8}{\degreeCelsius}$};
+                    \end{axis}
+                \end{tikzpicture}
+            \end{figure}
+            
+        \subsection{Part C: Neutralization of a strong base with a strong acid}
+        \begin{tabular}{l l}
+            Conc. HCl: & \SI{0.9295}{\molar} \\
+            Temp. HCl before: & \SI{20.4}{\degreeCelsius} \\
+            Temp. NaOH before: & \SI{22.0}{\degreeCelsius} \\
+        \end{tabular}
+        \vspace{8pt}
+        \par
+        Upon mixing the acid and the base, the temperature was measured every five seconds for one minutes, then every 30 seconds for an additional nine minutes. This is represented in Figure~\ref{fig:partC}.
+        \begin{figure}[hp]
+            \centering
+            \caption{Temperature in the calorimeter after mixing the hydrochloric acid and sodium hydroxide solutions. (Data in Table~\ref{tab:raw-partC})}
+            \label{fig:partC}
+            \begin{tikzpicture}
+                \begin{axis}[
+                    width=0.8\textwidth,height=7cm,
+                    xlabel={Time (\si{\minute})},
+                    ylabel={Temperature (\si{\degreeCelsius})}
+                ]
+                    \addplot[green] table[
+                        x=time, y=temp,
+                        col sep=comma
+                    ] {res/partC.csv};
+                \end{axis}
+            \end{tikzpicture}
+        \end{figure}
+    \section{Discussion}
+    \section{Conclusions}
+    \newpage
+    \section{Data}
+    \label{sec:data}
+        \begin{center}
+            \begin{minipage}[t]{2in}
+                \centering
+                \captionof{table}{Part A. Temperature of dissolution of sodium hydroxide.}
+                \label{tab:raw-partA}
+                \begin{tabular}{l c}
+                    \toprule
+                    \multicolumn{1}{c}{Time} & Temperature (\si{\degreeCelsius}) \\
+                    \midrule
+                    \SI{0}{\second} & 23.5 \\
+                    \SI{10}{\second} & 23.9 \\
+                    \SI{20}{\second} & 24.6 \\
+                    \SI{30}{\second} & 25.3 \\
+                    \SI{40}{\second} & 26.0 \\
+                    \SI{50}{\second} & 26.6 \\
+                    \SI{1}{\minute} & 27.0 \\
+                    \SI{2}{\minute} & 29.1 \\
+                    \SI{3}{\minute} & 30.3 \\
+                    \SI{4}{\minute} & 31.0 \\
+                    \SI{5}{\minute} & 31.4 \\
+                    \SI{6}{\minute} & 31.8 \\
+                    \SI{7}{\minute} & 32.0 \\
+                    \SI{8}{\minute} & 32.2 \\
+                    \SI{9}{\minute} & 32.3 \\
+                    \SI{10}{\minute} & 32.4 \\
+                    \SI{11}{\minute} & 32.4 \\
+                    \SI{12}{\minute} & 32.4 \\
+                    \SI{13}{\minute} & 32.5 \\
+                    \SI{14}{\minute} & 32.5 \\
+                    \SI{15}{\minute} & 32.5 \\
+                    \SI{16}{\minute} & 32.4 \\
+                    \SI{17}{\minute} & 32.4 \\
+                    \SI{18}{\minute} & 32.3 \\
+                    \SI{19}{\minute} & 32.3 \\
+                    \SI{20}{\minute} & 32.2 \\
+                    \SI{21}{\minute} & 32.2 \\
+                    \SI{22}{\minute} & 32.2 \\
+                    \SI{23}{\minute} & 32.1 \\
+                    \SI{24}{\minute} & 32.1 \\
+                    \SI{25}{\minute} & 32.0 \\
+                    \bottomrule
+                \end{tabular}
+            \end{minipage}
+            \hspace{8pt}
+            \begin{minipage}[t]{2in}
+                \centering
+                \captionof{table}{Part B. Heat capacity of calorimeter.}
+                \label{tab:raw-partB}
+                \begin{tabular}{l c}
+                    \toprule
+                    \multicolumn{1}{c}{Time} & Temperature (\si{\degreeCelsius}) \\
+                    \midrule
+                    \multicolumn{2}{l}{\textit{+Cool water}} \\
+                    \SI{1}{\minute} & 52.3 \\
+                    \SI{2}{\minute} & 52.7 \\
+                    \SI{3}{\minute} & 48.7 \\
+                    \SI{4}{\minute} & 54.3 \\
+                    \SI{5}{\minute} & 55.8 \\
+                    \addlinespace
+                    \multicolumn{2}{l}{\textit{+Warm water}} \\
+                    \SI{6}{\minute} & 46.6 \\
+                    \SI{7}{\minute} & 38.8 \\
+                    \SI{8}{\minute} & 38.9 \\
+                    \SI{9}{\minute} & 38.8 \\
+                    \SI{10}{\minute} & 38.8 \\
+                    \SI{11}{\minute} & 38.7 \\
+                    \SI{12}{\minute} & 38.7 \\
+                    \SI{13}{\minute} & 38.6 \\
+                    \SI{14}{\minute} & 38.5 \\
+                    \SI{15}{\minute} & 38.4 \\
+                    \SI{16}{\minute} & 38.4 \\
+                    \bottomrule
+                \end{tabular}
+            \end{minipage}
+            \hspace{8pt}
+            \begin{minipage}[t]{2in}
+                \centering
+                \captionof{table}{Part C. Neutralization of strong base with strong acid.}
+                \label{tab:raw-partC}
+                \begin{tabular}{l c}
+                    \toprule
+                    \multicolumn{1}{c}{Time} & Temperature (\si{\degreeCelsius}) \\
+                    \midrule
+                    \SI{0}{\second} & 21.2 \\
+                    \SI{5}{\second} & 23.4 \\
+                    \SI{10}{\second} & 24.5 \\
+                    \SI{15}{\second} & 25 \\
+                    \SI{20}{\second} & 26.5 \\
+                    \SI{25}{\second} & 26.8 \\
+                    \SI{30}{\second} & 26.9 \\
+                    \SI{35}{\second} & 26.9 \\
+                    \SI{40}{\second} & 27 \\
+                    \SI{45}{\second} & 27 \\
+                    \SI{50}{\second} & 27 \\
+                    \SI{55}{\second} & 27 \\
+                    \SI{1}{\minute} & 27 \\
+                    \SI{1.5}{\minute} & 26.9 \\
+                    \SI{2}{\minute} & 26.9 \\
+                    \SI{2.5}{\minute} & 26.9 \\
+                    \SI{3}{\minute} & 26.9 \\
+                    \SI{3.5}{\minute} & 26.9 \\
+                    \SI{4}{\minute} & 26.9 \\
+                    \SI{4.5}{\minute} & 26.9 \\
+                    \SI{5}{\minute} & 26.9 \\
+                    \SI{5.5}{\minute} & 26.8 \\
+                    \SI{6}{\minute} & 26.8 \\
+                    \SI{6.5}{\minute} & 26.8 \\
+                    \SI{7}{\minute} & 26.8 \\
+                    \SI{7.5}{\minute} & 26.8 \\
+                    \SI{8}{\minute} & 26.8 \\
+                    \SI{8.5}{\minute} & 26.8 \\
+                    \SI{9}{\minute} & 26.8 \\
+                    \bottomrule
+                \end{tabular}
+            \end{minipage}
+        \end{center}
+    \nocite{manual}
+    \printbibliography
+\end{document}
