@@ -28,8 +28,19 @@ export default connect(mapStateToProps)(function ({ courses, curCourse }) {
 
         let res;
         try {
-            let [code, i] = n.match(/([A-Z]+|[0-9]+)/g);
-            res = Object.entries(courses[curCourse].lists).find(el => el[1].code === code)[1].content[i - 1];
+            if (/[^A-Za-z0-9]/.test(n)) throw new Error();
+            let match = n.match(/([A-Za-z]+|[0-9]+)/g);
+            if (match.length > 2) throw new Error();
+            let [code, i] = match;
+            code = code.toUpperCase();
+            if (!i) throw new Error();
+            let content = Object.entries(courses[curCourse].lists).find(el => el[1].code === code)[1].content;
+            let d = 0;
+            for (let c = 1; c < i; d++) {
+                if (typeof content[d] !== 'string') c++;
+            }
+            if (typeof content[d] === 'string') d++;
+            res = content[d];
         } catch {
             setCurEqn({ latex: '', description: '' });
             return;

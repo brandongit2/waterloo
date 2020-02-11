@@ -353,12 +353,11 @@ let store = createStore(
                                 `
                             },
                             {
-                                latex: '\\frac{d^2x}{dt^2}&=-\\frac{k}{m}x',
+                                latex: '\\frac{d^2x}{dt^2}&=-\\omega^2x',
                                 description: `
                                     <ul>
                                         <li>${k('x')} is the position of the oscillating object and is a function of time ${k('t')}.</li>
-                                        <li>${k('k')} is the spring constant of the spring.</li>
-                                        <li>${k('m')} is the mass of the oscillating object.</li>
+                                        <li>${k('\\omega')} is the angular frequency of the SHM.</li>
                                     </ul>
                                 `
                             },
@@ -380,197 +379,197 @@ let store = createStore(
                             {
                                 latex: 'F_g&=\\frac{Gm_1m_2}{r^2}',
                                 description: `
-                                The force of gravity between two objects, where
-                                <ul>
-                                    <li>${k('G')} is the gravitational constant,</li>
-                                    <li>${k('m_1')} and ${k('m_2')} are the masses of the objects, and</li>
-                                    <li>${k('r')} is the distance between the two objects.</li>
-                                </ul>
-                            `
+                                    The force of gravity between two objects, where
+                                    <ul>
+                                        <li>${k('G')} is the gravitational constant,</li>
+                                        <li>${k('m_1')} and ${k('m_2')} are the masses of the objects, and</li>
+                                        <li>${k('r')} is the distance between the two objects.</li>
+                                    </ul>
+                                `
                             },
                             {
                                 latex: 'K&=\\frac{1}{2}mv^2',
                                 description: `
-                                Kinetic energy, where
-                                <ul>
-                                    <li>${k('m')} is the mass of the object, and</li>
-                                    <li>${k('v')} is the velocity of the object.</li>
-                                </ul>
-                            `
+                                    Kinetic energy, where
+                                    <ul>
+                                        <li>${k('m')} is the mass of the object, and</li>
+                                        <li>${k('v')} is the velocity of the object.</li>
+                                    </ul>
+                                `
                             },
                             {
                                 latex: 'U&=-\\frac{GM_\\oplus m}{r}',
                                 description: `
-                                The gravitational potential energy of an object from Earth, where
-                                <ul>
-                                    <li>${k('G')} is the gravitational constant,</li>
-                                    <li>${k('M_\\oplus')} is the mass of the Earth,</li>
-                                    <li>${k('m')} is the mass of the object, and</li>
-                                    <li>${k('r')} is the distance between the two objects.</li>
-                                </ul>
-                                This equation is an extension of the equation ${k('U=mgh')} taught in high school. Namely, it accounts for the fact that ${k('g')} changes with altitude.
-                            `
+                                    The gravitational potential energy of an object from Earth, where
+                                    <ul>
+                                        <li>${k('G')} is the gravitational constant,</li>
+                                        <li>${k('M_\\oplus')} is the mass of the Earth,</li>
+                                        <li>${k('m')} is the mass of the object, and</li>
+                                        <li>${k('r')} is the distance between the two objects.</li>
+                                    </ul>
+                                    This equation is an extension of the equation ${k('U=mgh')} taught in high school. Namely, it accounts for the fact that ${k('g')} changes with altitude.
+                                `
                             },
                             {
                                 latex: 'E&=K+U',
                                 description: `
-                                Total mechanical energy, where
-                                <ul>
-                                    <li>${k('K')} is the kinetic energy, and</li>
-                                    <li>${k('U')} is the potential energy.</li>
-                                </ul>
-                            `
+                                    Total mechanical energy, where
+                                    <ul>
+                                        <li>${k('K')} is the kinetic energy, and</li>
+                                        <li>${k('U')} is the potential energy.</li>
+                                    </ul>
+                                `
                             },
                             {
                                 latex: 'v&=\\sqrt{\\frac{GM_\\oplus}{r}}',
                                 description: `
-                                The velocity of an object in circular orbit around the Earth, where
-                                <ul>
-                                    <li>${k('G')} is the gravitational constant,</li>
-                                    <li>${k('M_\\oplus')} is the mass of the Earth, and</li>
-                                    <li>${k('r')} is the distance between the two objects.</li>
-                                </ul>
-                            `
+                                    The velocity of an object in circular orbit around the Earth, where
+                                    <ul>
+                                        <li>${k('G')} is the gravitational constant,</li>
+                                        <li>${k('M_\\oplus')} is the mass of the Earth, and</li>
+                                        <li>${k('r')} is the distance between the two objects.</li>
+                                    </ul>
+                                `
                             },
                             {
                                 latex: 'T^2&=\\frac{4\\pi^2a^3}{GM_\\odot}',
                                 description: `
-                                Kepler's third law of planetary motion, where
-                                <ul>
-                                    <li>${k('a')} is the semi-major axis of the orbit,</li>
-                                    <li>${k('G')} is the gravitational constant, and</li>
-                                    <li>${k('M_\\odot')} is the mass of the Sun.</li>
-                                </ul>
-                                This is actually an approximation of the equation
-                                ${k('T^2=\\frac{4\\pi^2a^3}{G\\left(M_\\odot+m\\right)}', true)}
-                                which takes into account the mass ${k('m')} of the planet. We don't use this because it's more complicated, and ${k('m')} is almost always insignificant compared to ${k('M_\\odot')}.
-                            `
+                                    Kepler's third law of planetary motion, where
+                                    <ul>
+                                        <li>${k('a')} is the semi-major axis of the orbit,</li>
+                                        <li>${k('G')} is the gravitational constant, and</li>
+                                        <li>${k('M_\\odot')} is the mass of the Sun.</li>
+                                    </ul>
+                                    This is actually an approximation of the equation
+                                    ${k('T^2=\\frac{4\\pi^2a^3}{G\\left(M_\\odot+m\\right)}', true)}
+                                    which takes into account the mass ${k('m')} of the planet. We don't use this because it's more complicated, and ${k('m')} is almost always insignificant compared to ${k('M_\\odot')}.
+                                `
                             },
                             {
                                 latex: 'R_S&=\\frac{2GM}{c^2}',
                                 description: `
-                                The Schwarzchild radius of an object, where
-                                <ul>
-                                    <li>${k('G')} is the gravitational constant,</li>
-                                    <li>${k('M')} is the mass of the object, and</li>
-                                    <li>${k('c')} is the speed of light in a vacuum.</li>
-                                </ul>
-                            `
+                                    The Schwarzchild radius of an object, where
+                                    <ul>
+                                        <li>${k('G')} is the gravitational constant,</li>
+                                        <li>${k('M')} is the mass of the object, and</li>
+                                        <li>${k('c')} is the speed of light in a vacuum.</li>
+                                    </ul>
+                                `
                             },
                             'Chapter 37a: Special Relativity',
                             {
                                 latex: '\\gamma&=\\frac{1}{\\sqrt{1-\\frac{u^2}{c^2}}}',
                                 description: `
-                                The Lorentz factor, where
-                                <ul>
-                                    <li>${k('u')} is the speed of the &#8216;moving&#8217; frame, and</li>
-                                    <li>${k('c')} is the speed of light in a vacuum.</li>
-                                </ul>
-                            `
+                                    The Lorentz factor, where
+                                    <ul>
+                                        <li>${k('u')} is the speed of the &#8216;moving&#8217; frame, and</li>
+                                        <li>${k('c')} is the speed of light in a vacuum.</li>
+                                    </ul>
+                                `
                             },
                             {
                                 latex: '\\Delta t&=\\gamma\\Delta t_0',
                                 description: `
-                                This equation compares a proper time, ${k('\\Delta t_0')}, and that same time as observed by an observer in another frame of reference (${k('\\Delta t')}). ${k('\\gamma')} is the Lorentz factor.
-                            `
+                                    This equation compares a proper time, ${k('\\Delta t_0')}, and that same time as observed by an observer in another frame of reference (${k('\\Delta t')}). ${k('\\gamma')} is the Lorentz factor.
+                                `
                             },
                             {
                                 latex: 'l&=\\frac{l_0}{\\gamma}',
                                 description: `
-                                This equation compares a proper length, ${k('l_0')}, and that same length as observed by an observer in another frame of reference (${k('l')}). ${k('\\gamma')} is the Lorentz factor.
-                            `
+                                    This equation compares a proper length, ${k('l_0')}, and that same length as observed by an observer in another frame of reference (${k('l')}). ${k('\\gamma')} is the Lorentz factor.
+                                `
                             },
                             {
                                 latex: '&\\begin{cases}x\'=\\gamma(x-ut)\\\\y\'=y\\\\z\'=z\\\\t\'=\\gamma\\left(t-\\frac{ux}{c^2}\\right)\\end{cases}',
                                 description: `
-                                The Lorentz transform for two frames of reference moving solely in the ${k('x')}-direction. If the objects were moving in other directions, the full Lorentz transform would be used, but that is beyond the scope of this course.
-                                <ul>
-                                    <li>${k('x')}, ${k('y')}, ${k('z')}, and ${k('t')} are the spacetime coordinates of the object according to the &#8216;moving&#8217; frame.</li>
-                                    <li>${k('x\'')}, ${k('y\'')}, ${k('z\'')}, and ${k('t\'')} are the spacetime coordinates of the object in our frame.</li>
-                                    <li>${k('\\gamma')} is the Lorentz factor,</li>
-                                    <li>${k('u')} is the speed of the &#8216;moving&#8217; frame relative to ours, and</li>
-                                    <li>${k('c')} is the speed of light in a vacuum.</li>
-                                </ul>
-                            `
+                                    The Lorentz transform for two frames of reference moving solely in the ${k('x')}-direction. If the objects were moving in other directions, the full Lorentz transform would be used, but that is beyond the scope of this course.
+                                    <ul>
+                                        <li>${k('x')}, ${k('y')}, ${k('z')}, and ${k('t')} are the spacetime coordinates of the object according to the &#8216;moving&#8217; frame.</li>
+                                        <li>${k('x\'')}, ${k('y\'')}, ${k('z\'')}, and ${k('t\'')} are the spacetime coordinates of the object in our frame.</li>
+                                        <li>${k('\\gamma')} is the Lorentz factor,</li>
+                                        <li>${k('u')} is the speed of the &#8216;moving&#8217; frame relative to ours, and</li>
+                                        <li>${k('c')} is the speed of light in a vacuum.</li>
+                                    </ul>
+                                `
                             },
                             {
                                 latex: 'v_x&=\\frac{v\'_x+u}{1+\\frac{uv\'_x}{c^2}}',
                                 description: `
-                                The velocity of an object in its own frame of reference, given its apparent velocity to a &#8216;stationary&#8217; frame of reference.
-                                <ul>
-                                    <li>${k('v\'_x')} is the apparent velocity to us,</li>
-                                    <li>${k('u')} is the speed of the &#8216;moving&#8217; frame, and</li>
-                                    <li>${k('c')} is the speed of light in a vacuum.</li>
-                                </ul>
-                            `
+                                    The velocity of an object in its own frame of reference, given its apparent velocity to a &#8216;stationary&#8217; frame of reference.
+                                    <ul>
+                                        <li>${k('v\'_x')} is the apparent velocity to us,</li>
+                                        <li>${k('u')} is the speed of the &#8216;moving&#8217; frame, and</li>
+                                        <li>${k('c')} is the speed of light in a vacuum.</li>
+                                    </ul>
+                                `
                             },
                             {
                                 latex: 'f&=f_0\\sqrt{\\frac{c+u}{c-u}}',
                                 description: `
-                                The apparent frequency of a wave, given the &#8216;proper&#8217; frequency.
-                                <ul>
-                                    <li>${k('f_0')} is the &#8216;proper&#8217; frequency (i.e. the frequency as measured by the source),</li>
-                                    <li>${k('c')} is the speed of light in a vacuum, and</li>
-                                    <li>${k('u')} is the speed of the source.</li>
-                                </ul>
-                                This equation is for a source approaching the observer. If the source is leaving the observer, ${k('u')} is negative.
-                            `
+                                    The apparent frequency of a wave, given the &#8216;proper&#8217; frequency.
+                                    <ul>
+                                        <li>${k('f_0')} is the &#8216;proper&#8217; frequency (i.e. the frequency as measured by the source),</li>
+                                        <li>${k('c')} is the speed of light in a vacuum, and</li>
+                                        <li>${k('u')} is the speed of the source.</li>
+                                    </ul>
+                                    This equation is for a source approaching the observer. If the source is leaving the observer, ${k('u')} is negative.
+                                `
                             },
                             {
                                 latex: 'p&=\\gamma mv',
                                 description: `
-                                Relativistic momentum, where
-                                <ul>
-                                    <li>${k('\\gamma')} is the Lorentz factor,</li>
-                                    <li>${k('m')} is the mass of the object, and</li>
-                                    <li>${k('v')} is the speed of the object.</li>
-                                </ul>
-                            `
+                                    Relativistic momentum, where
+                                    <ul>
+                                        <li>${k('\\gamma')} is the Lorentz factor,</li>
+                                        <li>${k('m')} is the mass of the object, and</li>
+                                        <li>${k('v')} is the speed of the object.</li>
+                                    </ul>
+                                `
                             },
                             {
                                 latex: 'F&=\\gamma^3ma',
                                 description: `
-                                Relativistic force where ${k('\\bm{F}')} and ${k('\\bm{v}')} are parallel.
-                                <ul>
-                                    <li>${k('\\gamma')} is the Lorentz factor,</li>
-                                    <li>${k('m')} is the mass of the object, and</li>
-                                    <li>${k('a')} is the magnitude of acceleration of the object.</li>
-                                </ul>
-                            `
+                                    Relativistic force where ${k('\\bm{F}')} and ${k('\\bm{v}')} are parallel.
+                                    <ul>
+                                        <li>${k('\\gamma')} is the Lorentz factor,</li>
+                                        <li>${k('m')} is the mass of the object, and</li>
+                                        <li>${k('a')} is the magnitude of acceleration of the object.</li>
+                                    </ul>
+                                `
                             },
                             {
                                 latex: 'F&=\\gamma ma',
                                 description: `
-                                Relativistic force where ${k('\\bm{F}')} and ${k('\\bm{v}')} are perpendicular.
-                                <ul>
-                                    <li>${k('\\gamma')} is the Lorentz factor,</li>
-                                    <li>${k('m')} is the mass of the object, and</li>
-                                    <li>${k('a')} is the magnitude of acceleration of the object.</li>
-                                </ul>
-                            `
+                                    Relativistic force where ${k('\\bm{F}')} and ${k('\\bm{v}')} are perpendicular.
+                                    <ul>
+                                        <li>${k('\\gamma')} is the Lorentz factor,</li>
+                                        <li>${k('m')} is the mass of the object, and</li>
+                                        <li>${k('a')} is the magnitude of acceleration of the object.</li>
+                                    </ul>
+                                `
                             },
                             {
                                 latex: 'K&=mc^2(\\gamma-1)',
                                 description: `
-                                Relativistic kinetic energy, where
-                                <ul>
-                                    <li>${k('m')} is the mass of the object,</li>
-                                    <li>${k('c')} is the speed of light in a vacuum, and</li>
-                                    <li>${k('\\gamma')} is the Lorentz factor.</li>
-                                </ul>
-                            `
+                                    Relativistic kinetic energy, where
+                                    <ul>
+                                        <li>${k('m')} is the mass of the object,</li>
+                                        <li>${k('c')} is the speed of light in a vacuum, and</li>
+                                        <li>${k('\\gamma')} is the Lorentz factor.</li>
+                                    </ul>
+                                `
                             },
                             {
                                 latex: 'E&=K+mc^2=\\gamma mc^2',
                                 description: `
-                                Total energy of a particle, where
-                                <ul>
-                                    <li>${k('K')} is the relativistic kinetic energy,</li>
-                                    <li>${k('m')} is the mass of the particle, and</li>
-                                    <li>${k('c')} is the speed of light in a vacuum.</li>
-                                </ul>
-                                Note that it doesn't necessarily have to be a particle; it could be any object. However, it is useless to define energy of macroscopic objects this way, since the rest energy (the ${k('mc^2')} term) is stored in the mass of the object and is almost impossible to release.
-                            `
+                                    Total energy of a particle, where
+                                    <ul>
+                                        <li>${k('K')} is the relativistic kinetic energy,</li>
+                                        <li>${k('m')} is the mass of the particle, and</li>
+                                        <li>${k('c')} is the speed of light in a vacuum.</li>
+                                    </ul>
+                                    Note that it doesn't necessarily have to be a particle; it could be any object. However, it is useless to define energy of macroscopic objects this way, since the rest energy (the ${k('mc^2')} term) is stored in the mass of the object and is almost impossible to release.
+                                `
                             }
                         ]
                     },

@@ -40,10 +40,10 @@ export default connect(mapStateToProps)(withRouter(class List extends React.Comp
             if (typeof eqn === 'string') {
                 res += '\\end{aligned}';
                 res !== '\\begin{aligned}\\end{aligned}'
-                    && outer.push(<div dangerouslySetInnerHTML={{ __html: katex.renderToString(res, katexOptions) }} />);
-                arr.push(<div>{outer}</div>);
+                    && outer.push(<div key={res} dangerouslySetInnerHTML={{ __html: katex.renderToString(res, katexOptions) }} />);
+                arr.push(<div key={eqn}>{outer}</div>);
                 outer = [];
-                outer.push(<span className="subtitle">{eqn}</span>);
+                outer.push(<span key={eqn + 'title'} className="subtitle">{eqn}</span>);
                 res = '\\begin{aligned}';
             } else {
                 res += `\\text{(${code}${i + 1})}&&${eqn.latex}${i < str.length - 1 ? '\\\\' : ''}`;
@@ -52,8 +52,8 @@ export default connect(mapStateToProps)(withRouter(class List extends React.Comp
         }
         res += '\\end{aligned}';
         res !== '\\begin{aligned}\\end{aligned}'
-            && outer.push(<div dangerouslySetInnerHTML={{ __html: katex.renderToString(res, katexOptions) }} />);
-        arr.push(<div>{outer}</div>);
+            && outer.push(<div key={res} dangerouslySetInnerHTML={{ __html: katex.renderToString(res, katexOptions) }} />);
+        arr.push(<div key={'blah'}>{outer}</div>);
 
         return arr;
     };
