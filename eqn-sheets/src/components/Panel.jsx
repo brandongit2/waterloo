@@ -31,6 +31,7 @@ export default connect(mapStateToProps)(function ({ courses, curCourse }) {
             let [code, i] = n.match(/([A-Z]+|[0-9]+)/g);
             res = Object.entries(courses[curCourse].lists).find(el => el[1].code === code)[1].content[i - 1];
         } catch {
+            setCurEqn({ latex: '', description: '' });
             return;
         }
 

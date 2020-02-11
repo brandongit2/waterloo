@@ -31,13 +31,31 @@ export default connect(mapStateToProps)(withRouter(class List extends React.Comp
     }
 
     process = function (str, code) {
-        try {
-            return `\\begin{aligned}${
-                str.reduce((acc, eqn, i) => `${acc}\\text{(${code}${i + 1})}&&${eqn.latex}${i < str.length - 1 ? '\\\\' : ''}`, '')
-                }\\end{aligned}`;
-        } catch {
-            return '';
+        let arr = [];
+        let outer = [];
+        let i = 0;
+
+        let res = '\\begin{aligned}';
+        for (let eqn of str) {
+            if (typeof eqn === 'string') {
+                res += '\\end{aligned}';
+                res !== '\\begin{aligned}\\end{aligned}'
+                    && outer.push(<div dangerouslySetInnerHTML={{ __html: katex.renderToString(res, katexOptions) }} />);
+                arr.push(<div>{outer}</div>);
+                outer = [];
+                outer.push(<span className="subtitle">{eqn}</span>);
+                res = '\\begin{aligned}';
+            } else {
+                res += `\\text{(${code}${i + 1})}&&${eqn.latex}${i < str.length - 1 ? '\\\\' : ''}`;
+                i++;
+            }
         }
+        res += '\\end{aligned}';
+        res !== '\\begin{aligned}\\end{aligned}'
+            && outer.push(<div dangerouslySetInnerHTML={{ __html: katex.renderToString(res, katexOptions) }} />);
+        arr.push(<div>{outer}</div>);
+
+        return arr;
     };
 
     render() {
@@ -64,11 +82,10 @@ export default connect(mapStateToProps)(withRouter(class List extends React.Comp
                         <h1>{curList?.capFirstLetter()}</h1>
                     </div>
                     <div className="list">
-                        {curCourse == null || curList == null ? <div /> : (
-                            <div dangerouslySetInnerHTML={{
-                                __html: katex.renderToString(this.process(courses[curCourse].lists[curList]?.content, courses[curCourse].lists[curList]?.code), katexOptions)
-                            }} />
-                        )}
+                        {curCourse == null || curList == null
+                            ? <div />
+                            : this.process(courses[curCourse].lists[curList]?.content, courses[curCourse].lists[curList]?.code)
+                        }
                     </div>
                 </div>
             </div>
