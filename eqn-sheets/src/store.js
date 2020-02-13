@@ -291,26 +291,7 @@ let store = createStore(
             },
             'math-128': {
                 name: 'MATH 128',
-                lists: {
-                    'identities': {
-                        code: 'I',
-                        content: [
-                            {
-                                latex: '\\sin^2{x}+\\cos^2{x}&=1',
-                                description: 'fuck shit'
-                            }
-                        ]
-                    },
-                    'equations': {
-                        code: 'E',
-                        content: [
-                            {
-                                latex: '\\int x\\,dx',
-                                description: 'h'
-                            }
-                        ]
-                    }
-                }
+                lists: {}
             },
             'phys-122': {
                 name: 'PHYS 122',
@@ -347,23 +328,122 @@ let store = createStore(
                                 `
                             },
                             {
+                                latex: 'a=\\frac{d^2x}{dt^2}&=-\\omega^2x',
+                                description: `
+                                    Acceleration of an object in SHM, where
+                                    <ul>
+                                        <li>${k('x')} is the position of the object from its equilibrium position,</li>
+                                        <li>${k('t')} is the time, and</li>
+                                        <li>${k('\\omega')} is the angular frequency.</li>
+                                    </ul>
+                                    Remember that ${k('x')} is a function of time.
+                                `
+                            },
+                            {
                                 latex: 'f&=\\frac{\\omega}{2\\pi}',
                                 description: `
                                     Frequency of an oscillating object, where ${k('\\omega')} represents the the angular frequency.
                                 `
                             },
                             {
-                                latex: '\\frac{d^2x}{dt^2}&=-\\omega^2x',
+                                latex: 'x&=A\\cos(\\omega t+\\phi)',
                                 description: `
+                                    The position of an object in SHM, where
                                     <ul>
-                                        <li>${k('x')} is the position of the oscillating object and is a function of time ${k('t')}.</li>
-                                        <li>${k('\\omega')} is the angular frequency of the SHM.</li>
+                                        <li>${k('A')} is the amplitude,</li>
+                                        <li>${k('\\omega')} is the angular frequency,</li>
+                                        <li>${k('t')} is the time elapsed, and </li>
+                                        <li>${k('\\phi')} is the phase angle. This is just a constant which defines the initial conditions of the SHM.</li>
+                                    </ul>
+                                    Taking derivatives of this, we get
+                                    ${k('v_x=-\\omega A\\sin(\\omega t+\\phi)', true)}
+                                    and
+                                    ${k('a_x=-\\omega^2A\\cos(\\omega t+\\phi)=-\\omega^2x', true)}
+                                `
+                            },
+                            {
+                                latex: 'E&=\\frac{1}{2}mv^2+\\frac{1}{2}kx^2=\\frac{1}{2}kA^2',
+                                description: `
+                                    Total mechanical energy of an oscillating object on a spring, where
+                                    <ul>
+                                        <li>${k('m')} is the mass of the object,</li>
+                                        <li>${k('v')} is the velocity of the object,</li>
+                                        <li>${k('k')} is the spring constant of the spring</li>
+                                        <li>${k('x')} is the position of the object relative to its equilibrium point, and</li>
+                                        <li>${k('A')} is the amplitude of the SHM.</li>
+                                    </ul>
+                                    This comes from the fact that total mechanical energy is equal to the sum of the kinetic energy and the elastic potential energy:
+                                    ${k('E=K+U', true)}
+                                    and ${k('K=\\frac{1}{2}mv^2')} and ${k('U=\\frac{1}{2}kx^2')}.
+                                    <br>
+                                    When the object is furthest from equilibrium, ${k('x=A')} and ${k('v=0')}. Therefore, when ${k('x=A')}, ${k('E=0+\\frac{1}{2}kA^2')}. Since mechanical energy is constant, ${k('E')} is always equal to ${k('\\frac{1}{2}kA^2')}.
+                                `
+                            },
+                            {
+                                latex: '\\theta&=\\Theta\\cos(\\omega t+\\phi)',
+                                description: `
+                                    SHM for a simple pendulum. This is only accurate for small angles.
+                                    <ul>
+                                        <li>${k('\\theta')} is the angular displacement of the object,</li>
+                                        <li>${k('\\Theta')} is the maximum angular displacement of the object (analagous to amplitude),</li>
+                                        <li>${k('t')} is the time, and</li>
+                                        <li>${k('\\phi')} is the phase angle, which just defines the initial conditions for the SHM.</li>
                                     </ul>
                                 `
                             },
                             {
-                                latex: 'x&=A\\cos(\\omega t+\\phi)',
-                                description: ``
+                                latex: '\\alpha=\\frac{d^2\\theta}{dt^2}&=-\\omega^2\\theta',
+                                description: `
+                                    Angular acceleration of an object on a simple pendulum, where
+                                    <ul>
+                                        <li>${k('\\theta')} is the angle of the object relative to its equilibrium position,</li>
+                                        <li>${k('t')} is the time, and</li>
+                                        <li>${k('\\omega')} is the angular frequency.</li>
+                                    </ul>
+                                    Remember that ${k('\\theta')} is a function of time, and that this is only accurate for small angles.
+                                `
+                            },
+                            {
+                                latex: '\\omega&=\\sqrt{\\frac{g}{L}}',
+                                description: `
+                                    Angular frequency of a simple pendulum, where
+                                    <ul>
+                                        <li>${k('g')} is the acceleration due to gravity, and</li>
+                                        <li>${k('L')} is the length of the pendulum.</li>
+                                    </ul>
+                                `
+                            },
+                            {
+                                latex: '\\omega&=\\sqrt{\\frac{mgd}{I}}',
+                                description: `
+                                    Angular frequency for a physical pendulum, where
+                                    <ul>
+                                        <li>${k('m')} is the mass of the object,</li>
+                                        <li>${k('g')} is the acceleration due to gravity,</li>
+                                        <li>${k('d')} is the distance from the pivot point to the center of mass, and</li>
+                                        <li>${k('I')} is the moment of inertia of the object.</li>
+                                    </ul>
+                                `
+                            },
+                            {
+                                latex: '\\omega&=\\sqrt{\\frac{\\kappa}{I}}',
+                                description: `
+                                    Angular frequency for a torsion pendulum, where
+                                    <ul>
+                                        <li>${k('\\kappa')} is the torsion constant of the pendulum, and</li>
+                                        <li>${k('I')} is the moment of inertia of the object.</li>
+                                    </ul>
+                                    This is similar to ${k('\\omega=\\sqrt{\\frac{k}{m}}')} for SHM on a spring, but using the rotational equivalents of ${k('k')} and ${k('m')}.
+                                `
+                            }
+                        ]
+                    },
+                    'constants': {
+                        code: 'C',
+                        content: [
+                            {
+                                latex: 'g&=\\pu{9.8067 m s-1}',
+                                description: 'The acceleration due to gravity on Earth.'
                             }
                         ]
                     }
@@ -577,39 +657,44 @@ let store = createStore(
                         code: 'C',
                         content: [
                             {
-                                latex: 'g&=9.8067\\ \\text{m}\\,\\text{s}^{-1}',
+                                latex: 'g&=\\pu{9.8067 m s-1}',
                                 description: 'T acceleration due to gravity on Earth.'
                             },
                             {
-                                latex: 'G&=6.6738\\times10^{-11}\\ \\text{m}^3\\,\\text{kg}^{-1}\\,\\text{s}^{-2}',
+                                latex: 'G&=\\pu{6.6738e-11 m3 kg-1 s-2}',
                                 description: `The gravitational constant. Used as the proportionality constant in the equation ${k('F_g=\\frac{Gm_1m_2}{r^2}\\text{.}', true)}`
                             },
                             {
-                                latex: 'R_\\oplus&=6.3781\\times10^6\\ \\text{m}',
+                                latex: 'R_\\oplus&=\\pu{6.3781e6 m}',
                                 description: 'The radius of the Earth.'
                             },
                             {
-                                latex: 'M_\\oplus&=5.9722\\times10^{24}\\ \\text{kg}',
+                                latex: 'M_\\oplus&=\\pu{5.9722e24 kg}',
                                 description: 'The mass of the Earth.'
                             },
                             {
-                                latex: 'R_\\odot&=6.96340\\times10^8\\ \\text{m}',
+                                latex: 'R_\\odot&=\\pu{6.96340e8 m}',
                                 description: 'The radius of the Sun.'
                             },
                             {
-                                latex: 'M_\\odot&=1.9885\\times10^{30}\\ \\text{kg}',
+                                latex: 'M_\\odot&=\\pu{1.9885e30 kg}',
                                 description: 'The mass of the Sun.'
                             },
                             {
-                                latex: 'c&=2.99792\\times10^8\\ \\text{m}\\,\\text{s}^{-1}',
+                                latex: 'c&=\\pu{2.99792e8 m s-1}',
                                 description: 'The speed of light in a vacuum.'
-                            },
-                            {
-                                latex: '1\\ \\text{eV}&=1.60218\\times10^{-19}\\ \\text{J}',
-                                description: 'eV - electronvolt<br>J - Joule'
                             }
                         ]
                     },
+                    'conversions': {
+                        code: 'CV',
+                        content: [
+                            {
+                                latex: '\\pu{1 eV}&=\\pu{1.60218e-19 J}',
+                                description: 'eV - electronvolt<br>J - Joule'
+                            }
+                        ]
+                    }
                 }
             }
         },

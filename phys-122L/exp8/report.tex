@@ -1,0 +1,235 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage[americanresistors]{circuitikz}
+\usepackage[margin=1in]{geometry}
+\usepackage{libertine}
+\usepackage{pgfplots}
+\usepackage[libertine]{newtxmath}
+\usepackage{siunitx}
+
+\pgfplotsset{compat=1.16}
+\definecolor{red}{HTML}{cc5a4b}
+\definecolor{green}{HTML}{57b555}
+\definecolor{blue}{HTML}{3d76e0}
+\newcommand*{\equals}{=}
+
+\title{PHYS 122L Experiment 8\\\Large Circuits}
+\author{Brandon Tsang}
+\date{February 12, 2020}
+
+\begin{document}
+    \maketitle
+    \section*{Part A: Investigation of a multiloop DC circuit}
+        \raggedright
+        The following measurements will be made on this circuit:
+        \begin{center}
+            \begin{circuitikz}[american]
+                \draw (0,0) node[anchor=south] {$A$}
+                    to[battery1=$V_1\equals\SI{5.0}{\volt}$, *-*] (0,-4) node[anchor=north] {$D$}
+                    -- (4,-4) node[anchor=north] {$E$}
+                    to[battery1=$V_2\equals\SI{4.0}{\volt}$, *-*] (4,-2) node[anchor=west] {$C$}
+                    to[R=$R_3$] (4,0) node[anchor=south] {$Q$}
+                    to[R=$R_1$, *-*] (0,0)
+                    (4,0)
+                    to[R=$R_2$, *-*] (8,0) node[anchor=south] {$B$}
+                    to[battery1=$V_3\equals\SI{3.0}{\volt}$, -*] (8,-4) node[anchor=north] {$F$}
+                    -- (4,-4);
+            \end{circuitikz}
+        \end{center}
+        \begin{center}
+            \begin{tabular}{l l l}
+                \toprule
+                Resistances & Voltage drops & Current \\
+                \midrule
+                $R_1=\SI{991(0)}{\ohm}$ & $V_{R_1}=\SI{+5.57(2)}{\volt}$ & $I_{R_1}=\SI{0.5623}{\milli\ampere}$ \\
+                $R_2=\SI{2162(5)}{\ohm}$ & $V_{R_2}=\SI{+3.55(8)}{\volt}$ & $I_{R_2}=\SI{0.1645}{\milli\ampere}$ \\
+                $R_3=\SI{482(2)}{\ohm}$ & $V_{R_3}=\SI{-3.50(4)}{\volt}$ & $I_{R_3}=\SI{-0.7267}{\milli\ampere}$ \\
+                \bottomrule
+            \end{tabular}
+        \end{center}
+        Summing the currents calculated above, we get that $\sum I=\SI{0.0001}{\milli\ampere}$, which is very close to zero. This confirms Kirchoff's current law.
+        \begin{center}
+            \begin{minipage}[t]{0.3\textwidth}
+                For the left loop: \\
+                $V_{AQ}=\SI{+5.57(3)}{\volt}$ \\
+                $V_{QC}=\SI{+3.50(4)}{\volt}$ \\
+                $V_{CE}=\SI{-3.99(8)}{\volt}$ \\
+                $V_{DA}=\SI{-5.08(2)}{\volt}$ \\
+                $\sum V=\SI{-0.003}{\volt}$
+            \end{minipage}
+            \begin{minipage}[t]{0.3\textwidth}
+                For the right loop: \\
+                $V_{QB}=\SI{-3.55(8)}{\volt}$ \\
+                $V_{BF}=\SI{+3.06(7)}{\volt}$ \\
+                $V_{EC}=\SI{+3.99(8)}{\volt}$ \\
+                $V_{CQ}=\SI{-3.50(4)}{\volt}$ \\
+                $\sum V=\SI{0.003}{\volt}$
+            \end{minipage}
+            \begin{minipage}[t]{0.3\textwidth}
+                For the outer loop: \\
+                $V_{AQ}=\SI{+5.57(3)}{\volt}$ \\
+                $V_{QB}=\SI{-3.55(8)}{\volt}$ \\
+                $V_{BF}=\SI{+3.06(7)}{\volt}$ \\
+                $V_{DA}=\SI{-5.08(3)}{\volt}$ \\
+                $\sum V=\SI{-0.001}{\volt}$
+            \end{minipage}
+        \end{center}
+        For all three loops, $\sum V\approx0$. This confirms Kirchoff's voltage law.
+    \pagebreak
+    \section*{Part B: Charge and discharge of a capacitor}
+        \subsection*{Charge of a capacitor}
+            The following measurements will be made on this circuit:
+            \begin{center}
+                \begin{circuitikz}[american]
+                    \draw (0,0) node[anchor=south] {$A$}
+                        to[battery1=$E$, *-*] (0,-3) node[anchor=north] {$J$}
+                        -- (6,-3) node[anchor=north] {$I$}
+                        to[capacitor=$C_1$, *-*] (6,0) node[anchor=south] {$F$}
+                        to[R=\SI{2.2}{\mega\ohm}] (3,0)
+                        to[normal open switch=$SW_1$, mirror] (0,0)
+                        (6,-3)
+                        -- (9,-3)
+                        to[voltmeter=\SI{10.5}{\mega\ohm}, *-*] (9,0) node[anchor=south] {$D$}
+                        -- (6,0)
+                        (9,-3) node[anchor=north] {$E$}
+                        -- (12,-3)
+                        -- (12,0)
+                        to[normal open switch=$SW_2$, mirror] (9,0);
+                \end{circuitikz}
+            \end{center}
+            \begin{center}
+                \begin{tabular}{c c c c c c}
+                    \multicolumn{6}{l}{\small \textit{All time values have an uncertainty of $\pm\SI{0.01}{\second}$.}} \\
+                    \toprule
+                    Voltage (\si{\volt}) & \multicolumn{3}{c}{Time (\si{\second})} & Average time (\si{\second}) & $\frac{E'}{E'-V}$ \\
+                    & 1 & 2 & 3 \\
+                    \midrule
+                    0.5 & 2.85 & 2.82 & 2.61 & 2.76 & 1.14 \\
+                    1.0 & 5.59 & 5.92 & 5.79 & 5.77 & 1.33 \\
+                    1.5 & 9.09 & 8.97 & 9.21 & 9.09 & 1.60 \\
+                    2.0 & 13.06 & 12.95 & 12.68 & 12.90 & 2.00 \\
+                    2.5 & 18.14 & 18.15 & 18.09 & 18.12 & 2.67 \\
+                    3.0 & 25.10 & 25.36 & 25.33 & 25.26 & 4.00 \\
+                    3.5 & 37.98 & 37.49 & 37.70 & 37.72 & 8.00 \\
+                    \bottomrule
+                \end{tabular}
+            \end{center}
+            Plotting $\frac{E'}{E'-V}$ vs. $t$ on a semi-log graph, we get:
+            \begin{center}
+                \begin{tikzpicture}
+                    \begin{semilogyaxis}[
+                        width=10cm,
+                        height=10cm,
+                        xlabel={Time (\si{\second})}, ylabel={$\frac{E'}{E'-V}$},
+                        legend entries={$\log{y}=0.0243x-0.0131$},
+                        legend pos=north west
+                    ]
+                        \plot[
+                            only marks, green,
+                            forget plot,
+                            error bars/.cd,
+                            x dir=both,
+                            x fixed=0.173
+                        ] coordinates {
+                            (2.76,1.14) (5.77,1.33) (9.09,1.6) (12.9,2) (18.12,2.67) (25.26,4) (37.72,8)
+                        };
+                        \plot[mark=none,domain=0:40, samples=50, dashed, green] {10^(0.024288*x-0.0131409)};
+                    \end{semilogyaxis}
+                \end{tikzpicture}
+            \end{center}
+            Notes about the above graph:
+            \begin{itemize}
+                \item The error bars are too small to be shown.
+                \item The dashed line is a regression of the data.
+            \end{itemize}
+            The slope of the line is $m=0.0243$. Using this, we can calculate $C_1$:
+            \begin{align}
+                m&=\frac{\log{e}}{R'C_1} \\
+                \frac{1}{C_1}&=\frac{mR'}{\log{e}} \\
+                C_1&=\frac{\log{e}}{mR'} \label{eqn:C}
+            \end{align}
+            To calculate $R'$:
+            \begin{align}
+                R'&\equiv\frac{R_M}{R_M+R}\cdot R \\
+                &=\frac{\SI{10.5}{\mega\ohm}}{\SI{10.5}{\mega\ohm}+\SI{2.2}{\mega\ohm}}\cdot\SI{2.2}{\mega\ohm} \\
+                &=\SI{1.82}{\mega\ohm} \\
+                &=\SI{1.82e6}{\ohm}
+            \end{align}
+            Plugging this back into Equation~\ref{eqn:C}:
+            \begin{align}
+                C_1&=\frac{\log{e}}{(\SI{0.0243}{\per\second})(\SI{1.82e6}{\ohm})} \\
+                &=\SI{9.82}{\second\per\ohm} \\
+                &=\SI{9.82}{\farad}
+            \end{align}
+        \subsection*{Discharge of a capacitor}
+            The following measurements will be made on this circuit:
+            \begin{center}
+                \begin{circuitikz}[american]
+                    \draw (0,0)
+                        to[battery1=$E$] (0,-6)
+                        -- (3,-6)
+                        to[R=\SI{2.2}{\mega\ohm}] (3,-3)
+                        to[normal open switch=$SW_1$] (3,0)
+                        to[normal open switch=$SW_2$, mirror] (0,0)
+                        (3,-6)
+                        -- (6,-6)
+                        to[capacitor=$C$] (6,0)
+                        -- (3,0)
+                        (6,-6)
+                        -- (9,-6)
+                        to[voltmeter=\SI{10.5}{\mega\ohm}] (9,0)
+                        -- (6,0);
+                \end{circuitikz}
+            \end{center}
+            \begin{center}
+                \begin{tabular}{c c c}
+                    \toprule
+                    Voltage (\si{\volt}) & $\frac{V}{V_0}$ & Time (\si{\second}) \\
+                    \midrule
+                    4.00 & 0.89 & 1.56 \\
+                    3.50 & 0.78 & 2.52 \\
+                    3.00 & 0.67 & 3.65 \\
+                    2.50 & 0.56 & 5.10 \\
+                    2.00 & 0.44 & 6.32 \\
+                    1.50 & 0.33 & 8.56 \\
+                    1.00 & 0.22 & 12.31 \\
+                    \bottomrule
+                \end{tabular}
+            \end{center}
+            Plotting $\frac{V}{V_0}$ vs. time on a semi-log graph:
+            \begin{center}
+                \begin{tikzpicture}
+                    \begin{semilogyaxis}[
+                        width=10cm,
+                        height=10cm,
+                        xlabel={Time (\si{\second})}, ylabel={$\frac{V}{V_0}$},
+                        legend entries={$\log{y}=-0.0577x+0.0326$},
+                        legend pos=north east
+                    ]
+                        \plot[
+                            only marks, green,
+                            forget plot,
+                            error bars/.cd,
+                            x dir=both,
+                            x fixed=0.173
+                        ] coordinates {
+                            (1.56,0.89) (2.52,0.78) (3.65,0.67) (5.1,0.56) (6.32,0.44) (8.56,0.33) (12.31,0.22)
+                        };
+                        \plot[mark=none,domain=1:13, samples=50, dashed, green] {10^(-0.0576761*x+0.032619)};
+                    \end{semilogyaxis}
+                \end{tikzpicture}
+            \end{center}
+            The slope of the dashed regression line is $m=-0.0577$. Using this, we can calculate $C_2$:
+            \begin{align}
+                m&=\frac{\log{e}}{R'C_2} \\
+                \frac{1}{C_2}&=\frac{mR'}{\log{e}} \\
+                C_2&=\frac{\log{e}}{mR'} \\
+                &=\frac{\log{e}}{(\SI{-0.0577}{\per\second})(\SI{1.82e6}{\ohm})} \\
+                &=\SI{-4.14}{\ohm\per\second} \\
+                &=\SI{-4.14}{\farad}
+            \end{align}
+        \section*{Part C: Capacitors in series and parallel}
+        [incomplete]
+\end{document}

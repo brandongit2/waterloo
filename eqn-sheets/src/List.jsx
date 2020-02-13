@@ -36,6 +36,7 @@ export default connect(mapStateToProps)(withRouter(class List extends React.Comp
         let i = 0;
 
         let res = '\\begin{aligned}';
+        if (str === undefined) return;
         for (let eqn of str) {
             if (typeof eqn === 'string') {
                 res += '\\end{aligned}';
