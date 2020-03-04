@@ -12,7 +12,7 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(function ({ courses, curCourse }) {
-    const [isOpen, setIsOpen] = React.useState(true);
+    const [isOpen, setIsOpen] = React.useState(false);
     let toggleIsOpen = () => {
         setIsOpen(isOpen ? false : true);
     };

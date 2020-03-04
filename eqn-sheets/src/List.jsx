@@ -44,7 +44,7 @@ export default connect(mapStateToProps)(withRouter(class List extends React.Comp
                     && outer.push(<div key={res} dangerouslySetInnerHTML={{ __html: katex.renderToString(res, katexOptions) }} />);
                 arr.push(<div key={eqn}>{outer}</div>);
                 outer = [];
-                outer.push(<span key={eqn + 'title'} className="subtitle">{eqn}</span>);
+                outer.push(<span key={eqn + 'title'} className="subtitle" dangerouslySetInnerHTML={{ __html: eqn }}></span>);
                 res = '\\begin{aligned}';
             } else {
                 res += `\\text{(${code}${i + 1})}&&${eqn.latex}${i < str.length - 1 ? '\\\\' : ''}`;
