@@ -1,0 +1,93 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{chemmacros}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in, landscape]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{libertine}
+\usepackage[libertine]{newtxmath}
+\usepackage{pgfplots}
+\usepackage{siunitx}
+
+\pgfplotsset{compat=1.16}
+\usetikzlibrary{patterns}
+\usepgfplotslibrary{fillbetween}
+\pagestyle{empty}
+
+\title{Title here}
+\author{Brandon Tsang}
+\date{Date here}
+
+\begin{document}
+    \LARGE
+    \begin{center}
+        \begin{tikzpicture}[trim axis left, trim axis right]
+            \begin{axis}[
+                title=Titration of acetic acid with sodium hydroxide,
+                width=\textwidth, height=\textheight/1.1,
+                xlabel={Amount of \ch{NaOH} added (\si{\milli\liter})},
+                ylabel=pH,
+                grid=both,
+                enlarge x limits=0
+            ]
+                \addplot[name path=curve, mark=none, semithick]
+                    table[x=naoh, y=ph, col sep=comma] {res/naoh.csv};
+                \path[name path=axis]
+                    (0,\pgfkeysvalueof{/pgfplots/ymin}) --
+                    (30,\pgfkeysvalueof{/pgfplots/ymin});
+                \addplot[pattern=crosshatch dots, update limits=false]
+                    fill between [of=curve and axis, soft clip={domain=0:12.33}];
+                \fill[pattern=crosshatch dots, pattern color=black!40]
+                    (0,8.2) rectangle (40,10);
+                \node[fill=white] at (0.5,9.1) [anchor=west, align=left]
+                    {\large phenolphthalein turns\\[-6pt]\large pink (\pH{} 8.2--10)};
+                
+                % Equivalence point
+                \draw[
+                    black!70,
+                    dashed,
+                    line width=1pt
+                ]
+                    (24.66,\pgfkeysvalueof{/pgfplots/ymin}) --
+                    (24.66,\pgfkeysvalueof{/pgfplots/ymax})
+                    (0,8.025) -- (40,8.025);
+                \node at (24.66,8.025) [anchor=north east, align=right]
+                    {\large equivalence point\\[-6pt]\large\textasciitilde{}\SI{24.66}{\milli\liter}, $\pH\approx8.025$};
+                
+                % Half-neutralization point
+                \draw[
+                    black!70,
+                    loosely dotted,
+                    line width=1pt
+                ]
+                    (12.305,\pgfkeysvalueof{/pgfplots/ymin}) --
+                    (12.305,\pgfkeysvalueof{/pgfplots/ymax});
+                \node at (12.305,12) [anchor=north west, align=left]
+                    {\large half-neutralization point\\[-6pt]\large\textasciitilde{}\SI{12.305}{\milli\liter}};
+                
+                % Indicator endpoint
+                \draw[
+                    black!70,
+                    loosely dashdotdotted,
+                    line width=1pt
+                ]
+                    (24.667,\pgfkeysvalueof{/pgfplots/ymin}) --
+                    (24.667,\pgfkeysvalueof{/pgfplots/ymax})
+                    (0,8.2) -- (40,8.2);
+                \node[fill=white] at (24.667,8.2) [above right=6pt, align=left]
+                    {\large indicator endpoint\\[-6pt]\large\textasciitilde{}\SI{24.667}{\milli\liter}, \pH{} 8.2};
+                
+                % Marks
+                \addplot[
+                    only marks, mark=*, mark options={
+                        scale=1.5, fill=black, draw=none
+                    }
+                ] coordinates
+                    {(24.667,8.2) (24.66,8.025)};
+                \node[fill=white] at (7,3.3) {\large buffering};
+            \end{axis}
+        \end{tikzpicture}
+    \end{center}
+\end{document}

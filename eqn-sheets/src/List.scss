@@ -1,7 +1,11 @@
+@media (max-width: 60em) {
+    .__List {
+        width: 100%;
+    }
+}
+
 .__List {
-    min-width: 30em;
-    width: 70%;
-    max-width: 65em;
+    width: 60em;
     display: flex;
     flex: 1 1 0px;
     overflow: hidden;
@@ -49,7 +53,12 @@
         }
     }
     
+    .left {
+        flex-grow: 2;
+    }
+    
     .right {
+        flex-grow: 3;
         overflow: hidden;
         display: flex;
         flex-direction: column;

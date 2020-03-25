@@ -72,6 +72,8 @@
             }
             
             .eqn {
+                width: 15em;
+                overflow: auto;
                 flex: 1 0 0px;
                 display: flex;
                 
@@ -82,7 +84,7 @@
         }
         
         .right {
-            flex: 1 1 0px;
+            flex: 1 0 0px;
             margin-left: 1em;
             overflow: auto;
         }

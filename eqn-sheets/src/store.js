@@ -24,7 +24,7 @@ let store = createStore(
                                 description: `
                                     Average heat capacity, where
                                     <ul>
-                                        <li>${k('q')} represents the amount of heat put into (or released from) an object, and</li>
+                                        <li>${k('q')} is the amount of heat put into (or released from) an object, and</li>
                                         <li>${k('\\Delta T')} is the change in temperature of the object.</li>
                                     </ul>
                                 `
@@ -34,7 +34,7 @@ let store = createStore(
                                 description: `
                                     Specific heat capacity, where
                                     <ul>
-                                        <li>${k('q')} represents the amount of heat put into (or released from) an object,</li>
+                                        <li>${k('q')} is the amount of heat put into (or released from) an object,</li>
                                         <li>${k('m')} is the amount of the substance (in grams), and</li>
                                         <li>${k('\\Delta T')} is the change in temperature of the object.</li>
                                     </ul>
@@ -46,7 +46,7 @@ let store = createStore(
                                 description: `
                                     Molar heat capacity, where
                                     <ul>
-                                        <li>${k('q')} represents the amount of heat put into (or released from) an object,</li>
+                                        <li>${k('q')} is the amount of heat put into (or released from) an object,</li>
                                         <li>${k('n')} is the amount of the substance (in moles), and</li>
                                         <li>${k('\\Delta T')} is the change in temperature of the object.</li>
                                     </ul>
@@ -58,7 +58,7 @@ let store = createStore(
                                 description: `
                                     In a closed system, ${k('W')} represents the work done by external pressure to change the volume of the system.
                                     <ul>
-                                        <li>${k('P_\\mathrm{ext}')} represents the external pressure and</li>
+                                        <li>${k('P_\\mathrm{ext}')} is the external pressure and</li>
                                         <li>${k('\\Delta V')} is the change in volume.</li>
                                     </ul>
                                 `
@@ -79,7 +79,7 @@ let store = createStore(
                                 description: `
                                     Enthalpy of a system, where
                                     <ul>
-                                        <li>${k('U')} represents the total internal energy of the system,</li>
+                                        <li>${k('U')} is the total internal energy of the system,</li>
                                         <li>${k('P')} is the external pressure on the system, and</li>
                                         <li>${k('V')} is the volume of the system.</li>
                                     </ul>
@@ -103,7 +103,7 @@ let store = createStore(
                                 description: `
                                     Change in entropy for the surroundings of a system.
                                     <ul>
-                                        <li>${k('q')} represents the heat transferred between the system and its surroundings, and</li>
+                                        <li>${k('q')} is the heat transferred between the system and its surroundings, and</li>
                                         <li>${k('T')} is the temperature of the surroundings.</li>
                                     </ul>
                                 `
@@ -113,7 +113,7 @@ let store = createStore(
                                 description: `
                                     Change in entropy for a system undergoing a phase change.
                                     <ul>
-                                        <li>${k('\\Delta H')} represents the change in enthalpy of the system, and</li>
+                                        <li>${k('\\Delta H')} is the change in enthalpy of the system, and</li>
                                         <li>${k('T')} is the temperature where the phase change occurs at 1 atm.</li>
                                     </ul>
                                 `
@@ -123,7 +123,7 @@ let store = createStore(
                                 description: `
                                     The relationship between ${k('C_P')}, the heat capacity under constant pressure, and ${k('C_V')}, the heat capacity under constant volume, for an ideal gas.
                                     <ul>
-                                        <li>${k('n')} represents the number of moles of substance in the system, and</li>
+                                        <li>${k('n')} is the number of moles of substance in the system, and</li>
                                         <li>${k('R')} is the ideal gas constant.</li>
                                     </ul>
                                 `
@@ -133,7 +133,7 @@ let store = createStore(
                                 description: `
                                     Change in entropy for a system undergoing a state change under constant volume.
                                     <ul>
-                                        <li>${k('C_V')} represents the heat capacity of the system under constant volume, and</li>
+                                        <li>${k('C_V')} is the heat capacity of the system under constant volume, and</li>
                                         <li>${k('T_i')} and ${k('T_f')} are the initial and final tempreratures of the system.</li>
                                     </ul>
                                     This equation really only works for ideal gases since liquids and solids don't undergo volume changes.
@@ -144,7 +144,7 @@ let store = createStore(
                                 description: `
                                     Change in entropy for a system undergoing a state change under constant pressure.
                                     <ul>
-                                        <li>${k('C_P')} represents the heat capacity of the system under constant pressure, and</li>
+                                        <li>${k('C_P')} is the heat capacity of the system under constant pressure, and</li>
                                         <li>${k('T_i')} and ${k('T_f')} are the initial and final tempreratures of the system.</li>
                                     </ul>
                                 `
@@ -154,7 +154,7 @@ let store = createStore(
                                 description: `
                                     Change in entropy for a system undergoing a state change under changing volume.
                                     <ul>
-                                        <li>${k('C_V')} represents the heat capacity of the system under constant volume,</li>
+                                        <li>${k('C_V')} is the heat capacity of the system under constant volume,</li>
                                         <li>${k('T_f')} and ${k('T_i')} are the final and initial tempreratures of the system,</li>
                                         <li>${k('n')} is the number of moles of substance in the system,</li>
                                         <li>${k('R')} is the ideal gas constant, and </li>
@@ -168,7 +168,7 @@ let store = createStore(
                                 description: `
                                     Change in entropy for a system undergoing a state change under changing pressure.
                                     <ul>
-                                        <li>${k('C_P')} represents the heat capacity of the system under constant pressure,</li>
+                                        <li>${k('C_P')} is the heat capacity of the system under constant pressure,</li>
                                         <li>${k('T_f')} and ${k('T_i')} are the final and initial tempreratures of the system,</li>
                                         <li>${k('n')} is the number of moles of substance in the system,</li>
                                         <li>${k('R')} is the ideal gas constant, and </li>
@@ -181,7 +181,7 @@ let store = createStore(
                                 description: `
                                     Gibbs energy, where
                                     <ul>
-                                        <li>${k('H')} represents the total enthalpy of a system,</li>
+                                        <li>${k('H')} is the total enthalpy of a system,</li>
                                         <li>${k('T')} is the temperature of the system, and</li>
                                         <li>${k('S')} is the entropy of the system.</li>
                                     </ul>
@@ -193,7 +193,7 @@ let store = createStore(
                                 description: `
                                     Describes how the change in the number of gas particles in a reaction affects the total interal energy of a system, ${k('U')}. Similar to ${k('\\Delta U=\\Delta H+P\\Delta V')}, but the ${k('P\\Delta V')} term is replaced with ${k('\\Delta n_\\mathrm{gas}RT')}.
                                     <ul>
-                                        <li>${k('\\Delta H')} represents the change in enthalpy of the system,</li>
+                                        <li>${k('\\Delta H')} is the change in enthalpy of the system,</li>
                                         <li>${k('\\Delta n_\\mathrm{gas}')} is the change in moles of gas during a reaction,</li>
                                         <li>${k('R')} is the ideal gas constant, and</li>
                                         <li>${k('T')} is the temperature of the system.</li>
@@ -208,7 +208,7 @@ let store = createStore(
                                 description: `
                                     The standard enthalpy of reaction, calculated from the standard enthalpies of formation of the products and reactants.
                                     <ul>
-                                        <li>${k('k')} represents each of the products and reactants,</li>
+                                        <li>${k('k')} is each of the products and reactants,</li>
                                         <li>${k('v_k')} is the coefficient on the ${k('k')} term of the formation reaction,</li>
                                         <li>${k('\\Delta_fH_k^\\circ')} is the standard enthalpy of formation on the ${k('k')} term of the formation reaction.</li>
                                     </ul>
@@ -220,7 +220,7 @@ let store = createStore(
                                 description: `
                                     The standard entropy of reaction, calculated from the standard molar entropies of the products and reactants.
                                     <ul>
-                                        <li>${k('k')} represents each of the products and reactants,</li>
+                                        <li>${k('k')} is each of the products and reactants,</li>
                                         <li>${k('v_k')} is the coefficient on the ${k('k')} term of the formation reaction,</li>
                                         <li>${k('\\overline{S}_k^\\circ')} is the standard molar entropy on the ${k('k')} term of the formation reaction.</li>
                                     </ul>
@@ -234,7 +234,7 @@ let store = createStore(
                                 description: `
                                     The standard Gibbs energy of reaction, calculated from the standard Gibbs energies of formation of the products and reactants.
                                     <ul>
-                                        <li>${k('k')} represents each of the products and reactants,</li>
+                                        <li>${k('k')} is each of the products and reactants,</li>
                                         <li>${k('v_k')} is the coefficient on the ${k('k')} term of the formation reaction,</li>
                                         <li>${k('\\Delta_fH_k^\\circ')} is the standard Gibbs energy of formation on the ${k('k')} term of the formation reaction.</li>
                                     </ul>
@@ -344,6 +344,18 @@ let store = createStore(
                             },
                             'Module 3: Chemical Equilibrium',
                             {
+                                latex: 'K_c&=\\frac{k_1}{k_{-1}}',
+                                description: `
+                                    The definition of the equilibrium constant ${k('K_c')}, in terms of ${k('k')}, the rate constant for the reaction. ${k('k_1')} is for the forward reaction, and ${k('k_{-1}')} is for the reverse reaction. Remember that for an elementary process, ${k('v=k_1[\\ce{A}]^a[\\ce{B}]^b\\ldots')} and vice versa for ${k('k_{-1}')}, and at equilibrium, the two rates are equal. Therefore,
+                                    ${k(`
+                                        \\begin{aligned}
+                                            k_1[\\ce{A}]^a[\\ce{B}]^b\\ldots&=k_{-1}[\\ce{C}]^c[\\ce{D}]^d\\ldots \\\\
+                                            \\frac{k_1}{k_{-1}}&=\\frac{[\\ce{C}]^c[\\ce{D}]^d\\ldots}{[\\ce{A}]^a[\\ce{B}]^b\\ldots}
+                                        \\end{aligned}
+                                    `, true)}
+                                `
+                            },
+                            {
                                 latex: 'Q&=\\frac{a_\\ce{C}^ca_\\ce{D}^d\\ldots}{a_\\ce{A}^aa_\\ce{B}^b\\ldots}',
                                 description: `
                                     The reaction quotient for a general reaction
@@ -381,7 +393,7 @@ let store = createStore(
                                 `
                             },
                             {
-                                latex: 'Q_C&=\\frac{[\\ce{C}]^c[\\ce{D}]^d\\ldots}{[\\ce{A}]^a[\\ce{B}]^b\\ldots}',
+                                latex: 'Q_c&=\\frac{[\\ce{C}]^c[\\ce{D}]^d\\ldots}{[\\ce{A}]^a[\\ce{B}]^b\\ldots}',
                                 description: `
                                     The reaction quotient for a general reaction
                                     ${k('\\ce{$a$ A(aq) + $b$ B(aq) + $\\ldots$ <=> $c$ C(aq) + $d$ D(aq) + $\\ldots$}', true)}
@@ -403,6 +415,88 @@ let store = createStore(
                                         <li>${k('a,b,c,d,\\ldots')} are the coefficients in the reaction.</li>
                                     </ul>
                                 `
+                            },
+                            {
+                                latex: '\\Delta_rG&=\\Delta_rG^\\circ+RT\\ln Q',
+                                description: `
+                                    <ul>
+                                        <li>${k('\\Delta_rG')} is the Gibbs energy of reaction,</li>
+                                        <li>${k('\\Delta_rG^\\circ')} is the standard Gibbs energy of reaction (i.e., the Gibbs energy of reaction at STP),</li>
+                                        <li>${k('R')} is the ideal gas constant,</li>
+                                        <li>${k('T')} is the temperature, and</li>
+                                        <li>${k('Q')} is the reaction quotient of the reaction.</li>
+                                    </ul>
+                                `
+                            },
+                            {
+                                latex: 'Q_P&=Q_c(RT)^{\\Delta n_\\mathrm{gas}}',
+                                description: `
+                                    <ul>
+                                        <li>${k('Q_P')} is the reaction quotient in terms partial pressures,</li>
+                                        <li>${k('Q_c')} is the reaction quotient in terms of concentrations,</li>
+                                        <li>${k('R')} is the ideal gas constant,</li>
+                                        <li>${k('T')} is the temperature,</li>
+                                        <li>${k('\\Delta n_\\mathrm{gas}')} is the change in moles of gas.</li>
+                                    </ul>
+                                `
+                            },
+                            {
+                                latex: '\\ln K&=-\\frac{\\Delta_rG^\\circ}{RT}',
+                                description: `
+                                    A form of the Van't Hoff equation, which relates the equlibrium constant ${k('K')} to the standard Gibbs energy of reaction, ${k('\\Delta_rG^\\circ')}.
+                                    <ul>
+                                        <li>${k('K')} is the equilibrium constant,</li>
+                                        <li>${k('\\Delta_rG^\\circ')} is the standard Gibbs energy of reaction,</li>
+                                        <li>${k('R')} is the ideal gas constant, and</li>
+                                        <li>${k('T')} is the temperature.</li>
+                                    </ul>
+                                `
+                            },
+                            {
+                                latex: '\\ln\\left(\\frac{K_2}{K_1}\\right)&=-\\frac{\\Delta_rH^\\circ}{R}\\left(\\frac{1}{T_2}-\\frac{1}{T_1}\\right)',
+                                description: `
+                                    A form of the Van't Hoff equation, which relates changes in the equlibrium constant ${k('K')} to changes in temperature.
+                                    <ul>
+                                        <li>${k('K_1')} and ${k('K_2')} are the initial and final equilibrium constants,</li>
+                                        <li>${k('\\Delta_rH^\\circ')} is the standard enthalpy of reaction,</li>
+                                        <li>${k('R')} is the ideal gas constant, and</li>
+                                        <li>${k('T_1')} and ${k('T_2')} are the initial and final temperatures.</li>
+                                    </ul>
+                                `
+                            },
+                            'Module 4: Acid-Base Equilibria in Aqueous Solution',
+                            {
+                                latex: 'K_w&=[\\ce{H3O+}][\\ce{OH-}]\\approx 10^{-14}',
+                                description: `
+                                    The equilibrium constant of water, where
+                                    <ul>
+                                        <li>${k('[\\ce{H3O+}]')} is the concentration of hydronium ions (equivalent to the concentration of H<sup>+</sup> ions), and</li>
+                                        <li>${k('[\\ce{OH-}]')} is the concentration of hydroxide ions.</li>
+                                    </ul>
+                                `
+                            },
+                            {
+                                latex: '\\mathrm{p}K_w&=-\\log K_w\\approx 14',
+                                description: `${k('K_w')} is the equilibrium constant of water.`
+                            },
+                            {
+                                latex: '\\mathrm{pH}&=-\\log[\\ce{H+}]',
+                                description: `${k('[\\ce{H+}]')} is the concentration of H<sup>+</sup>.`
+                            },
+                            {
+                                latex: '\\mathrm{pOH}&=-\\log[\\ce{OH-}]',
+                                description: `${k('[\\ce{OH-}]')} is the concentration of OH<sup>-</sup>.`
+                            },
+                            {
+                                latex: '\\mathrm{pH}+\\mathrm{pOH}&=\\mathrm{p}K_w',
+                                description: k(`
+                                    \\begin{aligned}
+                                        K_w&=[\\ce{H+}][\\ce{OH-}] \\\\
+                                        \\log K_w&=\\log([\\ce{H+}][\\ce{OH-}]) \\\\
+                                        &=\\log[\\ce{H+}]+\\log[\\ce{OH-}] \\\\
+                                        \\mathrm{p}K_w&=\\mathrm{pH}+\\mathrm{pOH}
+                                    \\end{aligned}
+                                `, true)
                             }
                         ]
                     },
@@ -410,8 +504,16 @@ let store = createStore(
                         code: 'C',
                         content: [
                             {
+                                latex: 'R&=\\pu{8.31446 kg m2 s-2 K-1 mol-1}',
+                                description: `The ideal gas constant, in base SI units. Useful for working with energy in joules.`
+                            },
+                            {
                                 latex: 'R&=\\pu{8314.46 L Pa K-1 mol-1}',
-                                description: `Ideal gas constant. Used as the constant of proportionality in the equation ${k('PV=nRT')}.`
+                                description: `The ideal gas constant, with liter pascals instead of joules. Liters are conventionally used in place of cubic meters in chemistry, so this form is most commonly used.`
+                            },
+                            {
+                                latex: 'R&=\\pu{8.31446e-2 L bar K-1 mol-1}',
+                                description: `The ideal gas constant, in liter bars instead of liter pascals. This form is useful when talking about equilibria of gases, since ${k('K_P')} is derived from pressure written in bars.`
                             }
                         ]
                     },
@@ -454,11 +556,11 @@ let store = createStore(
                                 description: `${k('i')} is the imaginary unit.`
                             },
                             {
-                                latex: '(a+bi)+(c+di)&=(a+c)+(b+d)i',
+                                latex: 'z_1+z_2=(a+bi)+(c+di)&=(a+c)+(b+d)i',
                                 description: `The addition of two complex numbers, where ${k('a, b, c, d\\in\\Reals')} and ${k('i')} is the imaginary unit. The real and imaginary components add separately.`
                             },
                             {
-                                latex: '(a+bi)(c+di)&=(ac-bd)+(ad+bc)i',
+                                latex: 'z_1z_2=(a+bi)(c+di)&=(ac-bd)+(ad+bc)i',
                                 description: `
                                     The multiplication of two complex numbers, where ${k('a,b,c,d\\in\\Reals')} and ${k('i')} is the imaginary unit. The factors are treated as binomials and FOILed:
                                     ${k('(a+bi)(c+di)=ac+adi+bci+bdi^2', true)}
@@ -528,29 +630,340 @@ let store = createStore(
                             },
                             `Vectors in ${k('\\bm{\\Reals^n}')}`,
                             {
-                                latex: '\\lVert\\vec{v}\\rVert=\\left\\lVert\\begin{bmatrix}a\\\\b\\end{bmatrix}\\right\\rVert&=\\sqrt{a^2+b^2}',
-                                description: 'The norm of a vector is just its length.'
+                                latex: '\\mathbf{u}&=\\begin{bmatrix}u_1\\\\u_2\\\\\\vdots\\\\u_n\\end{bmatrix}',
+                                description: `A vector ${k('\\mathbf{u}')} has components ${k('u_1')} through ${k('u_n')}, where ${k('n')} is the size of the vector.`
                             },
                             {
-                                latex: '\\vec{u}\\cdot\\vec{v}&=\\lVert\\vec{u}\\rVert\\lVert\\vec{v}\\rVert\\cos\\theta',
-                                description: `An interpretation of the dot product, where ${k('\\theta')} is the angle between ${k('\\vec{u}')} and ${k('\\vec{v}')}.`
+                                latex: `
+                                    \\mathbf{u}+\\mathbf{v}
+                                    =
+                                    \\begin{bmatrix}
+                                        u_1\\\\u_2\\\\\\vdots\\\\u_n
+                                    \\end{bmatrix}
+                                    +
+                                    \\begin{bmatrix}
+                                        v_1\\\\v_2\\\\\\vdots\\\\v_n
+                                    \\end{bmatrix}
+                                    &=
+                                    \\begin{bmatrix}
+                                        u_1+v_1\\\\u_2+v_2\\\\\\vdots\\\\u_n+v_n
+                                    \\end{bmatrix}
+                                `,
+                                description: `When adding two vectors, just add their components.`
                             },
                             {
-                                latex: '\\operatorname{proj}_{\\vec{v}}\\vec{u}&=\\frac{\\vec{u}\\cdot\\vec{v}}{\\vec{v}\\cdot\\vec{v}}\\vec{v}',
-                                description: `The projection of ${k('\\vec{u}')} onto ${k('\\vec{v}')}.`
+                                latex: `
+                                    c\\mathbf{u}
+                                    =
+                                    c
+                                    \\begin{bmatrix}
+                                        u_1\\\\u_2\\\\\\vdots\\\\u_n
+                                    \\end{bmatrix}
+                                    &=
+                                    \\begin{bmatrix}
+                                        cu_1\\\\cu_2\\\\\\vdots\\\\cu_n
+                                    \\end{bmatrix}
+                                `,
+                                description: `Scalar multiplication of a vector is just scalar multiplication of the vector's components.`
+                            },
+                            {
+                                latex: '\\mathbf{u}+\\mathbf{v}&=\\mathbf{v}+\\mathbf{u}',
+                                description: `Vector addition is commutative.`
+                            },
+                            {
+                                latex: '(\\mathbf{u}+\\mathbf{v})+\\mathbf{w}&=\\mathbf{v}+(\\mathbf{u}+\\mathbf{w})',
+                                description: `Vector addition is associative.`
+                            },
+                            {
+                                latex: 'a(\\mathbf{u}+\\mathbf{v})&=a\\mathbf{u}+a\\mathbf{v}',
+                                description: `Scalars are distributive over vector addition.`
+                            },
+                            {
+                                latex: '(a+b)\\mathbf{u}&=a\\mathbf{u}+b\\mathbf{u}',
+                                description: `Vectors are distributive over scalar addition.`
+                            },
+                            {
+                                latex: 'a(b\\mathbf{u})&=(ab)\\mathbf{u}',
+                                description: `Scalar multiplication of a vector is associative.`
+                            },
+                            {
+                                latex: 'c_1\\mathbf{u}_1+c_2\\mathbf{u}_2+&\\ldots+c_m\\mathbf{u}_m',
+                                description: `A linear combination of a set of vectors ${k('\\mathbf{u}_m')}.`
+                            },
+                            {
+                                latex: `
+                                    \\lVert\\mathbf{u}\\rVert
+                                    =
+                                    \\left\\lVert\\begin{bmatrix}
+                                        a\\\\b
+                                    \\end{bmatrix}\\right\\rVert
+                                    &=\\sqrt{a^2+b^2}
+                                    =\\sqrt{\\mathbf{u}\\cdot\\mathbf{u}}
+                                `,
+                                description: 'The norm of a vector is just its length, by the Pythagorean Theorem. It is also the square root of the dot product of the vector by itself. The dot product is defined in the next equation.'
+                            },
+                            {
+                                latex: `
+                                    \\mathbf{u}\\cdot\\mathbf{v}
+                                    =
+                                    \\begin{bmatrix}
+                                        u_1\\\\u_2\\\\\\vdots\\\\u_n
+                                    \\end{bmatrix}
+                                    \\cdot
+                                    \\begin{bmatrix}
+                                        v_1\\\\v_2\\\\\\vdots\\\\v_n
+                                    \\end{bmatrix}
+                                    &=
+                                    u_1v_1+u_2v_2+\\ldots+u_nv_n
+                                `,
+                                description: `The definition of the dot product of two vectors ${k('\\mathbf{u}')} and ${k('\\mathbf{v}')}. Note that the result of the dot product is a scalar.`
+                            },
+                            {
+                                latex: '\\mathbf{u}\\cdot\\mathbf{v}&=\\mathbf{v}\\cdot\\mathbf{u}',
+                                description: `The dot product of two vectors is commutative.`
+                            },
+                            {
+                                latex: '\\mathbf{u}\\cdot(\\mathbf{v}+\\mathbf{w})&=\\mathbf{u}\\cdot\\mathbf{v}+\\mathbf{u}\\cdot\\mathbf{w}',
+                                description: `The dot product of two vectors is distributive.`
+                            },
+                            {
+                                latex: '(c\\mathbf{u})\\cdot\\mathbf{v}&=\\mathbf{u}\\cdot(c\\mathbf{v})=c(\\mathbf{u}\\cdot\\mathbf{v})',
+                                description: `Scalar multiplication is associative over the dot product of two vectors.`
+                            },
+                            {
+                                latex: '\\mathbf{u}\\cdot\\mathbf{v}&=\\lVert\\mathbf{u}\\rVert\\lVert\\mathbf{v}\\rVert\\cos\\theta',
+                                description: `An interpretation of the dot product, where ${k('\\theta')} is the angle between ${k('\\mathbf{u}')} and ${k('\\mathbf{v}')}.`
+                            },
+                            {
+                                latex: '\\operatorname{proj}_{\\mathbf{v}}\\mathbf{u}&=\\frac{\\mathbf{u}\\cdot\\mathbf{v}}{\\mathbf{v}\\cdot\\mathbf{v}}\\mathbf{v}',
+                                description: `The projection of ${k('\\mathbf{u}')} onto ${k('\\mathbf{v}')}.`
                             },
                             {
                                 latex: `
                                     &\\begin{cases}\\begin{aligned}
-                                        \\vec{v}_1&=\\vec{s}_1 \\\\
-                                        \\vec{v}_2&=\\vec{s}_2-\\operatorname{proj}_{\\vec{v}_1}\\vec{s}_2 \\\\
-                                        \\vec{v}_3&=\\vec{s}_3-\\operatorname{proj}_{\\vec{v}_1}\\vec{s}_3-\\operatorname{proj}_{\\vec{v}_2}\\vec{s}_3 \\\\
+                                        \\mathbf{u}_1&=\\mathbf{s}_1 \\\\
+                                        \\mathbf{u}_2&=\\mathbf{s}_2-\\operatorname{proj}_{\\mathbf{u}_1}\\mathbf{s}_2 \\\\
+                                        \\mathbf{u}_3&=\\mathbf{s}_3-\\operatorname{proj}_{\\mathbf{u}_1}\\mathbf{s}_3-\\operatorname{proj}_{\\mathbf{u}_2}\\mathbf{s}_3 \\\\
                                         &\\vdots
                                     \\end{aligned}\\end{cases}
                                 `,
-                                description: `The Gram-Schmidt process, which generates a set of orthogonal vectors ${k('v_n')} from a set of linearly independent vectors ${k('s_n')}.`
+                                description: `The Gram-Schmidt process, which generates a set of orthogonal vectors ${k('\\mathbf{u}_n')} from a set of linearly independent vectors ${k('\\mathbf{s}_n')}.`
                             },
-                            'Systems of Linear Equations'
+                            'Systems of Linear Equations',
+                            {
+                                latex: `
+                                    A+B=
+                                    \\begin{bmatrix}
+                                        A_{11} & A_{12} & \\ldots & A_{1m} \\\\
+                                        A_{21} & A_{22} & \\ldots & A_{2m} \\\\
+                                        \\vdots & \\vdots & \\ddots & \\vdots \\\\
+                                        A_{n1} & A_{n2} & \\ldots & A_{nm}
+                                    \\end{bmatrix}
+                                    +
+                                    \\begin{bmatrix}
+                                        B_{11} & B_{12} & \\ldots & B_{1m} \\\\
+                                        B_{21} & B_{22} & \\ldots & B_{2m} \\\\
+                                        \\vdots & \\vdots & \\ddots & \\vdots \\\\
+                                        B_{n1} & B_{n2} & \\ldots & B_{nm}
+                                    \\end{bmatrix}
+                                    &=
+                                    \\begin{bmatrix}
+                                        A_{11}+B_{11} & A_{12}+B_{12} & \\ldots & A_{1m}+B_{1m} \\\\
+                                        A_{21}+B_{21} & A_{22}+B_{22} & \\ldots & A_{2m}+B_{2m} \\\\
+                                        \\vdots & \\vdots & \\ddots & \\vdots \\\\
+                                        A_{n1}+B_{n1} & A_{n2}+B_{n2} & \\ldots & A_{nm}+B_{nm}
+                                    \\end{bmatrix}
+                                `,
+                                description: `The addition of two matrices is done element by element.`
+                            },
+                            {
+                                latex: `
+                                    cA=
+                                    c
+                                    \\begin{bmatrix}
+                                        A_{11} & A_{12} & \\ldots & A_{1m} \\\\
+                                        A_{21} & A_{22} & \\ldots & A_{2m} \\\\
+                                        \\vdots & \\vdots & \\ddots & \\vdots \\\\
+                                        A_{n1} & A_{n2} & \\ldots & A_{nm}
+                                    \\end{bmatrix}
+                                    &=
+                                    \\begin{bmatrix}
+                                        cA_{11} & cA_{12} & \\ldots & cA_{1m} \\\\
+                                        cA_{21} & cA_{22} & \\ldots & cA_{2m} \\\\
+                                        \\vdots & \\vdots & \\ddots & \\vdots \\\\
+                                        cA_{n1} & cA_{n2} & \\ldots & cA_{nm}
+                                    \\end{bmatrix}
+                                `,
+                                description: `Scalar multiplication of a matrix is a scalar multiplication of each element of the matrix.`
+                            },
+                            {
+                                latex: 'A+B&=B+A',
+                                description: `The addition of matrices has the commutative property.`
+                            },
+                            {
+                                latex: '(A+B)+C&=A+(B+C)',
+                                description: `Matrix addition is associative.`
+                            },
+                            {
+                                latex: 's(A+B)&=sA+sB',
+                                description: `Scalar multiplication is distributive over matrix addition.`
+                            },
+                            {
+                                latex: '(s+t)A&=sA+tA',
+                                description: `Matrix multiplication is distributive over scalar addition.`
+                            },
+                            {
+                                latex: 's(tA)&=(st)A',
+                                description: `Scalar multiplication of a matrix is associative.`
+                            },
+                            {
+                                latex: `
+                                    AB=
+                                    \\begin{bmatrix}
+                                        A_{11} & A_{12} & \\ldots & A_{1m} \\\\
+                                        A_{21} & A_{22} & \\ldots & A_{2m} \\\\
+                                        \\vdots & \\vdots & \\ddots & \\vdots \\\\
+                                        A_{n1} & A_{n2} & \\ldots & A_{nm}
+                                    \\end{bmatrix}
+                                    \\begin{bmatrix}
+                                        B_{11} & B_{12} & \\ldots & B_{1m} \\\\
+                                        B_{21} & B_{22} & \\ldots & B_{2m} \\\\
+                                        \\vdots & \\vdots & \\ddots & \\vdots \\\\
+                                        B_{n1} & B_{n2} & \\ldots & B_{nm}
+                                    \\end{bmatrix}
+                                    &=
+                                    \\begin{bmatrix}
+                                        \\begin{bmatrix}
+                                            A_{11} \\\\ A_{12} \\\\ \\vdots \\\\ A_{1m}
+                                        \\end{bmatrix}
+                                        \\cdot
+                                        \\begin{bmatrix}
+                                            B_{11} \\\\ B_{21} \\\\ \\vdots \\\\ B_{n1}
+                                        \\end{bmatrix}
+                                        &
+                                        \\begin{bmatrix}
+                                            A_{11} \\\\ A_{12} \\\\ \\vdots \\\\ A_{1m}
+                                        \\end{bmatrix}
+                                        \\cdot
+                                        \\begin{bmatrix}
+                                            B_{12} \\\\ B_{22} \\\\ \\vdots \\\\ B_{n2}
+                                        \\end{bmatrix}
+                                        &
+                                        \\ldots
+                                        &
+                                        \\begin{bmatrix}
+                                            A_{11} \\\\ A_{12} \\\\ \\vdots \\\\ A_{1m}
+                                        \\end{bmatrix}
+                                        \\cdot
+                                        \\begin{bmatrix}
+                                            B_{1m} \\\\ B_{2m} \\\\ \\vdots \\\\ B_{nm}
+                                        \\end{bmatrix}
+                                        \\\\
+                                        \\begin{bmatrix}
+                                            A_{21} \\\\ A_{22} \\\\ \\vdots \\\\ A_{2m}
+                                        \\end{bmatrix}
+                                        \\cdot
+                                        \\begin{bmatrix}
+                                            B_{11} \\\\ B_{21} \\\\ \\vdots \\\\ B_{n1}
+                                        \\end{bmatrix}
+                                        &
+                                        \\begin{bmatrix}
+                                            A_{21} \\\\ A_{22} \\\\ \\vdots \\\\ A_{2m}
+                                        \\end{bmatrix}
+                                        \\cdot
+                                        \\begin{bmatrix}
+                                            B_{12} \\\\ B_{22} \\\\ \\vdots \\\\ B_{n2}
+                                        \\end{bmatrix}
+                                        &
+                                        \\ldots
+                                        &
+                                        \\begin{bmatrix}
+                                            A_{21} \\\\ A_{22} \\\\ \\vdots \\\\ A_{2m}
+                                        \\end{bmatrix}
+                                        \\cdot
+                                        \\begin{bmatrix}
+                                            B_{1m} \\\\ B_{2m} \\\\ \\vdots \\\\ B_{nm}
+                                        \\end{bmatrix}
+                                        \\\\
+                                        \\vdots & \\vdots & \\ddots & \\vdots
+                                        \\\\
+                                        \\begin{bmatrix}
+                                            A_{n1} \\\\ A_{n2} \\\\ \\vdots \\\\ A_{nm}
+                                        \\end{bmatrix}
+                                        \\cdot
+                                        \\begin{bmatrix}
+                                            B_{11} \\\\ B_{21} \\\\ \\vdots \\\\ B_{n1}
+                                        \\end{bmatrix}
+                                        &
+                                        \\begin{bmatrix}
+                                            A_{n1} \\\\ A_{n2} \\\\ \\vdots \\\\ A_{nm}
+                                        \\end{bmatrix}
+                                        \\cdot
+                                        \\begin{bmatrix}
+                                            B_{12} \\\\ B_{22} \\\\ \\vdots \\\\ B_{n2}
+                                        \\end{bmatrix}
+                                        &
+                                        \\ldots
+                                        &
+                                        \\begin{bmatrix}
+                                            A_{n1} \\\\ A_{n2} \\\\ \\vdots \\\\ A_{nm}
+                                        \\end{bmatrix}
+                                        \\cdot
+                                        \\begin{bmatrix}
+                                            B_{1m} \\\\ B_{2m} \\\\ \\vdots \\\\ B_{nm}
+                                        \\end{bmatrix}
+                                    \\end{bmatrix}
+                                    =
+                                    \\begin{bmatrix}
+                                        A_{11}B_{11}+A_{12}B_{21}+\\ldots+A_{1m}B_{n1}
+                                        &
+                                        A_{11}B_{12}+A_{12}B_{22}+\\ldots+A_{1m}B_{n2}
+                                        &
+                                        \\ldots
+                                        &
+                                        A_{11}B_{1m}+A_{12}B_{2m}+\\ldots+A_{1m}B_{nm}
+                                        \\\\
+                                        A_{21}B_{11}+A_{22}B_{21}+\\ldots+A_{2m}B_{n1}
+                                        &
+                                        A_{21}B_{12}+A_{22}B_{22}+\\ldots+A_{2m}B_{n2}
+                                        &
+                                        \\ldots
+                                        &
+                                        A_{21}B_{1m}+A_{22}B_{2m}+\\ldots+A_{2m}B_{nm}
+                                        \\\\
+                                        \\vdots & \\vdots & \\ddots & \\vdots
+                                        \\\\
+                                        A_{n1}B_{11}+A_{n2}B_{21}+\\ldots+A_{nm}B_{n1}
+                                        &
+                                        A_{n1}B_{12}+A_{n2}B_{22}+\\ldots+A_{nm}B_{n2}
+                                        &
+                                        \\ldots
+                                        &
+                                        A_{n1}B_{1m}+A_{n2}B_{2m}+\\ldots+A_{nm}B_{nm}
+                                    \\end{bmatrix}
+                                `,
+                                description: `
+                                    The multiplication of two matrices ${k('A')} and ${k('B')}. The process is broken down as follows.
+                                    <br>
+                                    As an example, let ${k('C=\\begin{bmatrix}2 & 3 & 5 \\\\1 & -4 & -9\\end{bmatrix}')} and ${k('D=\\begin{bmatrix}8 & 0 \\\\ -7 & -4 \\\\ 2 & 2\\end{bmatrix}')} (for matrix multiplication to work, ${k('C')} must have dimensions ${k('m\\times n')} and ${k('D')} must have dimensions ${k('n\\times m')}). The product of ${k('C')} and ${k('D')} will be represented by ${k('P')} and will have elements ${k('P=\\begin{bmatrix}P_{11} & P_{12} \\\\ P_{21} & P_{22}\\end{bmatrix}')} (${k('P')} will always have dimensions ${k('m\\times m')}).
+                                    <br>
+                                    ${k('C')} is made up of two row vectors, which we will call ${k('\\mathbf{c}_1')} and ${k('\\mathbf{c}_2')}. Likewise, ${k('D')} is made up of two column vectors, which we will call ${k('\\mathbf{d}_1')} and ${k('\\mathbf{d}_2')}. So far, we have
+                                    ${k('C=\\begin{bmatrix}\\mathbf{c}_1\\\\\\mathbf{c}_2\\end{bmatrix},D=\\begin{bmatrix}\\mathbf{d}_1&\\mathbf{d}_2\\end{bmatrix}', true)}
+                                    where
+                                    ${k('\\begin{matrix}\\mathbf{c}_1=\\begin{bmatrix}2 & 3 & 5\\end{bmatrix} & \\mathbf{d}_1=\\begin{bmatrix}8 \\\\ -7 \\\\ 2\\end{bmatrix}\\\\\\mathbf{c}_2=\\begin{bmatrix}1 & -4 & -9\\end{bmatrix} & \\mathbf{d}_2=\\begin{bmatrix}0 \\\\ -4 \\\\ 2\\end{bmatrix}\\end{matrix}', true)}
+                                    Now, ${k('P')} is defined as
+                                    ${k(`
+                                        P=
+                                        \\begin{bmatrix}
+                                            \\mathbf{c}_1\\cdot\\mathbf{d}_1 & \\mathbf{c}_1\\cdot\\mathbf{d}_2 \\\\
+                                            \\mathbf{c}_2\\cdot\\mathbf{d}_1 & \\mathbf{c}_2\\cdot\\mathbf{d}_2
+                                        \\end{bmatrix}
+                                    `, true)}
+                                    In fact, ${k('P_{ij}=\\mathbf{c}_i\\cdot\\mathbf{d}_j')} for any two general matrices defined as before.
+                                    <br>
+                                    This definition may seem overly complicated, but it is useful in that it preserves the linear transformation nature of matrices. A component-wise definition of matrix multiplication is surprisingly useless.
+                                `
+                            }
                         ]
                     }
                 }
@@ -743,7 +1156,7 @@ let store = createStore(
                                 description: `
                                     Angular frequency, where
                                     <ul>
-                                        <li>${k('k')} represents the spring constant, and</li>
+                                        <li>${k('k')} is the spring constant, and</li>
                                         <li>${k('m')} is the mass of the oscillating object.</li>
                                     </ul>
                                 `
@@ -1021,13 +1434,62 @@ let store = createStore(
                                     </ul>
                                 `
                             },
+                            {
+                                latex: 'y(x,t)&=y_1(x,t)+y_2(x,t)',
+                                description: `The principle of superposition. ${k('y')}, ${k('y_1')}, and ${k('y_2')} are wave functions.`
+                            },
+                            {
+                                latex: 'y(x,t)&=2A\\sin(kx)\\sin(\\omega t)',
+                                description: `
+                                    The wave function of a standing wave, where
+                                    <ul>
+                                        <li>${k('A')} is the amplitude of the original wave,</li>
+                                        <li>${k('k')} is the wave number,</li>
+                                        <li>${k('x')} is the longitudinal position of the described particle,</li>
+                                        <li>${k('\\omega')} is the angular frequency, and</li>
+                                        <li>${k('t')} is the time.</li>
+                                    </ul>
+                                `
+                            },
+                            {
+                                latex: 'x&=\\frac{n\\lambda}{2}',
+                                description: `
+                                    The positions of nodes on a standing wave, where
+                                    <ul>
+                                        <li>${k('n\\in\\Z,n\\ge0')}, and</li>
+                                        <li>${k('\\lambda')} is the wavelength.</li>
+                                    </ul>
+                                `
+                            },
+                            {
+                                latex: 'x&=\\frac{(2n+1)\\lambda}{4}',
+                                description: `
+                                    The positions of antinodes on a standing wave, where
+                                    <ul>
+                                        <li>${k('n\\in\\Z,n\\ge0')}, and</li>
+                                        <li>${k('\\lambda')} is the wavelength.</li>
+                                    </ul>
+                                `
+                            },
+                            {
+                                latex: 'f_n&=n\\frac{v}{2L}=nf_1',
+                                description: `
+                                    The harmonics of a standing wave, where
+                                    <ul>
+                                        <li>${k('f_n')} is the ${k('n')}th harmonic,</li>
+                                        <li>${k('v')} is the wave speed</li>
+                                        <li>${k('L')} is the length of the vibrating string, and</li>
+                                        <li>${k('f_1')} is the fundamental frequency (${k('f_n')} for ${k('n=1')}).</li>
+                                    </ul>
+                                `
+                            },
                             'Chapter 16: Sound and Hearing',
                             {
                                 latex: 'v&=\\sqrt{\\frac{B}{\\rho}}',
                                 description: `
                                     The speed of a sound wave through a fluid, where
                                     <ul>
-                                        <li>${k('B')} is the bulk modulus of the fluid (${k('\\frac{p(x,t)}{\\frac{dV}{V}}')}, or ${k('\\frac{\\text{stess}}{\\text{strain}}')}), and</li>
+                                        <li>${k('B')} is the bulk modulus of the fluid, and</li>
                                         <li>${k('\\rho')} is the density of the fluid.</li>
                                     </ul>
                                 `
@@ -1041,6 +1503,82 @@ let store = createStore(
                                         <li>${k('\\rho')} is the density of the solid.</li>
                                     </ul>
                                 `
+                            },
+                            {
+                                latex: 'P_\\mathrm{max}&=BkA',
+                                description: `
+                                    The pressure amplitude of a sound wave, where
+                                    <ul>
+                                        <li>${k('B')} is the bulk modulus of the medium,</li>
+                                        <ii>${k('k')} is the wave number, and</ii>
+                                        <li>${k('A')} is the displacement amplitude (the distance each particle moves in meters).</li>
+                                    </ul>
+                                    The result is in units of Pascals, and it represents the maximum deviation of pressure at a point from rest.
+                                `
+                            },
+                            {
+                                latex: '\\Delta P&=P_\\mathrm{max}\\sin(kx-\\omega t)',
+                                description: `
+                                    The change in pressure at a point from rest, where
+                                    <ul>
+                                        <li>${k('P_\\mathrm{max}')} is the pressure amplitude,</li>
+                                        <li>${k('k')} is the wave number,</li>
+                                        <li>${k('x')} is the longitudinal position of the point at rest,</li>
+                                        <li>${k('\\omega')} is the angular frequency of the SHM, and</li>
+                                        <li>${k('t')} is the time.</li>
+                                    </ul>
+                                `
+                            },
+                            {
+                                latex: 'f_L&=\\frac{v\\pm v_L}{v\\mp v_S}f_S',
+                                description: `
+                                    The Doppler effect, where
+                                    <ul>
+                                        <li>${k('f_L')} is the frequency of the sound for the listener,</li>
+                                        <li>${k('v')} is the speed of sound,</li>
+                                        <li>${k('v_L')} is the velocity of the listener,</li>
+                                        <li>${k('v_S')} is the velocity of the source, and</li>
+                                        <li>${k('f_S')} is the frequency of the sound emitted from the source.</li>
+                                    </ul>
+                                    This equation assumes that the source and listener are moving in a line toward or away from one another.
+                                `
+                            },
+                            {
+                                latex: '\\sin\\alpha&=\\frac{v}{v_S}',
+                                description: `
+                                    In a shock wave,
+                                    <ul>
+                                        <li>${k('\\alpha')} is the angle of the wave,</li>
+                                        <li>${k('v')} is the speed of sound, and</li>
+                                        <li>${k('v_S')} is the speed of the sound source.</li>
+                                    </ul>
+                                `
+                            },
+                            {
+                                latex: 'd&=n\\lambda=\\frac{nv}{f}',
+                                description: `
+                                    The conditions for constructive interference, where
+                                    <ul>
+                                        <li>${k('d')} is the path difference,</li>
+                                        <li>${k('n\\in\\Z,n\\ge0')},</li>
+                                        <li>${k('\\lambda')} is the wavelength,</li>
+                                        <li>${k('v')} is the speed of sound, and</li>
+                                        <li>${k('f')} is the frequency.</li>
+                                    </ul>
+                                `
+                            },
+                            {
+                                latex: 'd&=(2n+1)\\frac{\\lambda}{2}=\\frac{(2n+1)v}{2f}',
+                                description: `
+                                    The conditions for destructive interference, where
+                                    <ul>
+                                        <li>${k('d')} is the path difference,</li>
+                                        <li>${k('n\\in\\Z,n\\ge0')},</li>
+                                        <li>${k('\\lambda')} is the wavelength,</li>
+                                        <li>${k('v')} is the speed of sound, and</li>
+                                        <li>${k('f')} is the frequency.</li>
+                                    </ul>
+                                `
                             }
                         ]
                     },
@@ -1050,6 +1588,10 @@ let store = createStore(
                             {
                                 latex: 'g&=\\pu{9.8067 m s-1}',
                                 description: 'The acceleration due to gravity on Earth.'
+                            },
+                            {
+                                latex: 'v&=\\pu{343 m s-1}',
+                                description: `The speed of sound in dry air at ${k('\\pu{20 °C}')}.`
                             }
                         ]
                     }

@@ -1,0 +1,117 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[margin=1in]{geometry}
+\usepackage{libertine}
+\usepackage{multirow}
+\usepackage[libertine]{newtxmath}
+\usepackage{pgfplots}
+\usepackage{siunitx}
+
+\pgfplotsset{compat=1.16}
+\sisetup{separate-uncertainty=true}
+
+\title{
+    PHYS 122L Experiment 9 \\
+    \Large Electrostatic Forces and the Permittivity of Free Space
+}
+\author{Brandon Tsang}
+\date{March 4, 2020}
+
+\begin{document}
+    \maketitle
+    \section*{Purpose}
+        Using a parallel-plate capcitor setup along with an ammeter and voltmeter, today's experiment will attempt to measure the permittivity of free space $\epsilon_0$, one of the most fundamental constants in physics.
+    \section*{Results}
+        First, we determined the distance $d$ between the two plates. To do this, we measured the thickness of the foam separating them. Since the foam is compressible, we determined that our uncertainty would be \SI{0.1}{\milli\meter}.
+        {
+        \raggedright
+        \\[12pt]
+        \begin{tabular}{l l}
+            Zero error: & \SI{-0.005}{\milli\meter} \\
+            Measured thickness of foam: & \SI{1.997}{\milli\meter} \\
+            Uncertainty: & \SI{0.1}{\milli\meter} \\
+            Final measurement: & \SI{1.997(100)}{\milli\meter}
+        \end{tabular}
+        \\[8pt]
+        }
+        \par\noindent
+        Here are the results for the parallel plate capacitor:
+        \begin{center}
+            \begin{tabular}{l c c c c c c c}
+                \toprule
+                \multirow{2}{*}{Thickness (\si{\meter})} & \multicolumn{3}{c}{Plate voltage, $V$ (\si{\volt})} & \multirow{2}{*}{Average plate voltage, $V$ (\si{\volt})} & \multirow{2}{*}{$\Delta V$ (\si{\volt})} & \multirow{2}{*}{$V^2$ (\si{\volt\squared})} & \multirow{2}{*}{$\Delta V^2$ (\si{\volt\squared})} \\
+                & 1 & 2 & 3 \\
+                \midrule
+                $2\cdot10^{-6}$ & 213 & 222 & 232 & 222 & 9.50 & 49400 & 4230 \\
+                $6\cdot10^{-6}$ & 354 & 341 & 340 & 345 & 7.81 & 119000 & 5390 \\
+                $9\cdot10^{-6}$ & 442 & 442 & 457 & 447 & 8.66 & 200000 & 7740 \\
+                \bottomrule
+            \end{tabular}
+        \end{center}
+        \pagebreak
+        Making a plot of $V^2$ vs. $t$:
+        \begin{center}
+            \begin{tikzpicture}
+                \begin{axis}[xlabel={Thickness, $t$ (\si{\meter})}, ylabel={$V^2$ (\si{\volt\squared})}]
+                    \addplot[
+                        only marks, mark=*,
+                        error bars/.cd,
+                        y dir=both, y explicit
+                    ] coordinates {
+                        (0.000002,49400) +- (0,4230)
+                        (0.000006,119000) +- (0,5390)
+                        (0.000009,200000) +- (0,7740)
+                    };
+                    \addplot[dashed, mark=none, domain=0.000001:0.00001] {2.1262*10^10*x+2272.71};
+                \end{axis}
+            \end{tikzpicture}
+        \end{center}
+        \par
+        {
+        \raggedright
+        \vspace{8pt}
+        \begin{tabular}{l l}
+            Slope, $m$: & \SI{2.1262e10}{\square\volt\per\meter} \\
+            Uncertainty in slope, $\Delta m$: & \SI{2.7e9}{\square\volt\per\meter}
+        \end{tabular}
+        \\[8pt]
+        }
+        \par\noindent
+        Now, we use the data to calculate $\epsilon_0$:
+        \begin{align*}
+            m&=\frac{2d^2\rho g}{\epsilon_0} \\
+            \SI{2.1262e10}{\square\volt\per\meter}&=\frac{2(\SI{0.00199}{\meter})^2(\SI{2710}{\kilogram\per\cubic\meter})(\SI{9.8067}{\meter\per\square\second})}{\epsilon_0} \\
+            \epsilon_0&=\frac{2(\SI{0.00199}{\meter})^2(\SI{2710}{\kilogram\per\cubic\meter})(\SI{9.8067}{\meter\per\square\second})}{\SI{2.1262e10}{\square\volt\per\meter}} \\
+            &=\SI{9.8997e-12}{\second\tothe{4}\ampere\squared\per\meter\cubed\per\kilogram}
+        \end{align*}
+        To find the relative uncertainty:
+        \begin{align*}
+            \frac{\Delta\epsilon_0}{\epsilon_0}&=\sqrt{\left(\frac{\Delta m}{m}\right)^2+\left(\frac{2\Delta d}{d}\right)^2} \\
+            &=\sqrt{\left(\frac{\SI{2.7e9}{\square\volt\per\meter}}{\SI{2.1262e10}{\square\volt\per\meter}}\right)^2+\left(\frac{2(\SI{0.0001}{\meter})}{\SI{0.001997}{\meter}}\right)^2} \\
+            &=0.16 \\
+            &=16\%
+        \end{align*}
+        This means that the abolute uncertainty is $\SI{9.8997e-12}{\second\tothe{4}\ampere\squared\per\meter\cubed\per\kilogram}\cdot0.16=\SI{1.6e-12}{\second\tothe{4}\ampere\squared\per\meter\cubed\per\kilogram}$.
+        \par\noindent
+        Finally, we get that $\epsilon_0=\SI{9.9(16)e-12}{\second\tothe{4}\ampere\squared\per\meter\cubed\per\kilogram}$.
+    \pagebreak
+    \section*{Discussion}
+        \begin{enumerate}[label={\textbf{\arabic*.}}]
+            \item{
+                \textbf{How does your value for the permittivity of free space $\epsilon_0$ compare to the accepted value? Do they agree within experimental error? What does this tell you about the random or systematic nature of the uncertainty in your measurement?}
+                \par
+                The accepted value for $\epsilon_0$ is \SI{8.854e-12}{\second\tothe{4}\ampere\squared\per\meter\cubed\per\kilogram}, which fits in our experimental uncertainty.
+            }
+            \item{
+                \textbf{Qualitatively, equation (9) indicates that your graph is a straight line with zero intercept. Comment on how well your results agree with this theory.}
+                The intercept of our graph was $V^2=2273$. This value is relatively small, considering our $V^2$ values were in the $10^5$ range. In fact, the uncertainties in our $V^2$ values are all larger than 2273.
+            }
+            \item{
+                \textbf{Assess any strengths or weaknesses of this experiment.}
+                The scale of the experiment makes the values imprecise. For example, Any bends on the foil make for a significant change in $d$ over different parts of the foil. Also, relying on forces on this scale can lead to inaccurate results since there are many other forces which also act at this scale (including friction, air resistance, etc.).
+            }
+        \end{enumerate}
+\end{document}
