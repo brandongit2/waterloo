@@ -628,7 +628,7 @@ let store = createStore(
                                 latex: '\\overline{e^{i\\theta}}&=e^{-i\\theta}',
                                 description: 'It\'s easy to derive this geometrically from Euler\'s formula.'
                             },
-                            `Vectors in ${k('\\bm{\\Reals^n}')}`,
+                            `Vectors in ${k('\\mathbf{R}^n')}`,
                             {
                                 latex: '\\mathbf{u}&=\\begin{bmatrix}u_1\\\\u_2\\\\\\vdots\\\\u_n\\end{bmatrix}',
                                 description: `A vector ${k('\\mathbf{u}')} has components ${k('u_1')} through ${k('u_n')}, where ${k('n')} is the size of the vector.`
@@ -752,6 +752,70 @@ let store = createStore(
                             'Systems of Linear Equations',
                             {
                                 latex: `
+                                    A^T
+                                    =
+                                    \\begin{bmatrix}
+                                        A_{11} & A_{12} & \\ldots & A_{1m} \\\\
+                                        A_{21} & A_{22} & \\ldots & A_{2m} \\\\
+                                        \\vdots & \\vdots & \\ddots & \\vdots \\\\
+                                        A_{n1} & A_{n2} & \\ldots & A_{nm}
+                                    \\end{bmatrix}^T
+                                    &=
+                                    \\begin{bmatrix}
+                                        A_{11} & A_{21} & \\ldots & A_{m1} \\\\
+                                        A_{12} & A_{22} & \\ldots & A_{m2} \\\\
+                                        \\vdots & \\vdots & \\ddots & \\vdots \\\\
+                                        A_{1n} & A_{2n} & \\ldots & A_{mn}
+                                    \\end{bmatrix}
+                                `,
+                                description: `To transpose a matrix ${k('A')}, swap the columns and rows. In other words, column ${k('m')} becomes row ${k('m')} and row ${k('n')} becomes column ${k('n')}.`
+                            },
+                            {
+                                latex: `
+                                    A\\mathbf{x}=
+                                    \\begin{bmatrix}
+                                        A_{11} & A_{12} & \\ldots & A_{1m} \\\\
+                                        A_{21} & A_{22} & \\ldots & A_{2m} \\\\
+                                        \\vdots & \\vdots & \\ddots & \\vdots \\\\
+                                        A_{n1} & A_{n2} & \\ldots & A_{nm}
+                                    \\end{bmatrix}
+                                    \\begin{bmatrix}
+                                        x_1 \\\\ x_2 \\\\ \\vdots \\\\ x_m
+                                    \\end{bmatrix}
+                                    &=
+                                    \\begin{bmatrix}
+                                        A_{11}x_1+A_{12}x_2+\\ldots+A_{1m}x_m \\\\
+                                        A_{21}x_1+A_{22}x_2+\\ldots+A_{2m}x_m \\\\
+                                        \\vdots \\\\
+                                        A_{n1}x_1+A_{n2}x_2+\\ldots+A_{nm}x_m
+                                    \\end{bmatrix}
+                                `,
+                                description: `
+                                    Matrix multiplication of a vector. This can be simplified by representing ${k('A')} as a collection of row vectors:
+                                    ${k(`
+                                        A=
+                                        \\begin{bmatrix}\\mathbf{a}_1\\\\\\mathbf{a}_2\\\\\\ldots\\\\\\mathbf{a}_n\\end{bmatrix}
+                                        \\qquad
+                                        \\mathbf{a}_n=\\begin{bmatrix}A_{n1}&A_{n2}&\\ldots&A_{nm}\\end{bmatrix}
+                                    `, true)}
+                                    The matrix-vector product is then the dot product of each row vector ${k('\\mathbf{a}_n')} and ${k('\\mathbf{x}')}:
+                                    ${k(`
+                                        A\\mathbf{x}=
+                                        \\begin{bmatrix}\\mathbf{a}_1\\\\\\mathbf{a}_2\\\\\\ldots\\\\\\mathbf{a}_n\\end{bmatrix}
+                                        \\begin{bmatrix}x_1\\\\x_2\\\\\\vdots\\\\x_m\\end{bmatrix}
+                                        =
+                                        \\begin{bmatrix}
+                                            \\mathbf{a}_1\\cdot\\mathbf{x} \\\\
+                                            \\mathbf{a}_2\\cdot\\mathbf{x} \\\\
+                                            \\vdots \\\\
+                                            \\mathbf{a}_n\\cdot\\mathbf{x}
+                                        \\end{bmatrix}
+                                    `, true)}
+                                `
+                            },
+                            'Matrices as Linear Transformations',
+                            {
+                                latex: `
                                     A+B=
                                     \\begin{bmatrix}
                                         A_{11} & A_{12} & \\ldots & A_{1m} \\\\
@@ -777,6 +841,14 @@ let store = createStore(
                                 description: `The addition of two matrices is done element by element.`
                             },
                             {
+                                latex: 'A+B&=B+A',
+                                description: `The addition of matrices has the commutative property.`
+                            },
+                            {
+                                latex: '(A+B)+C&=A+(B+C)',
+                                description: `Matrix addition is associative.`
+                            },
+                            {
                                 latex: `
                                     cA=
                                     c
@@ -795,14 +867,6 @@ let store = createStore(
                                     \\end{bmatrix}
                                 `,
                                 description: `Scalar multiplication of a matrix is a scalar multiplication of each element of the matrix.`
-                            },
-                            {
-                                latex: 'A+B&=B+A',
-                                description: `The addition of matrices has the commutative property.`
-                            },
-                            {
-                                latex: '(A+B)+C&=A+(B+C)',
-                                description: `Matrix addition is associative.`
                             },
                             {
                                 latex: 's(A+B)&=sA+sB',
@@ -963,6 +1027,211 @@ let store = createStore(
                                     <br>
                                     This definition may seem overly complicated, but it is useful in that it preserves the linear transformation nature of matrices. A component-wise definition of matrix multiplication is surprisingly useless.
                                 `
+                            },
+                            {
+                                latex: 'A(BC)&=(AB)C',
+                                description: `Matrix multiplication is associative.`
+                            },
+                            {
+                                latex: 'A(B+C)&=AB+BC',
+                                description: `Matrix multiplication is left-distributive.`
+                            },
+                            {
+                                latex: '(A+B)C&=AC+BC',
+                                description: `Matrix multiplication is right-distributive.`
+                            },
+                            {
+                                latex: 's(AB)&=(sA)B',
+                                description: `Scalar multiplication is associative over matrix multiplication.`
+                            },
+                            {
+                                latex: 'A+0_{nm}&=A',
+                                description: `
+                                    If ${k('A')} has dimensions ${k('n\\times m')}, the zero matrix, ${k('0_{nm}')}, is the additive identity for matrix addition.
+                                    ${k(`
+                                        0_{nm}=
+                                        \\begin{bmatrix}
+                                            0 & 0 & \\ldots & 0 \\\\
+                                            0 & 0 & \\ldots & 0 \\\\
+                                            \\vdots & \\vdots & \\ddots & \\vdots \\\\
+                                            0 & 0 & \\ldots & 0
+                                        \\end{bmatrix}
+                                    `, true)}
+                                `
+                            },
+                            {
+                                latex: 'AI_m&=A',
+                                description: `
+                                    If ${k('A')} has dimensions ${k('n\\times m')}, the identity matrix, ${k('I_m')}, is the multiplicative identity for matrix multiplication.
+                                    ${k(`
+                                        I_m=
+                                        \\begin{bmatrix}
+                                            1 & 0 & \\ldots & 0 \\\\
+                                            0 & 1 & \\ldots & 0 \\\\
+                                            \\vdots & \\vdots & \\ddots & \\vdots \\\\
+                                            0 & 0 & \\ldots & 1
+                                        \\end{bmatrix}
+                                    `, true)}
+                                `
+                            },
+                            {
+                                latex: 'AA^{-1}=A^{-1}A&=I_n',
+                                description: `
+                                    If ${k('A')} is an ${k('n\\times n')} matrix, ${k('A^{-1}')} is its multiplicative inverse such that ${k('AA^{-1}')} is the identity matrix ${k('I_n')}.
+                                `
+                            },
+                            'Determinants',
+                            {
+                                latex: '\\begin{vmatrix}a_{11}\\end{vmatrix}&=a_{11}',
+                                description: `The determinant of a ${k('1\\times1')} matrix is the value of the only element.`
+                            },
+                            {
+                                latex: `
+                                    \\begin{vmatrix}
+                                        a_{11} & a_{12} \\\\
+                                        a_{21} & a_{22}
+                                    \\end{vmatrix}
+                                    &=
+                                    a_{11}a_{22}-a_{12}a_{21}
+                                `,
+                                description: `The determinant of a ${k('2\\times2')} matrix.`
+                            },
+                            {
+                                latex: `
+                                    \\det(A)
+                                    =
+                                    \\begin{vmatrix}
+                                        a_{11} & a_{12} & \\ldots & a_{1m} \\\\
+                                        a_{21} & a_{22} & \\ldots & a_{2m} \\\\
+                                        \\vdots & \\vdots & \\ddots & \\vdots \\\\
+                                        a_{n1} & a_{n2} & \\ldots & a_{nm}
+                                    \\end{vmatrix}
+                                    &=
+                                    \\sum_{j=1}^m(-1)^{i+j}\\det(M_{ij})
+                                `,
+                                description: `The determinant of an ${k('n\\times m')} matrix ${k('A')}, where ${k('M_{ij}')} signifies the minor of element ${k('a_{ij}')}.`
+                            },
+                            {
+                                latex: '\\det(ABC\\ldots)&=\\det(A)\\cdot\\det(B)\\cdot\\det(C)\\cdot\\ldots'
+                            }
+                        ]
+                    },
+                    'transformation matrices': {
+                        code: 'M',
+                        content: [
+                            '2D',
+                            {
+                                latex: `
+                                    &\\begin{bmatrix}
+                                        1 & 0 \\\\
+                                        0 & 1
+                                    \\end{bmatrix}
+                                `,
+                                description: 'The identity matrix. Does nothing.'
+                            },
+                            {
+                                latex: `
+                                    &\\begin{bmatrix}
+                                        k & 0 \\\\
+                                        0 & 1
+                                    \\end{bmatrix}
+                                `,
+                                description: `
+                                    If ${k('k>1')}, stretch by a factor of ${k('k')} in the ${k('x')} direction.
+                                    <br>
+                                    If ${k('k=1')}, do nothing.
+                                    <br>
+                                    If ${k('0<k<1')}, compress by a factor of ${k('k')} in the ${k('x')} direction.
+                                    <br>
+                                    If ${k('k=0')}, compress to a line on the ${k('y')}-axis.
+                                    <br>
+                                    If ${k('-1<k<0')}, flip across the ${k('y')}-axis and compress by a factor of ${k('k')} in the ${k('x')} direction.
+                                    <br>
+                                    If ${k('k=-1')},  flip across the ${k('y')}-axis.
+                                    <br>
+                                    If ${k('k<-1')}, flip across the ${k('y')}-axis and stretch by a factor of ${k('k')} in the ${k('x')} direction.
+                                `
+                            },
+                            {
+                                latex: `
+                                    &\\begin{bmatrix}
+                                        1 & 0 \\\\
+                                        0 & k
+                                    \\end{bmatrix}
+                                `,
+                                description: `
+                                    If ${k('k>1')}, stretch by a factor of ${k('k')} in the ${k('y')} direction.
+                                    <br>
+                                    If ${k('k=1')}, do nothing.
+                                    <br>
+                                    If ${k('0<k<1')}, compress by a factor of ${k('k')} in the ${k('y')} direction.
+                                    <br>
+                                    If ${k('k=0')}, compress to a line on the ${k('x')}-axis.
+                                    <br>
+                                    If ${k('-1<k<0')}, flip across the ${k('x')}-axis and compress by a factor of ${k('k')} in the ${k('y')} direction.
+                                    <br>
+                                    If ${k('k=-1')},  flip across the ${k('x')}-axis.
+                                    <br>
+                                    If ${k('k<-1')}, flip across the ${k('x')}-axis and stretch by a factor of ${k('k')} in the ${k('y')} direction.
+                                `
+                            },
+                            {
+                                latex: `
+                                    &\\begin{bmatrix}
+                                        \\cos\\theta & -\\sin\\theta \\\\
+                                        \\sin\\theta & \\cos\\theta
+                                    \\end{bmatrix}
+                                `,
+                                description: `The rotation matrix. Rotates by angle ${k('\\theta')}.`
+                            },
+                            {
+                                latex: `
+                                    &\\begin{bmatrix}
+                                        1 & \\tan\\theta \\\\
+                                        0 & 1
+                                    \\end{bmatrix}
+                                `,
+                                description: `Skew in ${k('x')} direction by angle ${k('\\theta')}.`
+                            },
+                            {
+                                latex: `
+                                    &\\begin{bmatrix}
+                                        1 & 0 \\\\
+                                        \\tan\\theta & 1
+                                    \\end{bmatrix}
+                                `,
+                                description: `Skew in ${k('y')} direction by angle ${k('\\theta')}.`
+                            },
+                            '3D',
+                            {
+                                latex: `
+                                    &\\begin{bmatrix}
+                                        1 & 0 & 0 \\\\
+                                        0 & \\cos\\theta & -\\sin\\theta \\\\
+                                        0 & \\sin\\theta & \\cos\\theta
+                                    \\end{bmatrix}
+                                `,
+                                description: `Rotation about the ${k('x')}-axis by angle ${k('\\theta')}`
+                            },
+                            {
+                                latex: `
+                                    &\\begin{bmatrix}
+                                        \\cos\\theta & 0 & \\sin\\theta \\\\
+                                        0 & 1 & 0 \\\\
+                                        -\\sin\\theta & 0 & \\cos\\theta
+                                    \\end{bmatrix}
+                                `,
+                                description: `Rotation about the ${k('y')}-axis by angle ${k('\\theta')}`
+                            },
+                            {
+                                latex: `
+                                    &\\begin{bmatrix}
+                                        \\cos\\theta & -\\sin\\theta & 0 \\\\
+                                        \\sin\\theta & \\cos\\theta & 0 \\\\
+                                        0 & 0 & 1
+                                    \\end{bmatrix}
+                                `,
+                                description: `Rotation about the ${k('z')}-axis by angle ${k('\\theta')}`
                             }
                         ]
                     }
@@ -1077,6 +1346,50 @@ let store = createStore(
                             {
                                 latex: '\\int\\sum_{n=0}^\\infty c_n(x-a)^n&=C+\\sum_{n=0}^\\infty \\frac{c_n(x-a)^{n+1}}{n+1}',
                                 description: 'The integral of the power series. Integration is simple since the power series can be thought of as an infinite polynomial, and polynomials are easy to integrate.'
+                            },
+                            {
+                                latex: 'e^x&=\\sum_{n=0}^\\infty\\frac{x^n}{n!}=1+x+\\frac{x^2}{2!}+\\frac{x^3}{3!}+\\ldots',
+                                description: `The Taylor series of ${k('e^x')}.`
+                            },
+                            {
+                                latex: '\\sin x&=\\sum_{n=0}^\\infty(-1)^n\\frac{x^{2n+1}}{(2n+1)!}=x-\\frac{x^3}{3!}+\\frac{x^5}{5!}-\\frac{x^7}{7!}+\\ldots',
+                                description: `The Taylor series of ${k('\\sin x')}.`
+                            },
+                            {
+                                latex: '\\cos x&=\\sum_{n=0}^\\infty(-1)^n\\frac{x^{2n}}{(2n)!}=1-\\frac{x^2}{2!}+\\frac{x^4}{4!}-\\frac{x^6}{6!}+\\ldots',
+                                description: `The Taylor series of ${k('\\cos x')}.`
+                            },
+                            {
+                                latex: '\\frac{1}{1-x}&=\\sum_{n=0}^\\infty x^n=1+x+x^2+x^3+\\ldots',
+                                description: `The Taylor series of ${k('\\frac{1}{1-x}')}.`
+                            },
+                            {
+                                latex: '(1+x)^k&=\\sum_{n=0}^\\infty{k\\choose n}x^n=1+kx+\\frac{k(k-1)}{2!}x^2+\\frac{k(k-1)(k-2)}{3!}x^3+\\ldots'
+                            },
+                            {
+                                latex: '|f(x)-T_N(x)|&\\le M\\frac{|x-a|^{N+1}}{(N+1)!}',
+                                description: `A bound for the remainder, or error, of an ${k('N')}th degree Taylor approximation of ${k('f(x)')} centered at ${k('a')}. ${k('M')} is the maximum of ${k('f^{(N+1)}')} over the interval ${k('[x,a]')}.`
+                            },
+                            'Chapter 10: Differential Equations',
+                            {
+                                latex: '\\frac{dy(x)}{dx}&=g(x)f(y)',
+                                description: `A separable differential equation can be written in this form.`
+                            },
+                            {
+                                latex: 'y\'+P(x)y&=Q(x)',
+                                description: `A first-order linear differential equation can be written in this form.`
+                            },
+                            {
+                                latex: 'I(x)&=e^{\\int P(x)\\,dx}',
+                                description: `The integrating factor ${k('I(x)')} is used when solving first-order linear differential equations of the form ${k('y\'+P(x)y=Q(x)')}.`
+                            },
+                            {
+                                latex: 'y(x)&=\\frac{\\int I(x)Q(x)\\,dx}{I(x)}',
+                                description: `The solution to a first-order linear differential equation of the form ${k('y\'+P(x)y=Q(x)')}, where ${k('I(x)')} is the integrating factor. Notes that the integrals may not be solvable.`
+                            },
+                            {
+                                latex: 'y(x+h)&=y(x)+hf(x,y(x))',
+                                description: `Euler's method for approximating a solution to a differential equation of the form ${k('y\'=f(x,y)')}. ${k('h')} is the step size, and a smaller ${k('h')} will result in a more accurate approximation.`
                             }
                         ]
                     },
@@ -1890,13 +2203,19 @@ let store = createStore(
                                 `
                             },
                             {
-                                latex: '\\Delta x\\Delta p_x&\\geq\\frac{\\hbar}{2}',
+                                latex: `
+                                    &\\begin{cases}
+                                        \\Delta x\\Delta p_x\\ge\\frac{\\hbar}{2} \\\\
+                                        \\Delta y\\Delta p_y\\ge\\frac{\\hbar}{2} \\\\
+                                        \\Delta z\\Delta p_z\\ge\\frac{\\hbar}{2}
+                                    \\end{cases}
+                                `,
                                 description: `
-                                    Heisenberg's uncertainty principle, where
+                                    Heisenberg's uncertainty principle for position and momentum of a particle, where
                                     <ul>
-                                        <li>${k('\\Delta x')} is the uncertainty in position of a particle,</li>
-                                        <li>${k('\\Delta p_x')} is the uncertainty in momentum of a particle, and</li>
-                                        <li>${k('\\hbar')} is the reduced Planck constant, equal to ${k('\\frac{h}{2\\pi}')}.</li>
+                                        <li>${k('\\Delta x')} is the uncertainty in position of the particle,</li>
+                                        <li>${k('\\Delta p_x')} is the uncertainty in momentum of the particle, and</li>
+                                        <li>${k('\\hbar')} is the reduced Planck constant.</li>
                                     </ul>
                                 `
                             },
@@ -1915,12 +2234,166 @@ let store = createStore(
                             {
                                 latex: '\\lambda&=\\frac{h}{\\sqrt{2m_eeV_\\mathrm{AC}}}',
                                 description: `
-                                    De Broglie wavelength of an electron, where
+                                    De Broglie wavelength of an electron from the Davisson-Germer experiment, where
                                     <ul>
                                         <li>${k('h')} is Planck's constant,</li>
                                         <li>${k('m_e')} is the mass of an electron,</li>
                                         <li>${k('e')} is the charge on an electron, and</li>
                                         <li>${k('V_\\mathrm{AC}')} is the voltage required to accelerate the electron to its current speed.</li>
+                                    </ul>
+                                `
+                            },
+                            {
+                                latex: 'd\\sin\\theta&=m\\lambda',
+                                description: `
+                                    The angles of maximum reflection off of a diffraction grating, where
+                                    <ul>
+                                        <li>${k('d')} is the spacing between slits of the grating,</li>
+                                        <li>${k('\\theta')} is the angle of maximum reflection,</li>
+                                        <li>${k('m\\in\\Z,m\\ge0')}, and</li>
+                                        <li>${k('\\lambda')} is the wavelength of the particle.</li>
+                                    </ul>
+                                    With electron diffraction, the diffraction grating is the surface of a crystal, where the slits are the atoms on the surface separated by distance ${k('d')}.
+                                `
+                            },
+                            {
+                                latex: 'L_n=m_ev_nr_n&=n\\frac{h}{2\\pi}',
+                                description: `
+                                    The angular momentum of an electron in its ${k('n')}th orbit of a neutral hydrogen atom, according to the Bohr model.
+                                    <ul>
+                                        <li>${k('m_e')} is the mass of the electron,</li>
+                                        <li>${k('v_n')} is the velocity of the electron at its energy level,</li>
+                                        <li>${k('r_n')} is the radius of the electron's orbit at its energy level, and</li>
+                                        <li>${k('h')} is Planck's constant.</li>
+                                    </ul>
+                                    ${k('n')} defines the orbit and also the energy level of the electron.
+                                `
+                            },
+                            {
+                                latex: 'r_n&=\\frac{\\epsilon_0n^2h^2}{\\pi m_ee^2}=n^2a_0',
+                                description: `
+                                    The radius of the ${k('n')}th orbit of an electron in a neutral hydrogen atom, according to the Bohr model.
+                                    <ul>
+                                        <li>${k('\\epsilon_0')} is the permitivitty of free space,</li>
+                                        <li>${k('h')} is Planck's constant,</li>
+                                        <li>${k('m_e')} is the mass of the electron,</li>
+                                        <li>${k('e')} is the magnitude of the charge on the electron, and</li>
+                                        <li>${k('a_0')} is the Bohr radius, or the radius of the ${k('n=1')} orbit of the electron.</li>
+                                    </ul>
+                                    ${k('n')} defines the orbit and also the energy level of the electron.
+                                `
+                            },
+                            {
+                                latex: 'v_n&=\\frac{e^2}{2\\epsilon_0nh}',
+                                description: `
+                                    The velocity of an electron in its ${k('n')}th orbit of a neutral hydrogen atom, according to the Bohr model.
+                                    <ul>
+                                        <li>${k('e')} is the magnitude of the charge on the electron, and</li>
+                                        <li>${k('\\epsilon_0')} is the permitivitty of free space,</li>
+                                        <li>${k('h')} is Planck's constant.</li>
+                                    </ul>
+                                    ${k('n')} defines the orbit and also the energy level of the electron.
+                                `
+                            },
+                            {
+                                latex: 'K_n=\\frac{1}{2}m_ev_n^2&=\\frac{1}{2}\\frac{m_ee^4}{4\\epsilon_0^2n^2h^2}',
+                                description: `
+                                    The kinetic energy of an electron in its ${k('n')}th orbit of a neutral hydrogen atom, according to the Bohr model.
+                                    <ul>
+                                        <li>${k('m_e')} is the mass of the electron,</li>
+                                        <li>${k('v_n')} is the velocity of the electron at its energy level,</li>
+                                        <li>${k('e')} is the magnitude of the charge on the electron,</li>
+                                        <li>${k('\\epsilon_0')} is the permitivitty of free space, and</li>
+                                        <li>${k('h')} is Planck's constant.</li>
+                                    </ul>
+                                    ${k('n')} defines the orbit and also the energy level of the electron.
+                                `
+                            },
+                            {
+                                latex: 'U_n=-\\frac{e^2}{4\\pi\\epsilon_0r_n}&=-\\frac{m_ee^4}{4\\epsilon_0^2n^2h^2}',
+                                description: `
+                                    The potential energy of an electron in its ${k('n')}th orbit of a neutral hydrogen atom, according to the Bohr model.
+                                    <ul>
+                                        <li>${k('e')} is the magnitude of the charge on the electron,</li>
+                                        <li>${k('\\epsilon_0')} is the permitivitty of free space,</li>
+                                        <li>${k('r_n')} is the radius of the electron's orbit at its energy level,</li>
+                                        <li>${k('m_e')} is the mass of the electron, and</li>
+                                        <li>${k('h')} is Planck's constant.</li>
+                                    </ul>
+                                    ${k('n')} defines the orbit and also the energy level of the electron.
+                                `
+                            },
+                            {
+                                latex: 'E_n=K_n+U_n&=-\\frac{1}{2}\\frac{m_ee^4}{4\\epsilon_0^2n^2h^2}',
+                                description: `
+                                    The total energy of an electron in its ${k('n')}th orbit of a hydrogen atom, according to the Bohr model.
+                                    <ul>
+                                        <li>${k('K_n')} is the kinetic energy of the electron at its energy level,</li>
+                                        <li>${k('U_n')} is the potential energy of the electron at its energy level,</li>
+                                        <li>${k('m_e')} is the mass of the electron,</li>
+                                        <li>${k('e')} is the magnitude of the charge on the electron,</li>
+                                        <li>${k('\\epsilon_0')} is the permitivitty of free space, and</li>
+                                        <li>${k('h')} is Planck's constant.</li>
+                                    </ul>
+                                    ${k('n')} defines the orbit and also the energy level of the electron.
+                                `
+                            },
+                            {
+                                latex: 'E_n&=-\\frac{hcR_\\ce{H}}{n^2}',
+                                description: `
+                                    The total energy of an electron in its ${k('n')}th orbit of a hydrogen atom, according to the Bohr model.
+                                    <ul>
+                                        <li>${k('h')} is Planck's constant,</li>
+                                        <li>${k('c')} is the speed of light in a vacuum, and</li>
+                                        <li>${k('R_\\ce{H}')} is the Rydberg constant for hydrogen.</li>
+                                    </ul>
+                                    ${k('n')} defines the orbit and also the energy level of the electron.
+                                `
+                            },
+                            {
+                                latex: 'I&=\\sigma T^4',
+                                description: `
+                                    The Stefan-Boltzmann law, where
+                                    <ul>
+                                        <li>${k('I')} is the intensity of light (power per unit area),</li>
+                                        <li>${k('\\sigma')} is the Stefan-Boltzmann constant, and</li>
+                                        <li>${k('T')} is the temperature of the blackbody.</li>
+                                    </ul>
+                                `
+                            },
+                            {
+                                latex: '\\lambda_\\mathrm{max}&=\\frac{b}{T}',
+                                description: `
+                                    Wien's displacement law, where
+                                    <ul>
+                                        <li>${k('\\lambda_\\mathrm{max}')} is the wavelength of maximum spectral intensity (i.e. the maximum of ${k('I(\\lambda)')} for a given temperature),</li>
+                                        <li>${k('b')} is Wien's displacement constant, and</li>
+                                        <li>${k('T')} is the temperature of the blackbody.</li>
+                                    </ul>
+                                `
+                            },
+                            {
+                                latex: 'I(\\lambda)&=\\frac{2\\pi hc^2}{\\lambda^5(e^\\frac{hc}{\\lambda k_\\mathrm{B}T}-1)}',
+                                description: `
+                                    Planck's radiation law, where
+                                    <ul>
+                                        <li>${k('I')} is the spectral intensity at a given wavelength and temperature,</li>
+                                        <li>${k('\\lambda')} is the wavelength of radiation emitted,</li>
+                                        <li>${k('h')} is Planck's constant,</li>
+                                        <li>${k('c')} is the speed of light in a vacuum,</li>
+                                        <li>${k('k_\\mathrm{B}')} is the Boltzmann constant, and</li>
+                                        <li>${k('T')} is the temperature.</li>
+                                    </ul>
+                                `
+                            },
+                            {
+                                latex: '\\Delta t\\Delta E&\\ge\\frac{\\hbar}{2}',
+                                description: `
+                                    The Heisenberg uncertainty principle for time interval and energy of a particle, where
+                                    <ul>
+                                        <li>${k('\\Delta t')} is the uncertainty in time interval (how long the particle has been in its current state),</li>
+                                        <li>${k('\\Delta E')} is the uncertainty in energy of the particle, and</li>
+                                        <li>${k('\\hbar')} is the reduced Planck constant.</li>
                                     </ul>
                                 `
                             }
@@ -1972,6 +2445,43 @@ let store = createStore(
                             {
                                 latex: 'm_e&=\\pu{9.10938e-31 kg}',
                                 description: 'The mass of a stationary electron.'
+                            },
+                            {
+                                latex: '\\hbar&=\\pu{1.05457e-34 J s}',
+                                description: `The reduced Planck constant, equal to ${k('\\frac{h}{2\\pi}')}.`
+                            },
+                            {
+                                latex: '\\epsilon_0&=\\pu{8.85418e-12 F m-1}',
+                                description: 'The permitivitty of free space.'
+                            },
+                            {
+                                latex: 'a_0&=\\pu{5.29177e-11 m}',
+                                description: 'The Bohr radius. Equal to the radius of the orbit of an electron in a neutral hydrogen atom, according to the Bohr model.'
+                            },
+                            {
+                                latex: 'R_\\ce{H}&=\\pu{1.09678e7 m-1}',
+                                description: `
+                                    The Rydberg constant for a hydrogen atom, calculated as ${k('R_\\ce{H}\\approx\\frac{m_ee^4}{8\\epsilon_0^2h^3c}')} where
+                                    <ul>
+                                        <li>${k('m_e')} is the mass of an electron,</li>
+                                        <li>${k('e')} is the magnitude of the charge on an electron,</li>
+                                        <li>${k('\\epsilon_0')} is the permitivitty of free space,</li>
+                                        <li>${k('h')} is Planck's constant, and</li>
+                                        <li>${k('c')} is the speed of light in a vacuum.</li>
+                                    </ul>
+                                `
+                            },
+                            {
+                                latex: '\\sigma&=\\pu{5.67037e-8 W m-2 K-4}',
+                                description: 'The Stefan-Boltzmann constant, used as the constant of proportionality in the Stefan-Boltzmann law.'
+                            },
+                            {
+                                latex: 'b&=\\pu{2.89777e-3 m K}',
+                                description: 'Wein\'s displacement constant, used as the constant of proportionality in Wien\'s displacement law.'
+                            },
+                            {
+                                latex: 'k_\\mathrm{B}&=\\pu{1.38065e-23 J K-1}',
+                                description: 'The Boltzmann constant.'
                             }
                         ]
                     },

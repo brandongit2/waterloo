@@ -1,0 +1,243 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{bm} % For \boldmath command
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{libertine}
+\usepackage[libertine]{newtxmath}
+
+\title{MATH 114 Assignment 8}
+\author{Brandon Tsang}
+\date{March 26, 2020}
+
+\begin{document}
+\maketitle
+\begin{enumerate}[label=\textbf{\arabic*.}]
+    \item{
+          \begin{enumerate}[label=\textbf{(\alph*)}]
+              \item{
+                    \textbf{\boldmath A matrix $M$ transformed the figure $A$ to the figure $B$. Calculate $\det(M)$.}
+                    \par
+                    The area of A (found by counting grid squares) is 5, and the area of B is 2. Therefore, the transformation from $M$ decreased the area by a factor of $\frac{2}{5}$, and $\det(M)=\frac{2}{5}$.
+                    }
+              \item{
+                    \textbf{\boldmath Given $N=\begin{bmatrix}7 & 3 \\ 8 & 4\end{bmatrix}$, calculate $\det(N)$.}
+                    \par
+                    $\det(N)$ is calculated as follows:
+                    \begin{align*}
+                        \det(N)=\begin{vmatrix}7 & 3 \\ 8 & 4\end{vmatrix} & =(7)(4)-(3)(8) \\
+                                                          & =28-24         \\
+                                                          & =4
+                    \end{align*}
+                    }
+              \item{
+                    \textbf{
+                    \boldmath In the previous assignment, we created the following matrix $P$:
+                    {\small
+                    $$
+                        P=
+                        \begin{bmatrix}
+                            1 & 0 & 0 & 4 \\
+                            0 & 1 & 0 & 0 \\
+                            0 & 0 & 1 & 0 \\
+                            0 & 0 & 0 & 1
+                        \end{bmatrix}
+                        \begin{bmatrix}
+                            \frac{3}{\sqrt{10}}  & \frac{1}{\sqrt{10}} & 0 & 0 \\
+                            -\frac{1}{\sqrt{10}} & \frac{3}{\sqrt{10}} & 0 & 0 \\
+                            0                    & 0                   & 1 & 0 \\
+                            0                    & 0                   & 0 & 1
+                        \end{bmatrix}
+                        \begin{bmatrix}
+                            \cos\theta  & 0 & \sin\theta & 0 \\
+                            0           & 1 & 0          & 0 \\
+                            -\sin\theta & 0 & \cos\theta & 0 \\
+                            0           & 0 & 0          & 1
+                        \end{bmatrix}
+                        \begin{bmatrix}
+                            \frac{3}{\sqrt{10}} & -\frac{1}{\sqrt{10}} & 0 & 0 \\
+                            \frac{1}{\sqrt{10}} & \frac{3}{\sqrt{10}}  & 0 & 0 \\
+                            0                   & 0                    & 1 & 0 \\
+                            0                   & 0                    & 0 & 1
+                        \end{bmatrix}
+                        \begin{bmatrix}
+                            1 & 0 & 0 & -4 \\
+                            0 & 1 & 0 & 0  \\
+                            0 & 0 & 1 & 0  \\
+                            0 & 0 & 0 & 1
+                        \end{bmatrix}
+                    $$
+                    }
+                    Calculate $\det(P)$.
+                    }
+                    \par
+                    First, we find the determinants of the matrices which make up $P$, which we will call $P_1$, $P_2$, $P_3$, $P_4$, and $P_5$. We will utilize the shortcut method discussed in class.
+                    \begin{align*}
+                        \det(P_1)=
+                        \begin{vmatrix}
+                            1 & 0 & 0 & 4 \\
+                            0 & 1 & 0 & 0 \\
+                            0 & 0 & 1 & 0 \\
+                            0 & 0 & 0 & 1
+                        \end{vmatrix} & =(1)(1)(1)(1) \\
+                                                  & =1
+                    \end{align*}
+                    \begin{align*}
+                        \det(P_2)=
+                        \begin{vmatrix}
+                            \frac{3}{\sqrt{10}}  & \frac{1}{\sqrt{10}} & 0 & 0 \\
+                            -\frac{1}{\sqrt{10}} & \frac{3}{\sqrt{10}} & 0 & 0 \\
+                            0                    & 0                   & 1 & 0 \\
+                            0                    & 0                   & 0 & 1
+                        \end{vmatrix} & \sim
+                        \begin{vmatrix}
+                            \frac{3}{\sqrt{10}} & \frac{1}{\sqrt{10}}                      & 0 & 0 \\
+                            0                   & \frac{3}{\sqrt{10}}+\frac{1}{3\sqrt{10}} & 0 & 0 \\
+                            0                   & 0                                        & 1 & 0 \\
+                            0                   & 0                                        & 0 & 1
+                        \end{vmatrix}                                                                      \\
+                                                  & \sim
+                        \begin{vmatrix}
+                            \frac{3}{\sqrt{10}} & \frac{1}{\sqrt{10}}   & 0 & 0 \\
+                            0                   & \frac{10}{3\sqrt{10}} & 0 & 0 \\
+                            0                   & 0                     & 1 & 0 \\
+                            0                   & 0                     & 0 & 1
+                        \end{vmatrix}                                                                      \\
+                                                  & =\left(\frac{3}{\sqrt{10}}\right)\left(\frac{10}{3\sqrt{10}}\right) \\
+                                                  & =\frac{30}{30}                                                      \\
+                                                  & =1
+                    \end{align*}
+                    \begin{align*}
+                        \begin{split}
+                            \det(P_3)=
+                            \begin{vmatrix}
+                                \cos\theta  & 0 & \sin\theta & 0 \\
+                                0           & 1 & 0          & 0 \\
+                                -\sin\theta & 0 & \cos\theta & 0 \\
+                                0           & 0 & 0          & 1
+                            \end{vmatrix}
+                            & =
+                            \cos\theta\begin{vmatrix}
+                                1 & 0          & 0 \\
+                                0 & \cos\theta & 0 \\
+                                0 & 0          & 1
+                            \end{vmatrix}
+                            -
+                            0\begin{vmatrix}
+                                0           & 0          & 0 \\
+                                -\sin\theta & \cos\theta & 0 \\
+                                0           & 0          & 1
+                            \end{vmatrix} \\
+                            &\qquad+
+                            \sin\theta\begin{vmatrix}
+                                0           & 1 & 0 \\
+                                -\sin\theta & 0 & 0 \\
+                                0           & 0 & 1
+                            \end{vmatrix}
+                            -
+                            0\begin{vmatrix}
+                                0           & 1 & 0          \\
+                                -\sin\theta & 0 & \cos\theta \\
+                                0           & 0 & 0
+                            \end{vmatrix}
+                        \end{split}                     \\
+                         & =\cos\theta(1)(\cos\theta)(1)-0-
+                        \sin\theta\begin{vmatrix}
+                            -\sin\theta & 0 & 0 \\
+                            0           & 1 & 0 \\
+                            0           & 0 & 1
+                        \end{vmatrix}
+                        -0                                             \\
+                         & =\cos^2\theta-\sin\theta(-\sin\theta)(1)(1) \\
+                         & =\cos^2\theta+\sin^2\theta                  \\
+                         & = 1
+                    \end{align*}
+                    \begin{align*}
+                        \det(P_1)=
+                        \begin{vmatrix}
+                            1 & 0 & 0 & -4 \\
+                            0 & 1 & 0 & 0  \\
+                            0 & 0 & 1 & 0  \\
+                            0 & 0 & 0 & 1
+                        \end{vmatrix} & =(1)(1)(1)(1) \\
+                                                   & =1
+                    \end{align*}
+                    Finally,
+                    \begin{align*}
+                        \det(P) & =\det(P_1)\det(P_2)\det(P_3)\det(P_4)\det(P_5) \\
+                                & =1\cdot1\cdot1\cdot1\cdot1                     \\
+                                & =1
+                    \end{align*}
+                    }
+          \end{enumerate}
+          }
+          \pagebreak
+    \item{
+          \begin{enumerate}[label=\textbf{(\alph*)}]
+              \item{
+                    \textbf{\boldmath Compute the determinant of $Q=\begin{bmatrix}2 & 0 & 0 & 1 \\ -4 & 1 & 0 & -2 \\ -3 & 0 & 1 & 0 \\ -3 & 1 & 0 & -2\end{bmatrix}$. What can you say about $\det(Q^{-1})$?}
+                    \par
+                    The determinant of $Q$ is calculated as follows:
+                    \begin{align*}
+                        \det(Q)=
+                        \begin{vmatrix}
+                            2  & 0 & 0 & 1  \\
+                            -4 & 1 & 0 & -2 \\
+                            -3 & 0 & 1 & 0  \\
+                            -3 & 1 & 0 & -2
+                        \end{vmatrix}
+                         & \sim
+                        \begin{vmatrix}
+                            2  & 0 & 0 & 1  \\
+                            0  & 1 & 0 & 0  \\
+                            0  & 1 & 1 & -2 \\
+                            -3 & 1 & 0 & -2
+                        \end{vmatrix}             \\
+                         & \sim
+                        \begin{vmatrix}
+                            2 & 0 & 0 & 1            \\
+                            0 & 1 & 0 & 0            \\
+                            0 & 1 & 1 & -2           \\
+                            0 & 1 & 0 & -\frac{1}{2}
+                        \end{vmatrix}             \\
+                         & \sim
+                        \begin{vmatrix}
+                            2 & 0 & 0 & 1            \\
+                            0 & 1 & 0 & 0            \\
+                            0 & 0 & 1 & -2           \\
+                            0 & 0 & 0 & -\frac{1}{2}
+                        \end{vmatrix}             \\
+                         & =(2)(1)(1)\left(-\frac{1}{2}\right) \\
+                         & =-1
+                    \end{align*}
+                    }
+              \item{
+                    \textbf{\boldmath Compute the determinant of $R=\begin{bmatrix}1 & 0 & 3 & 3 \\ 0 & 1 & 1 & 1 \\ 0 & 0 & 1 & 1 \\ 2 & 0 & 6 & 6\end{bmatrix}$. What can you say about $\det(R^{-1})$?}
+                    \par
+                    The determinant of $R$ is calculated as follows:
+                    \begin{align*}
+                        \det(R)=
+                        \begin{vmatrix}
+                            1 & 0 & 3 & 3 \\
+                            0 & 1 & 1 & 1 \\
+                            0 & 0 & 1 & 1 \\
+                            2 & 0 & 6 & 6
+                        \end{vmatrix}
+                         & \sim
+                        \begin{vmatrix}
+                            1 & 0 & 3 & 3 \\
+                            0 & 1 & 1 & 1 \\
+                            0 & 0 & 1 & 1 \\
+                            0 & 0 & 0 & 0
+                        \end{vmatrix}
+                    \end{align*}
+                    Since the bottom row is all zeroes, this matrix has no determinant.
+                    }
+          \end{enumerate}
+          }
+\end{enumerate}
+\end{document}

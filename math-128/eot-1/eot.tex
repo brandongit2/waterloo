@@ -1,0 +1,192 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{libertine}
+\usepackage[libertine]{newtxmath}
+\usepackage[detect-weight=true]{siunitx}
+
+\title{MATH 128 End-of-Term Assignment 1}
+\author{Brandon Tsang}
+\date{March 27, 2020}
+
+\setlength{\parindent}{0pt}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}[label={\textbf{\arabic*.}}]
+        \item{
+            \textbf{\boldmath Write out your student number and then determine the solution to each of the following initial value problems where $N_7$ and $N_8$ are the seventh and eighth digits of your student number:}
+            \par
+            My student number is 20845794.
+            \begin{enumerate}[label={\textbf{(\alph*)}}]
+                \item{
+                    \textbf{\boldmath $\frac{dy}{dx}=y\cos(x),\quad y(0)=e^{N_7}$}
+                    \par
+                    This is a seperable differential equation. I'll solve it by separating the $y$'s from the $x$'s and integrating:
+                    \begin{align*}
+                        \frac{dy}{dx}&=y\cos(x) \\
+                        \frac{1}{y}\,dy&=\cos(x)\,dx \\
+                        \int\frac{1}{y}\,dy&=\int\cos(x)\,dx \\
+                        \ln|y|&=\sin(x)+C \\
+                        |y|&=e^{\sin(x)+C} \\
+                        y&=\pm e^{\sin(x)}e^C
+                    \end{align*}
+                    Then, substituting $A=\pm e^C$:
+                    \begin{equation}
+                        y=Ae^{\sin(x)} \label{eqn:1a}
+                    \end{equation}
+                    The seventh digit of my student number is $N_7=9$, so
+                    \begin{align*}
+                        y(0)=e^{N_7}&=Ae^{\sin(0)} \\
+                        e^9&=Ae^0 \\
+                        A&=e^9.
+                    \end{align*}
+                    Substituting this back into equation \ref{eqn:1a}:
+                    \begin{align*}
+                        y&=e^9e^{\sin(x)} \\
+                        &=e^{\sin(x)+9}
+                    \end{align*}
+                }
+                \pagebreak
+                \item{
+                    \textbf{\boldmath $\frac{dy}{dx}+\frac{2}{x}y=x^{N_8},\quad y(1)=0$}
+                    \par
+                    This is a first-order linear differential equation in the form $y'+P(x)y=Q(x)$. First, I will rewrite the equation and find $P(x)$:
+                    \begin{align}
+                        \frac{dy}{dx}+\frac{2}{x}y&=x^{N_8} \nonumber \\
+                        y'+\frac{2}{x}y&=x^{N_8} \label{eqn:1b1} \\
+                        P(x)&=\frac{2}{x} \nonumber
+                    \end{align}
+                    Then, the integrating factor is $I(x)=e^{\int P(x)\,dx}$:
+                    \begin{align*}
+                        I(x)&=e^{\int P(x)\,dx} \\
+                        &=e^{\int\frac{2}{x}\,dx} \\
+                        &=e^{2\ln|x|} \\
+                        &=e^{\ln(x^2)} \\
+                        &=x^2
+                    \end{align*}
+                    Multiplying both sides of equation \ref{eqn:1b1} by $I(x)$:
+                    \begin{align*}
+                        x^2y'+x^2\frac{2}{x}y&=x^2x^{N_8} \\
+                        \frac{d}{dx}(x^2y)&=x^{2+N_8}
+                    \end{align*}
+                    The eighth digit of my student number is $N_8=4$:
+                    \begin{align}
+                        \frac{d}{dx}(x^2y)&=x^{2+4} \nonumber \\
+                        &=x^6 \nonumber \\
+                        \int\frac{d}{dx}(x^2y)\,dx&=\int x^{6}\,dx \nonumber \\
+                        x^2y&=\frac{x^7}{7}+C \nonumber \\
+                        y&=\frac{x^5}{7}+C \label{eqn:1b2}
+                    \end{align}
+                    Next, I'm going to find $C$.
+                    \begin{align*}
+                        y(1)=0&=\frac{1^5}{7}+C \\
+                        C&=-\frac{1}{7}
+                    \end{align*}
+                    Substituting $C$ back into equation \ref{eqn:1b2}:
+                    \begin{align*}
+                        y&=\frac{x^5}{7}+\left(-\frac{1}{7}\right) \\
+                        &=\frac{x^5-1}{7}
+                    \end{align*}
+                }
+            \end{enumerate}
+        }
+        \item{
+            \textbf{
+                \boldmath A patient receives periodic intravenous injections of a drug. Let $y(t)$ denote the drug concentration (in \si{\milli\gram\per\milli\liter}) in the patient's bloodstream at time $t$ with initial concentration $y(0)=L$.
+                \begin{itemize}
+                    \item Every $T$ time units, an injection increases the concentration by a quantity \SI[parse-numbers=false, number-math-rm=\mathnormal]{d}{\milli\gram\per\milli\liter}---that is, $y(t)$ increases by $d$ (a jump discontinuity) at times $t=T,2T,3T,$ \ldots.
+                    \item In between doses, the drug concentration decreases exponentially, according to the differential equation $y'(t)=-ky(t)$ for some positive constant $k$.
+                \end{itemize}
+                Determine $T$ (as a function of $k$, $d$, and $L$) so that immediately after each dose, the value of $y(t)$ is $L$---that is, immediately before the dose, the value is $L-d$. (This is the most frequent dosing strategy that ensures the concentration is never above $L$.)
+            }
+            \par
+            First, I'll solve the differential equation which is separable:
+            \begin{align*}
+                y'(t)&=-ky(t) \\
+                \frac{dy}{dt}&=-ky \\
+                \frac{1}{y}\,dy&=-k\,dt \\
+                \int\frac{1}{y}\,dy&=\int-k\,dt \\
+                \ln|y|&=-kt+C \\
+                |y|&=e^{-kt+C} \\
+                y&=\pm e^{-kt}e^C
+            \end{align*}
+            Substituting $A=\pm e^C$:
+            \begin{equation}
+                y=Ae^{-kt} \label{eqn:21}
+            \end{equation}
+            Then, to find $A$, I'll use the fact that $y(0)=L$.
+            \begin{align*}
+                y(0)=L&=Ae^{-k\cdot0} \\
+                A&=L
+            \end{align*}
+            Substituting $A$ back into equation \ref{eqn:21}:
+            $$y=Le^{-kt}$$
+            Now, I'll find the time $t$ at which $y=L-d$:
+            \begin{align*}
+                L-d&=Le^{-kt} \\
+                1-\frac{d}{L}&=e^{-kt} \\
+                -kt&=\ln\left(1-\frac{d}{L}\right) \\
+                t&=-\frac{1}{k}\ln\left(1-\frac{d}{L}\right)
+            \end{align*}
+            This is the amount of time after $t=0$ at which the first injection is needed. Since the concentration of the drug decreases by the same curve each time, $T=t=-\frac{1}{k}\ln\left(1-\frac{d}{L}\right)$.
+        }
+        \item{
+            \textbf{\boldmath Glaciers are rivers of ice. The point at which a glacier ends is called its \textit{terminus}. The thickness, $T$, of a glacier can be described as a function of the distance $x$ from the terminus: $T=T(x)$. That thickness function can be shown to satisfy the differential equation $$T\frac{dT}{dx}=\frac{\tau}{\rho g}$$ where $\tau$ is the coefficient of friction at the bottom of the glacier, $\rho$ is the density of ice in the glacier, and $g$ is acceleration due to gravity.}
+            \begin{enumerate}[label={\textbf{(\alph*)}}]
+                \item{
+                    \textbf{What is the order of this differential equation?}
+                    \par
+                    The order is 1.
+                }
+                \item{
+                    \textbf{Is this differential equation separable? Is it linear?}
+                    \par
+                    It is separable (in fact, it's already separated), but it is not linear as $T$ is in the same term as its derivative.
+                }
+                \item{
+                    \textbf{Determine the general solution of the differential equation model.}
+                    \par
+                    The differential equation is solved as follows:
+                    \begin{align*}
+                        T\frac{dT}{dx}&=\frac{\tau}{\rho g} \\
+                        T\,dT&=\frac{\tau}{\rho g}\,dx \\
+                        \int T\,dT&=\int\frac{\tau}{\rho g}\,dx \\
+                        \frac{1}{2}T^2&=\frac{\tau}{\rho g}x+C \\
+                        T^2&=\frac{2\tau}{\rho g}x+C \\
+                        T&=\sqrt{\frac{2\tau}{\rho g}x+C}
+                    \end{align*}
+                }
+                \item{
+                    \textbf{\raggedright\boldmath Given the initial condition $T(0)=0$, determine the thickness of the glacier at a distance of \SI{1}{\kilo\meter} from its terminus. Take $\rho=\SI{917}{\kilogram\per\cubic\meter}$, $g=\SI{9.8}{\meter\per\square\second}$, and\\$\tau=\SI{75000}{\newton\per\square\meter}$.}
+                    \par
+                    First, I'll find the value of $C$ using the inital value $T(0)=0$:
+                    \begin{align*}
+                        T(0)=0&=\sqrt{\frac{2\tau}{\rho g}\cdot0+C} \\
+                        C&=0
+                    \end{align*}
+                    Therefore, $T=\sqrt{\frac{2\tau}{\rho g}x}$.
+                    \begin{align*}
+                        T(\SI{1000}{\meter})&=\sqrt{\frac{2\tau}{\rho g}x} \\
+                        &=\sqrt{\frac{2(\SI{75000}{\newton\per\square\meter})}{(\SI{917}{\kilogram\per\cubic\meter})(\SI{9.8}{\meter\per\square\second})}\cdot\SI{1000}{\meter}} \\
+                        &=\SI{129.196}{\meter}
+                    \end{align*}
+                }
+            \end{enumerate}
+        }
+        \item{
+            \textbf{\boldmath Consider the initial value problem $$\frac{dy}{dt}=y+t,\quad y(0)=1$$}
+            \begin{enumerate}[label={\textbf{(\alph*)}}]
+                \item{
+                    \textbf{\boldmath Construct a direction (slope) field for the differential equation on a plot with\\$-2\le t\le2$ and $0\le y\le4$ showing slopes at all 25 lattice points. On your direction (slope) field, sketch the solution curve which satisfies the given initial value problem.}
+                }
+            \end{enumerate}
+        }
+    \end{enumerate}
+\end{document}
