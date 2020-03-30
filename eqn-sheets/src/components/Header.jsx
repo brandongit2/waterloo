@@ -19,7 +19,7 @@ export default connect(mapStateToProps)(function ({ courses, curCourse }) {
             <nav>
                 <ul>
                     {Object.entries(courses).map(([key, value]) => (
-                        <li key={key} onClick={() => { store.dispatch(changeCourse(key)); }}><Link to={`/${key}`}>{value.name}</Link></li>
+                        <li key={key} onClick={() => { store.dispatch(changeCourse(key)); }}><Link to={`/eqns/${key}`}>{value.name}</Link></li>
                     ))}
                 </ul>
             </nav>

@@ -20,11 +20,11 @@ export default connect(mapStateToProps)(function ({ courses }) {
             <Header />
             <Switch>
                 {Object.entries(courses).map(([key, value]) => (
-                    <Route path={`/${key}`} key={key}>
+                    <Route path={`/eqns/${key}`} key={key}>
                         <List data={value} />
                     </Route>
                 ))}
-                <Route path="/">
+                <Route path="/eqns/">
                     <Home />
                 </Route>
             </Switch>

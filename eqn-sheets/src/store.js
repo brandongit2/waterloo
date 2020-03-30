@@ -1390,6 +1390,10 @@ let store = createStore(
                             {
                                 latex: 'y(x+h)&=y(x)+hf(x,y(x))',
                                 description: `Euler's method for approximating a solution to a differential equation of the form ${k('y\'=f(x,y)')}. ${k('h')} is the step size, and a smaller ${k('h')} will result in a more accurate approximation.`
+                            },
+                            {
+                                latex: 'p\'(t)&=f(p(t))',
+                                description: `This is a form of first-order nonlinear time-independent differential equation. It is useful for studying steady states and their stabilities. The roots of ${k('f(p(t))')} are steady states. Behaviour of ${k('f(p(t))')} around these roots will tell us about the stability of these steady states. For example, we can set ${k('p(t)')} equal to certain test values between roots, and the resulting ${k('f(p(t))')} will tell us the slope of ${k('p(t)')} at those points. If the slope is positive, ${k('p(t)')} is tending toward the next steady state and away from the previous steady state. If the slope is negative, ${k('p(t)')} is tending away from the next steady state and toward the previous steady state. We can do a similar evaluation by checking the slope of ${k('f(p(t))')} at its roots. If the slope is positive (i.e. ${k('f(p(t))>0')}), the steady state at that root is unstable. If it is negative, the steady state at that root is stable.`
                             }
                         ]
                     },

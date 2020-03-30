@@ -9,12 +9,15 @@
 \usepackage[utf8]{inputenc}
 \usepackage{libertine}
 \usepackage[libertine]{newtxmath}
+\usepackage{pgfplots}
 \usepackage[detect-weight=true]{siunitx}
 
 \title{MATH 128 End-of-Term Assignment 1}
 \author{Brandon Tsang}
-\date{March 27, 2020}
+\date{March 29, 2020}
 
+\pgfplotsset{compat=1.16}
+\usetikzlibrary{arrows.meta}
 \setlength{\parindent}{0pt}
 
 \begin{document}
@@ -185,6 +188,358 @@
             \begin{enumerate}[label={\textbf{(\alph*)}}]
                 \item{
                     \textbf{\boldmath Construct a direction (slope) field for the differential equation on a plot with\\$-2\le t\le2$ and $0\le y\le4$ showing slopes at all 25 lattice points. On your direction (slope) field, sketch the solution curve which satisfies the given initial value problem.}
+                    \begin{center}
+                        \begin{tikzpicture}
+                            \def\length{sqrt(1+(y+x)^2)}
+                            \begin{axis}[
+                                width=3in,
+                                height=3in,
+                                xmin=-2, xmax=2,
+                                ymin=0, ymax=4,
+                                zmin=-1, zmax=1,
+                                enlargelimits=0.2,
+                                xlabel={$t$},
+                                ylabel={$y$},
+                                ylabel style={rotate=-90},
+                                grid=major,
+                                xtick distance=1,
+                                ytick distance=1,
+                                view={0}{90}
+                            ]
+                                \addplot3[
+                                    -Stealth,
+                                    thick,
+                                    gray,
+                                    domain=-2:2,
+                                    y domain=0:4,
+                                    samples=5,
+                                    quiver={
+                                        u={1/(\length)},
+                                        v={(y+x)/(\length)},
+                                        scale arrows=0.5,
+                                    }
+                                ] {0};
+                                \addplot[mark=none, orange, thick, domain=-3:1.5, samples=50] {-x-1+2*e^x};
+                            \end{axis}
+                        \end{tikzpicture}
+                    \end{center}
+                }
+                \item{
+                    \textbf{\boldmath Determine the exact solution to this initial value problem and report the value of $y(0.2)$.}
+                    \par
+                    The differential equation is first-order and linear. I'll start by rewriting the equation into the form $y'+P(t)y=Q(t)$:
+                    \begin{align}
+                        \frac{dy}{dt}&=y+t \nonumber \\
+                        y'-y&=t \label{eqn:4b1}
+                    \end{align}
+                    The integrating factor is $I(t)=e^{\int P(t)\,dt}$:
+                    \begin{align*}
+                        I(t)&=e^{\int-1\,dt} \\
+                        &=e^{-t}
+                    \end{align*}
+                    Multiplying both sides of equation \ref{eqn:4b1} by $I(t)$:
+                    \begin{align}
+                        e^{-t}y'-e^{-t}y&=e^{-t}t \nonumber \\
+                        \frac{d}{dt}(e^{-t}y)&=e^{-t}t \nonumber \\
+                        \int\frac{d}{dt}(e^{-t}y)\,dt&=\int e^{-t}t\,dt \nonumber \\
+                        e^{-t}y&=\int e^{-t}t\,dt & \begin{aligned}u&=t & v&=-e^{-t} \\ du&=dt & dv&=e^{-t}\,dt\end{aligned} \nonumber \\
+                        &=-te^{-t}-\int-e^{-t}\,dt \nonumber \\
+                        &=-te^{-t}-e^{-t}+C \nonumber \\
+                        y&=Ce^t-t-1 \label{eqn:4b2}
+                    \end{align}
+                    To find $C$, I'll use the initial value $y(0)=1$.
+                    \begin{align*}
+                        y(0)=1&=Ce^0-0-1 \\
+                        &=C-1 \\
+                        C&=2
+                    \end{align*}
+                    Plugging $C$ back into equation \ref{eqn:4b2}:
+                    $$y=2e^t-t-1$$
+                    Now, I can find $y(0.2)$:
+                    \begin{align*}
+                        y(0.2)&=2e^{0.2}-0.2-1 \\
+                        &=1.24280\ldots
+                    \end{align*}
+                }
+            \end{enumerate}
+            \textbf{\boldmath Recall, Euler's method can be used to approximate the solution to the initial value problem $$y'(t)=f(t,y(t)),\quad y(0)=y_0$$ by applyng the update rule $$y(t+h)=y(t)+hf(t,y(t))$$}
+            \begin{enumerate}[label={\textbf{(\alph*)}}, resume]
+                \item{
+                    \textbf{\boldmath Take $h=0.1$ and use Euler's method to approximate the value of $y(0.2)$.}
+                    \par
+                    Starting with $t=0$ and $y(0)=1$:
+                    \begin{align*}
+                        y(0+0.1)&=1+0.1(1+0) \\
+                        y(0.1)&=1.1 \\[8pt]
+                        y(0.1+0.1)&=1.1+0.1(1.1+0.1) \\
+                        y(0.2)&=1.22
+                    \end{align*}
+                }
+            \end{enumerate}
+            \textbf{\boldmath More accuracy can be achieved by applying Euler's midpoint method, which has the update rule $$y(t+h)=y(t)+hm(t,y(t))$$ where the function $m$ is defined by $$m(t,y(t))=f\left(t+\frac{h}{2},y(t)+\frac{h}{2}f(t,y(t))\right)$$}
+            \begin{enumerate}[label={\textbf{(\alph*)}}, resume]
+                \item{
+                    \textbf{\boldmath Take $h=0.1$ and use Euler's midpoint method to approximate the value of $y(0.2)$.}
+                    \par
+                    Starting with $t=0$ and $y(0)=1$:
+                    \begin{align*}
+                        y(0+0.1)&=1+0.1\left(0+\frac{0.1}{2}+1+\frac{0.1}{2}(1+0)\right) \\
+                        y(0.1)&=1.11 \\[8pt]
+                        y(0.1+0.1)&=1.11+0.1\left(0.1+\frac{0.1}{2}+1.11+\frac{0.1}{2}(1.11+0.1)\right) \\
+                        y(0.2)&=1.24205
+                    \end{align*}
+                }
+            \end{enumerate}
+        }
+        \pagebreak
+        \item{
+            \textbf{\boldmath Our goal in this question is to model the behaviour of a mass on a spring with and without friction. In both cases, we'll seek the solution to a differential equation of the form: \begin{equation}a\frac{d^2x}{dt^2}+b\frac{dx}{dt}+cx=0\label{eqn:5}\end{equation} where $x=x(t)$ is a function of time $t$ and $a$, $b$, and $c$ are constant real numbers.}
+            \begin{enumerate}[label={\textbf{(\alph*)}}]
+                \item{
+                    \label{part:5a}
+                    \textbf{\boldmath Show that the differential equation is satisfied by $x(t)=e^{rt}(C_1\cos(\omega t)+C_2\sin(\omega t))$ where $r=-\frac{b}{2a}$ and $\omega=\frac{\sqrt{4ac-b^2}}{2a}$. (Note, this equation for $x(t)$ is the \textit{general solution} to the DE when $b^2-4ac<0$ so that $\omega$ is a non-zero real number.)}
+                    \par
+                    First, I'll find the first and second derivatives of $x(t)$:
+                    \begin{align*}
+                        x(t)=x&=e^{rt}(C_1\cos(\omega t)+C_2\sin(\omega t)) \\[8pt]
+                        \frac{dx}{dt}&=re^{rt}(C_1\cos(\omega t)+C_2\sin(\omega t))+e^{rt}(-\omega C_1\sin(\omega t)+\omega C_2\cos(\omega t)) \\
+                        &=e^{rt}(rC_1\cos(\omega t)+rC_2\sin(\omega t)-\omega C_1\sin(\omega t)+\omega C_2\cos(\omega t))
+                    \end{align*}
+                    This is getting a little unwieldly. I'm going to define a new function $w(t)=rC_1\cos(\omega t)+rC_2\sin(\omega t)-\omega C_1\sin(\omega t)+\omega C_2\cos(\omega t)$ to break it up a little. Now, the first derivative looks like
+                    $$\frac{dx}{dt}=e^{rt}w(t)$$
+                    which is much nicer.
+                    \par
+                    Let's find the second derivative.
+                    \begin{align*}
+                        \frac{d^2x}{dt^2}&=re^{rt}w(t)+e^{rt}w'(t)
+                    \end{align*}
+                    Finding $w'(t)$:
+                    \begin{align*}
+                        w'(t)&=-r\omega C_1\sin(\omega t)+r\omega C_2\cos(\omega t)-\omega^2C_1\cos(\omega t)-\omega^2C_2\sin(\omega t)
+                    \end{align*}
+                    Before I start plugging the derivatives into equation \ref{eqn:5}, I'm going to expand out all the terms to make things neater. Starting with $x$:
+                    \begin{align*}
+                        x&=e^{rt}(C_1\cos(\omega t)+C_2\sin(\omega t)) \\
+                        &=C_1e^{rt}\cos(\omega t)+C_2e^{rt}\sin(\omega t)
+                    \end{align*}
+                    Next, $\frac{dx}{dt}$:
+                    \begin{align*}
+                        \frac{dx}{dt}&=e^{rt}(rC_1\cos(\omega t)+rC_2\sin(\omega t)-\omega C_1\sin(\omega t)+\omega C_2\cos(\omega t)) \\
+                        &=C_1re^{rt}\cos(\omega t)+C_2re^{rt}\sin(\omega t)-C_1\omega e^{rt}\sin(\omega t)+C_2\omega e^{rt}\cos(\omega t)
+                    \end{align*}
+                    And finally, $\frac{d^2x}{dt^2}$:
+                    \begin{align*}
+                        \begin{split}
+                            \frac{d^2x}{dt^2}&=re^{rt}(rC_1\cos(\omega t)+rC_2\sin(\omega t)-\omega C_1\sin(\omega t)+\omega C_2\cos(\omega t)) \\
+                            &\phantom{=}\quad {}+e^{rt}(-r\omega C_1\sin(\omega t)+r\omega C_2\cos(\omega t)-\omega^2C_1\cos(\omega t)-\omega^2C_2\sin(\omega t))
+                        \end{split} \\[8pt]
+                        \begin{split}
+                            &=C_1r^2e^{rt}\cos(\omega t)+C_2r^2e^{rt}\sin(\omega t)-C_1r\omega e^{rt}\sin(\omega t)+C_2r\omega e^{rt}\cos(\omega t) \\
+                            &\phantom{=}\quad {}-C_1r\omega e^{rt}\sin(\omega t)+C_2r\omega e^{rt}\cos(\omega t)-C_1\omega^2e^{rt}\cos(\omega t)-C_2\omega^2e^{rt}\sin(\omega t)
+                        \end{split}
+                    \end{align*}
+                    Now I can finally start plugging into equation \ref{eqn:5}.
+                    \begin{equation*}
+                        \begin{split}
+                            a(C_1r^2e^{rt}\cos(\omega t)+C_2r^2e^{rt}\sin(\omega t)-C_1r\omega e^{rt}\sin(\omega t)+C_2r\omega e^{rt}\cos(\omega t)\quad&\\
+                            -C_1r\omega e^{rt}\sin(\omega t)+C_2r\omega e^{rt}\cos(\omega t)-C_1\omega^2e^{rt}\cos(\omega t)-C_2\omega^2e^{rt}\sin(\omega t))\quad&\\
+                            +b(C_1re^{rt}\cos(\omega t)+C_2re^{rt}\sin(\omega t)-C_1\omega e^{rt}\sin(\omega t)+C_2\omega e^{rt}\cos(\omega t))\quad&\\
+                            +c(C_1e^{rt}\cos(\omega t)+C_2e^{rt}\sin(\omega t))&=0
+                        \end{split}
+                    \end{equation*}
+                    Expanding, I get:
+                    \begin{equation*}
+                        \begin{split}
+                            C_1ar^2e^{rt}\cos(\omega t)+C_2ar^2e^{rt}\sin(\omega t)-C_1ar\omega e^{rt}\sin(\omega t)+C_2ar\omega e^{rt}\cos(\omega t)\quad&\\
+                            -C_1ar\omega e^{rt}\sin(\omega t)+C_2ar\omega e^{rt}\cos(\omega t)-C_1a\omega^2e^{rt}\cos(\omega t)-C_2a\omega^2e^{rt}\sin(\omega t)\quad&\\
+                            +C_1bre^{rt}\cos(\omega t)+C_2bre^{rt}\sin(\omega t)-C_1b\omega e^{rt}\sin(\omega t)+C_2b\omega e^{rt}\cos(\omega t)\quad&\\
+                            +C_1ce^{rt}\cos(\omega t)+C_2ce^{rt}\sin(\omega t)&=0
+                        \end{split}
+                    \end{equation*}
+                    Then, I'm going to group the terms by cosines and sines.
+                    \begin{equation*}
+                        \begin{alignedat}{7}
+                            &(&C_1ar^2e^{rt}&\cos(\omega t)&{}+{}&C_2ar\omega e^{rt}&\cos(\omega t)&{}+{}&C_2ar\omega e^{rt}&\cos(\omega t)&{}-{}&C_1a\omega^2e^{rt}&\cos(\omega t) \\
+                            {}+{}&&C_1bre^{rt}&\cos(\omega t)&{}+{}&C_2b\omega e^{rt}&\cos(\omega t)&{}+{}&C_1ce^{rt}&\cos(\omega t)) \\
+                            {}+{}&(&C_2ar^2e^{rt}&\sin(\omega t)&{}-{}&C_1ar\omega e^{rt}&\sin(\omega t)&{}-{}&C_1ar\omega e^{rt}&\sin(\omega t)&{}-{}&C_2a\omega^2e^{rt}&\sin(\omega t) \\
+                            {}+{}&&C_2bre^{rt}&\sin(\omega t)&{}-{}&C_1b\omega e^{rt}&\sin(\omega t)&{}+{}&C_2ce^{rt}&\sin(\omega t))&&&&=0
+                        \end{alignedat}
+                    \end{equation*}
+                    Now, I can factor out the cosines and sines, as well as $e^{rt}$.
+                    \begin{align*}
+                        \begin{alignedat}{2}
+                            &e^{rt}\cos(\omega t)(C_1ar^2+C_2ar\omega+C_2ar\omega-C_1a\omega^2+C_1br+C_2b\omega+C_1c)& \\
+                            {}+{}&e^{rt}\sin(\omega t)(C_2ar^2+C_1ar\omega+C_1ar\omega-C_2a\omega^2+C_2br+C_1b\omega+C_2c)&{}=0
+                        \end{alignedat} \\[8pt]
+                        \begin{alignedat}{2}
+                            &e^{rt}\cos(\omega t)(C_1ar^2+2C_2ar\omega-C_1a\omega^2+C_1br+C_2b\omega+C_1c)& \\
+                            {}+{}&e^{rt}\sin(\omega t)(C_2ar^2+2C_1ar\omega-C_2a\omega^2+C_2br+C_1b\omega+C_2c)&{}=0
+                        \end{alignedat}
+                    \end{align*}
+                    Let's put the expressions for $r$ and $\omega$ in.
+                    \begin{align*}
+                        \begin{split}
+                            e^{rt}\cos(\omega t)\bigg(C_1a\left(-\tfrac{b}{2a}\right)^2+2C_2a\left(-\tfrac{b}{2a}\right)\left(\tfrac{\sqrt{4ac-b^2}}{2a}\right)\qquad&\\
+                            {}-C_1a\left(\tfrac{\sqrt{4ac-b^2}}{2a}\right)^2+C_1b\left(-\tfrac{b}{2a}\right)+C_2b\left(\tfrac{\sqrt{4ac-b^2}}{2a}\right)+C_1c\bigg)\quad& \\
+                            {}+e^{rt}\sin(\omega t)\bigg(C_2a\left(-\tfrac{b}{2a}\right)^2{}+2C_1a\left(-\tfrac{b}{2a}\right)\left(\tfrac{\sqrt{4ac-b^2}}{2a}\right)\qquad&\\
+                            {}-C_2a\left(\tfrac{\sqrt{4ac-b^2}}{2a}\right)^2+C_2b\left(-\tfrac{b}{2a}\right)+C_1b\left(\tfrac{\sqrt{4ac-b^2}}{2a}\right)+C_2c\bigg)&=0
+                        \end{split} \\[8pt]
+                        \begin{split}
+                            e^{rt}\cos(\omega t)\left(C_1\tfrac{b^2}{4a}-C_2\tfrac{b\sqrt{4ac-b^2}}{2a}-C_1\tfrac{4ac-b^2}{4a}-C_1\tfrac{b^2}{2a}+C_2\tfrac{b\sqrt{4ac-b^2}}{2a}+C_1c\right)\quad& \\
+                            {}+e^{rt}\sin(\omega t)\left(C_2\tfrac{b^2}{4a}-C_1\tfrac{b\sqrt{4ac-b^2}}{2a}-C_2\tfrac{4ac-b^2}{4a}-C_2\tfrac{b^2}{2a}+C_1\tfrac{b\sqrt{4ac-b^2}}{2a}+C_2c\right)&=0
+                        \end{split} \\
+                        \begin{split}
+                            e^{rt}\cos(\omega t)\left(C_1\tfrac{b^2}{4a}-C_1\tfrac{4ac-b^2}{4a}-C_1\tfrac{b^2}{2a}+C_1c\right)\quad& \\
+                            {}+e^{rt}\sin(\omega t)\left(C_2\tfrac{b^2}{4a}-C_2\tfrac{4ac-b^2}{4a}-C_2\tfrac{b^2}{2a}+C_2c\right)&=0
+                        \end{split}
+                    \end{align*}
+                    Now I can factor out $C_1$ and $C_2$.
+                    \begin{align*}
+                        C_1e^{rt}\cos(\omega t)\left(\tfrac{b^2}{4a}-\tfrac{4ac-b^2}{4a}-\tfrac{b^2}{2a}+c\right)+C_2e^{rt}\sin(\omega t)\left(\tfrac{b^2}{4a}-\tfrac{4ac-b^2}{4a}-\tfrac{b^2}{2a}+c\right)&=0 \\
+                        \left(\frac{b^2}{4a}-\frac{4ac-b^2}{4a}-\frac{b^2}{2a}+c\right)(C_1e^{rt}\cos(\omega t)+C_2e^{rt}\sin(\omega t))&=0 \\
+                        \left(\frac{b^2-4ac+b^2-2b^2+4ac}{4a}\right)(C_1e^{rt}\cos(\omega t)+C_2e^{rt}\sin(\omega t))&=0 \\
+                        (0)(C_1e^{rt}\cos(\omega t)+C_2e^{rt}\sin(\omega t))&=0 \\
+                        0&=0\qquad\raisebox{-4pt}{\includegraphics{partypopper.png}}
+                    \end{align*}
+                }
+            \end{enumerate}
+            \textbf{\boldmath Now, consider a mass $m$ attached to a spring with spring constant $k$ (which quantifies the stiffness of the spring). The spring exerts a force on the mass proportional to the extension/compression of the spring from equilibrium. Let us denote the extension of the spring at a time $t$ by $x(t)$. Ignoring friction, Newton's second law gives the differential equation $$m\frac{d^2x}{dt^2}+kx=0$$}
+            \begin{enumerate}[label={\textbf{(\alph*)}}, resume]
+                \item{
+                    \label{part:5b}
+                    \textbf{Determine the general solution to this DE using information given in the part \ref{part:5a} of this question.}
+                    \par
+                    According to part \ref{part:5a}, the general solution to a second-order linear differential equation of the form $a\frac{d^2x}{dt^2}+b\frac{dx}{dt}+cx=0$ is given by $$x=e^{rt}(C_1\cos(\omega t)+C_2\sin(\omega t))$$ where $r=-\frac{b}{2a}$ and $\omega=\frac{\sqrt{4ac-b^2}}{2a}$.
+                    \par
+                    Plugging in $a=m$, $b=0$, and $c=k$, $r$ becomes 0 and $\omega$ becomes $\frac{\sqrt{4mk}}{2m}$. Putting $r=0$ and $\omega=\frac{\sqrt{4mk}}{2m}$ into the general solution, we get:
+                    \begin{align*}
+                        x&=e^{0t}\left(C_1\cos\left(\tfrac{\sqrt{4mk}}{2m}t\right)+C_2\sin\left(\tfrac{\sqrt{4mk}}{2m}t\right)\right) \\
+                        &=C_1\cos\left(\tfrac{\sqrt{4mk}}{2m}t\right)+C_2\sin\left(\tfrac{\sqrt{4mk}}{2m}t\right)
+                    \end{align*}
+                }
+                \item{
+                    \label{part:5c}
+                    \textbf{\boldmath Choose initial conditions (that do not give $x(t)=0$) and set $m=N_7+1$ and $k=N_8+1$ where $N_7$ and $N_8$ are the seventh and eighth digits of your student number. Sketch the corresponding solution for values of $t\ge0$.}
+                    \par
+                    Setting $m=N_7+1=10$ and $k=N_8+1=5$, the general solution becomes:
+                    \begin{equation*}
+                        x=C_1\cos\left(\frac{\sqrt{200}}{20}t\right)+C_2\sin\left(\frac{\sqrt{200}}{20}t\right)
+                    \end{equation*}
+                    Since there are two unknowns, I'll pick two constraints to find a solution. These will be $$\begin{matrix}t_1=0 & t_2=6 \\ x(t_1)=3 & x(t_2)=5\end{matrix}$$ Now I'll use them to find $C_1$ and $C_2$.
+                    \begin{align*}
+                        x(0)=3&=C_1\cos\left(\tfrac{\sqrt{200}}{20}\cdot0\right)+C_2\sin\left(\tfrac{\sqrt{200}}{20}\cdot0\right) \\
+                        &=C_1\cdot1+0 \\
+                        C_1&=3
+                    \end{align*}
+                    \begin{align*}
+                        x(6)=5&=3\cos\left(\tfrac{\sqrt{200}}{20}\cdot6\right)+C_2\sin\left(\tfrac{\sqrt{200}}{20}\cdot6\right) \\
+                        5-3\cos\left(\tfrac{\sqrt{200}}{20}\cdot6\right)&=C_2\sin\left(\tfrac{\sqrt{200}}{20}\cdot6\right) \\
+                        C_2&=\frac{5-3\cos\left(\tfrac{\sqrt{200}}{20}\cdot6\right)}{\sin\left(\tfrac{\sqrt{200}}{20}\cdot6\right)}
+                    \end{align*}
+                    For brevity's sake, I'll use the approximation $C_2=-7.13033$ instead.
+                    \par
+                    The resulting solution is therefore
+                    \begin{equation*}
+                        x(t)=3\cos\left(\frac{\sqrt{200}}{20}t\right)-7.13033\sin\left(\frac{\sqrt{200}}{20}t\right)
+                    \end{equation*}
+                    Sketching this solution, I get:
+                    \begin{center}
+                        \begin{tikzpicture}
+                            \begin{axis}[
+                                width=0.9\textwidth, height=2.7in,
+                                xmin=0, xmax=20,
+                                xlabel={$t$},
+                                ylabel={$x$},
+                                ylabel shift=-8pt,
+                                ylabel style={rotate=-90},
+                                grid=major
+                            ]
+                                \addplot[mark=none, orange, thick, domain=0:20, samples=100] {3*cos(deg(0.707107*x))-7.13033*sin(deg(0.707107*x))};
+                                \addplot[mark=*, only marks, orange] coordinates {(0,3) (6,5)};
+                                \node at (0,3) [anchor=south west] {$t=0,x=3$};
+                                \node at (6,5) [anchor=south east] {$t=6,x=5$};
+                            \end{axis}
+                        \end{tikzpicture}
+                    \end{center}
+                }
+                \item{
+                    \label{part:5d}
+                    \textbf{In your own words, describe the motion of the mass with respect to time.}
+                    \par
+                    The motion is sinusoidal (simple harmonic) with respect to time, with an amplitude of \textasciitilde{}7.74 and a period of \textasciitilde{}8.89. The curve passes through the points $(0,3)$ and $(6,5)$ (indicated on graph), which were my initial conditions.
+                }
+            \end{enumerate}
+            \textbf{\boldmath The above model of a mass on a spring is plausible but not very realistic: in practice, friction will act to decelerate the mass. Including a frictional force with magnitude proportional to velocity (i.e., $\frac{dx}{dt}$), Newton's second law becomes $$m\frac{d^2x}{dt^2}+q\frac{dx}{dt}+kx=0$$ where $q$ is the damping coefficient representing friction.}
+            \begin{enumerate}[label={\textbf{(\alph*)}}, resume]
+                \item{
+                    \textbf{Determine the general solution to this DE using information given in part \ref{part:5a} of this question.}
+                    \par
+                    According to part \ref{part:5a}, the general solution to a second-order linear differential equation of the form $a\frac{d^2x}{dt^2}+b\frac{dx}{dt}+cx=0$ is given by $$x=e^{rt}(C_1\cos(\omega t)+C_2\sin(\omega t))$$ where $r=-\frac{b}{2a}$ and $\omega=\frac{\sqrt{4ac-b^2}}{2a}$.
+                    \par
+                    Plugging in $a=m$, $b=q$, and $c=k$ gives $r=-\frac{q}{2m}$ and $\omega=\frac{\sqrt{4mk-q^2}}{2m}$. Putting these into the general solution, we get
+                    \begin{equation*}
+                        x=e^{-\frac{q}{2m}t}\left(C_1\cos\left(\frac{\sqrt{4mk-q^2}}{2m}t\right)+C_2\sin\left(\frac{\sqrt{4mk-q^2}}{2m}t\right)\right)
+                    \end{equation*}
+                }
+                \item{
+                    \textbf{\boldmath Using the same initial conditions and values for $m$ and $k$ from part \ref{part:5c}, set $q=\sqrt{4mk}-1$ (so that $q^2-4mk<0$) and sketch the corresponding solution for values of $t\ge0$.}
+                    \par
+                    Finding $q$:
+                    \begin{align*}
+                        q&=\sqrt{4mk}-1 \\
+                        &=\sqrt{4(10)(5)}-1 \\
+                        &=\sqrt{200}-1
+                    \end{align*}
+                    Now the solution is
+                    \begin{align*}
+                        x&=e^{-\frac{\sqrt{200}-1}{2(10)}t}\left(C_1\cos\left(\frac{\sqrt{4(10)(5)-(\sqrt{200}-1)^2}}{2(10)}t\right)+C_2\sin\left(\frac{\sqrt{4(10)(5)-(\sqrt{200}-1)^2}}{2(10)}t\right)\right) \\
+                        &=e^{-\frac{\sqrt{200}-1}{20}t}\left(C_1\cos\left(\frac{\sqrt{200-(\sqrt{200}-1)^2}}{20}t\right)+C_2\sin\left(\frac{\sqrt{200-(\sqrt{200}-1)^2}}{20}t\right)\right)
+                    \end{align*}
+                    which I will approximate as
+                    \begin{equation*}
+                        x=e^{-0.657107t}(C_1\cos(0.261172t)+C_2\sin(0.261172t))
+                    \end{equation*}
+                    Recall that my initial values were $$\begin{matrix}t_1=0 & t_2=6 \\ x(t_1)=3 & x(t_2)=5\end{matrix}$$ Using these, I'll solve for $C_1$ and $C_2$.
+                    \begin{align*}
+                        x(0)=3&=e^{-0.657107(0)}(C_1\cos(0.261172(0))+C_2\sin(0.261172(0))) \\
+                        &=e^0(C_1+0) \\
+                        C_1&=3
+                    \end{align*}
+                    \begin{align*}
+                        x(6)=5&=e^{-0.657107(6)}(3\cos(0.261172(6))+C_2\sin(0.261172(6))) \\
+                        &=0.0193967(0.0112990+C_2\cdot0.999993) \\
+                        257.776&=0.0112990+C_2\cdot0.999993 \\
+                        C_2\cdot0.999993&=257.765 \\
+                        C_2&=257.767
+                    \end{align*}
+                    The resulting solution is therefore
+                    \begin{equation*}
+                        x=e^{-0.657107t}(3\cos(0.261172t)+257.767\sin(0.261172t))
+                    \end{equation*}
+                    \newpage
+                    Sketching this solution, I get:
+                    \begin{center}
+                        \begin{tikzpicture}
+                            \begin{axis}[
+                                width=0.9\textwidth, height=2.7in,
+                                xmin=0, xmax=20,
+                                xlabel={$t$},
+                                ylabel={$x$},
+                                ylabel style={rotate=-90},
+                                grid=major
+                            ]
+                                \addplot[mark=none, orange, thick, domain=0:20, samples=100] {exp(-0.657107*x)*(3*cos(deg(0.261172*x))+257.767*sin(deg(0.261172*x)))};
+                                \addplot[mark=*, only marks, orange] coordinates {(0,3) (6,5)};
+                                \node at (0,3) [anchor=west] {$t=0,x=3$};
+                                \node at (6,5) [anchor=south west] {$t=6,x=5$};
+                            \end{axis}
+                        \end{tikzpicture}
+                    \end{center}
+                }
+                \item{
+                    \textbf{In your own words, describe the motion of the mass with respect to time. Explain what is different in comparison to what you found when there was no friction (i.e., parts \ref{part:5b}--\ref{part:5d}).}
+                    \par
+                    The motion has been overdamped. It is still composed of a sinusoidal wave, but now its amplitude decreases exponentially. When there was no friction (part \ref{part:5c}), the motion continued with the same amplitude indefinitely. Now, the motion subsides mostly within ten seconds, although technically the mass never stops moving. Another thing to note is that the curve still passes through the points $(0,3)$ and $(6,5)$, meaning that the solution still satisfies my initial conditions.
                 }
             \end{enumerate}
         }

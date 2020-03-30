@@ -19,7 +19,7 @@ export default connect(mapStateToProps)(withRouter(class List extends React.Comp
     constructor(props) {
         super(props);
 
-        let curCourse = props.location.pathname.slice(1);
+        let curCourse = props.location.pathname.slice(6);
         document.title = `${props.courses[curCourse].name} Equation Sheet`;
         store.dispatch(changeCourse(curCourse));
         let listNames = Object.keys(props.courses[curCourse].lists);
