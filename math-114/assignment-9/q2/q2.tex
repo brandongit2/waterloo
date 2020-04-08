@@ -1,0 +1,169 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{libertine}
+\usepackage[libertine]{newtxmath}
+
+\title{MATH 114 Assignment 9, Q2}
+\author{Brandon Tsang}
+\date{April 3, 2020}
+
+\newenvironment{amatrix}[1]{%
+    \left[\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+    \end{array}\right]
+}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}[label=\textbf{\arabic*.}]
+        \setcounter{enumi}{1}
+        \item{
+            \textbf{\boldmath In class we have been working only with $2\times2$ matrices. Partly this is because we usually can't easily find the roots of polynomials of larger degree. (Octave and Matlab will be using approximation techniques to solve them.)}
+            \par
+            \textbf{\boldmath Consider the matrix $$\begin{bmatrix}1 & 0 & 1 \\ 1 & 3 & 4 \\ 2 & 2 & 4\end{bmatrix}.$$}
+            \begin{enumerate}[label=\textbf{(\alph*)}]
+                \item{
+                    \textbf{\boldmath Find the eigenvalues. (You should find that $\lambda=0$ is a solution; then what remains is a quadratic, and that gives you the other two.)}
+                    \begin{align*}
+                        \begin{bmatrix}
+                            1 & 0 & 1 \\
+                            1 & 3 & 4 \\
+                            2 & 2 & 4
+                        \end{bmatrix}
+                        \mathbf{u}
+                        &=
+                        \lambda\mathbf{u} \\
+                        \begin{bmatrix}
+                            1 & 0 & 1 \\
+                            1 & 3 & 4 \\
+                            2 & 2 & 4
+                        \end{bmatrix}
+                        \mathbf{u}-\lambda\mathbf{u}&=0 \\
+                        \left(
+                        \begin{bmatrix}
+                            1 & 0 & 1 \\
+                            1 & 3 & 4 \\
+                            2 & 2 & 4
+                        \end{bmatrix}
+                        -\lambda I_3\right)\mathbf{u}&=0 \\
+                        \det\left(
+                        \begin{bmatrix}
+                            1 & 0 & 1 \\
+                            1 & 3 & 4 \\
+                            2 & 2 & 4
+                        \end{bmatrix}
+                        -\lambda I_3\right)
+                        &=0 \\
+                        \begin{vmatrix}
+                            1-\lambda & 0 & 1 \\
+                            1 & 3-\lambda & 4 \\
+                            2 & 2 & 4-\lambda
+                        \end{vmatrix}
+                        &=0 \\
+                        (1-\lambda)
+                        \begin{vmatrix}
+                            3-\lambda & 4 \\
+                            2 & 4-\lambda
+                        \end{vmatrix}
+                        -0
+                        \begin{vmatrix}
+                            1 & 4 \\
+                            2 & 4-\lambda
+                        \end{vmatrix}
+                        +1
+                        \begin{vmatrix}
+                            1 & 3-\lambda \\
+                            2 & 2
+                        \end{vmatrix}
+                        &=0 \\
+                        (1-\lambda)(3-\lambda)(4-\lambda)-(1-\lambda)(4)(2)-0+(1)(2)-(3-\lambda)(2)&=0 \\
+                        (\lambda^2-4\lambda+3)(4-\lambda)-(8-8\lambda)+2-(6-2\lambda)&=0 \\
+                        -\lambda^3+8\lambda^2-19\lambda+12-8+8\lambda+2-6+2\lambda&=0 \\
+                        -\lambda^3+8\lambda^2-9\lambda&=0 \\
+                        \lambda(\lambda^2-8\lambda+9)&=0
+                    \end{align*}
+                    One solution is $\lambda=0$; the other two will need the quadratic formula:
+                    \begin{align*}
+                        \lambda&=\frac{-b\pm\sqrt{b^2-4ac}}{2a} \\
+                        &=\frac{8\pm\sqrt{(-8)^2-4(1)(9)}}{2(1)} \\
+                        &=\frac{8\pm\sqrt{28}}{2} \\
+                        &=4\pm\sqrt{7}
+                    \end{align*}
+                    So the eigenvalues are $\lambda=0$, $\lambda=4+\sqrt{7}$, and $\lambda=4-\sqrt{7}$.
+                }
+                \item{
+                    \textbf{\boldmath Find the eigenvector for $\lambda=0$.}
+                    \begin{align*}
+                        \begin{bmatrix}
+                            1 & 0 & 1 \\
+                            1 & 3 & 4 \\
+                            2 & 2 & 4
+                        \end{bmatrix}
+                        \mathbf{u}
+                        &=
+                        0\mathbf{u} \\
+                        \begin{bmatrix}
+                            1 & 0 & 1 \\
+                            1 & 3 & 4 \\
+                            2 & 2 & 4
+                        \end{bmatrix}
+                        \mathbf{u}&=\mathbf{0}
+                    \end{align*}
+                    Setting up an augmented matrix:
+                    \begin{gather*}
+                        \begin{amatrix}{3}
+                            1 & 0 & 1 & 0 \\
+                            1 & 3 & 4 & 0 \\
+                            2 & 2 & 4 & 0
+                        \end{amatrix}
+                        \sim
+                        \begin{amatrix}{3}
+                            1 & 0 & 1 & 0 \\
+                            0 & 3 & 3 & 0 \\
+                            0 & 2 & 2 & 0
+                        \end{amatrix}
+                        \sim
+                        \begin{amatrix}{3}
+                            1 & 0 & 1 & 0 \\
+                            0 & 1 & 1 & 0 \\
+                            0 & 2 & 2 & 0
+                        \end{amatrix}
+                        \sim
+                        \begin{amatrix}{3}
+                            1 & 0 & 1 & 0 \\
+                            0 & 1 & 1 & 0 \\
+                            0 & 0 & 0 & 0
+                        \end{amatrix}
+                    \end{gather*}
+                    This represents the system
+                    \begin{align*}
+                            u_1+u_3&=0 \\
+                            u_2+u_3&=0 \\
+                            0u_3&=0
+                    \end{align*}
+                    where \(u_3\) is a free variable, so it will be called \(s\). This gives
+                    \begin{align*}
+                        u_1&=-s \\
+                        u_2&=-s \\
+                        u_3&=s
+                    \end{align*}
+                    Finally, we get:
+                    \begin{equation*}
+                        \mathbf{u}=s
+                        \begin{bmatrix}
+                            -1 \\ -1 \\ 1
+                        \end{bmatrix}
+                    \end{equation*} 
+                    Therefore, the eigenvector is \(\begin{bmatrix}-1 \\ -1 \\ 1\end{bmatrix}\).
+                }
+            \end{enumerate}
+        }
+    \end{enumerate}
+\end{document}

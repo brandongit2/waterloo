@@ -1,0 +1,95 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{libertine}
+\usepackage[libertine]{newtxmath}
+
+\title{MATH 114 Assignment 9, Q1}
+\author{Brandon Tsang}
+\date{April 3, 2020}
+
+\hypersetup{colorlinks=true,urlcolor=blue}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}[label=\textbf{\arabic*.}]
+        \item{
+            \begin{enumerate}[label=\textbf{(\alph*)}]
+                \item{
+                    \textbf{Draw a sketch of how particles on the plane would move when repeatedly transformed by a matrix with:}
+                    \begin{itemize}
+                        \item{
+                            \textbf{\boldmath Eigenvector $\begin{bmatrix}1 \\ 0\end{bmatrix}$, eigenvalue $0<\lambda_1<1$, and}
+                            \begin{center}
+                                \includegraphics[width=0.47\textwidth]{1a1.PNG}
+                            \end{center}
+                        }
+                        \item{
+                            \textbf{\boldmath Eigenvector $\begin{bmatrix}1 \\ 1\end{bmatrix}$, eigenvalue $\lambda_2>1$.}
+                                \begin{center}
+                                    \includegraphics[width=0.47\textwidth]{1a2.PNG}
+                                \end{center}
+                        }
+                    \end{itemize}
+                }
+                \item{
+                    \textbf{Find such a matrix, and verify it looks nice in \href{https://snap.berkeley.edu/snap/snap.html\#present:Username=cmorland&ProjectName=matrices}{\underline{the visualizer}}. You can include a picture if you like.}
+                    \begin{itemize}
+                        \item{
+                            \textbf{\boldmath Eigenvector $\begin{bmatrix}1 \\ 0\end{bmatrix}$, eigenvalue $0<\lambda_1<1$, and}
+                            \par
+                            I chose $\lambda_1=0.8$. To find the matrix that would satisfy this, I used the following relation:
+                            \begin{equation*}
+                                \begin{bmatrix}
+                                    a & b \\
+                                    c & d
+                                \end{bmatrix}
+                                \begin{bmatrix}
+                                    u \\ 0
+                                \end{bmatrix}
+                                =
+                                \begin{bmatrix}
+                                    0.8u \\ 0
+                                \end{bmatrix}
+                            \end{equation*}
+                            For this relation to hold true, $a$ must be 0.1, and $c$ must be 0. $b$ and $d$ can really be anything. The matrix that created the picture below was $\begin{bmatrix}0.8 & 0 \\ 0 & 0.6\end{bmatrix}$.
+                            \begin{center}
+                                \includegraphics[width=0.7\linewidth]{1b1.PNG}
+                            \end{center}
+                        }
+                        \item{
+                            \textbf{\boldmath Eigenvector $\begin{bmatrix}1 \\ 1\end{bmatrix}$, eigenvalue $\lambda_2>1$.}
+                            \par
+                            I chose $\lambda_2=1.4$. Using a similar approach as before:
+                            \begin{equation*}
+                                \begin{bmatrix}
+                                    a & b \\
+                                    c & d
+                                \end{bmatrix}
+                                \begin{bmatrix}
+                                    u \\ u
+                                \end{bmatrix}
+                                =
+                                \begin{bmatrix}
+                                    1.4u \\ 1.4u
+                                \end{bmatrix}
+                            \end{equation*}
+                            For this relation to hold true, $a+b$ and $c+d$ must be 1.4. I chose the matrix $\begin{bmatrix}1.08 & 0.32 \\ 0.32 & 1.08\end{bmatrix}$ (those numbers made the most symmetrical picture).
+                            \begin{center}
+                                \includegraphics[width=0.7\linewidth]{1b2.PNG}
+                            \end{center}
+                            (The pictures above were made with \href{https://brandontsang.net/transform/}{\underline{a tool I coded myself}}.)
+                        }
+                    \end{itemize}
+                }
+            \end{enumerate}
+        }
+    \end{enumerate}
+\end{document}
