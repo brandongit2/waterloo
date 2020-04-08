@@ -8,3 +8,4 @@
 *.blg
 *.run.xml
 *_temp.tex
+*.out
