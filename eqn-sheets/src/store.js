@@ -1872,6 +1872,35 @@ let store = createStore(
                                     If ${k('q')} is positive, then ${k('\\mathbf{E}')} points away from the point charge. If ${k('q')} is negative, then ${k('\\mathbf{E}')} points toward the point charge.
                                 `
                             }, {
+                                latex: 'E&=\\frac{\\lambda}{2\\pi r\\epsilon_0}',
+                                description: `
+                                    The magnitude of the electric field at a distance ${k('r')} from an infinite line charge.
+                                    <ul>
+                                        <li>${k('\\lambda')} is the linear charge density, and</li>
+                                        <li>${k('\\epsilon_0')} is the permitivitty of free space.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: 'E&=\\frac{\\sigma}{2\\epsilon_0}',
+                                description: `
+                                    The magnitude of the electric field caused by an infinite plane charge, where
+                                    <ul>
+                                        <li>${k('\\sigma')} is the surface charge density, and</li>
+                                        <li>${k('\\epsilon_0')} is the permitivitty of free space.</li>
+                                    </ul>
+                                    The magnitude of the field doesn't depend on distance from the plane.
+                                `
+                            }, {
+                                latex: 'E&=\\frac{\\sigma}{\\epsilon_0}',
+                                description: `
+                                    The magnitude of the electric field caused by two infinite plane charges of opposite charge, where
+                                    <ul>
+                                        <li>${k('\\sigma')} is the surface charge density of both planes, and</li>
+                                        <li>${k('\\epsilon_0')} is the permitivitty of free space.</li>
+                                    </ul>
+                                    The magnitude of the field doesn't depend on distance from the planes.
+                                `
+                            }, {
                                 latex: 'p&=qd',
                                 description: `
                                     The magnitude of the electric dipole moment, where
@@ -1926,6 +1955,253 @@ let store = createStore(
                                         <li>${k('q')} and ${k('q_0')} are the values of the two charges.</li>
                                     </ul>
                                 `
+                            }, {
+                                latex: 'U&=\\frac{q_0}{4\\pi\\epsilon_0}\\sum_i\\frac{q_i}{r_i}',
+                                description: `
+                                    The electric potential energy between a charge ${k('q_0')} and multiple other charges ${k('q_i')}.
+                                    <ul>
+                                        <li>${k('\\epsilon_0')} is the permitivitty of free space,</li>
+                                        <li>${k('q_0')} and ${k('q_i')} are the values of each respective charge, and</li>
+                                        <li>${k('r_i')} is the distance of charge ${k('i')}.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: 'V&=\\frac{U}{q_0}',
+                                description: `Electric potential (or voltage) is the electric potential energy caused by a point charge divided by the value of that point charge.`
+                            }, {
+                                latex: 'V&=\\frac{1}{4\\pi\\epsilon_0}\\frac{q}{r}',
+                                description: `
+                                    The electric potential due to a charge ${k('q')}, where
+                                    <ul>
+                                        <li>${k('\\epsilon_0')} is the permitivitty of free space,</li>
+                                        <li>${k('q')} is the value of the charge, and</li>
+                                        <li>${k('r')} is the distance from the charge to the point where voltage is being measured.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: 'V&=\\frac{1}{4\\pi\\epsilon_0}\\sum_i\\frac{q_i}{r_i}',
+                                description: `
+                                    The electric potential due to multiple charges, where
+                                    <ul>
+                                        <li>${k('\\epsilon_0')} is the permitivitty of free space,</li>
+                                        <li>${k('q_i')} is the value of the ${k('i')}th charge, and</li>
+                                        <li>${k('r_i')} is the distance from the ${k('i')}th charge to the point where voltage is being measured.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: 'V&=\\frac{1}{4\\pi\\epsilon_0}\\int\\frac{dq}{r}',
+                                description: `
+                                    The electric potential due to a continuous distribution of charge, where
+                                    <ul>
+                                        <li>${k('\\epsilon_0')} is the permitivitty of free space,</li>
+                                        <li>${k('dq')} is the value of the charge element, and</li>
+                                        <li>${k('r')} is the distance from the charge element to the point where voltage is being measured.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: 'V_a-V_b&=\\int_a^b\\mathbf{E}\\cdot d\\mathbf{l}',
+                                description: `
+                                    The electric potential difference between points ${k('a')} and ${k('b')}, where
+                                    <ul>
+                                        <li>${k('\\mathbf{E}')} is the electric field, and</li>
+                                        <li>${k('d\\mathbf{l}')} is the line element along the path from ${k('a')} to ${k('b')}.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: '\\mathbf{E}&=-\\left(\\pmb{\\hat\\text\\i}\\frac{\\partial V}{\\partial x}+\\pmb{\\hat\\text\\j}\\frac{\\partial V}{\\partial y}+\\mathbf{\\hat k}\\frac{\\partial V}{\\partial z}\\right)=-\\nabla V',
+                                description: `
+                                    The electric field, defined as the gradient of electric potential.
+                                    <ul>
+                                        <li>${k('\\pmb{\\hat\\text\\i}')}, ${k('\\pmb{\\hat\\text\\j}')}, and ${k('\\mathbf{\\hat k}')} are the unit vectors in the ${k('x')}, ${k('y')}, and ${k('z')} directions, respectively, and</li>
+                                        <li>${k('V')} is a function of ${k('(x,y,z)')} which represents electric potential at a point.</li>
+                                    </ul>
+                                `
+                            },
+                            'Chapter 24: Capacitance and Dielectrics',
+                            {
+                                latex: 'C&=\\frac{Q}{V_{ab}}',
+                                description: `
+                                    The capacitance of a capacitor, where
+                                    <ul>
+                                        <li>${k('Q')} is the magnitude of charge on each capacitor, and</li>
+                                        <li>${k('V_{ab}')} is the potential difference across the two conductors.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: 'C=\\frac{Q}{V_{ab}}&=\\epsilon_0\\frac{A}{d}',
+                                description: `
+                                    The capacitance of a parallel-plate capacitor in a vacuum, where
+                                    <ul>
+                                        <li>${k('\\epsilon_0')} is the permitivitty of of free space,</li>
+                                        <li>${k('A')} is the area of each plate, and</li>
+                                        <li>${k('d')} is the distance separating the plates.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: '\\frac{1}{C_\\mathrm{eq}}&=\\frac{1}{C_1}+\\frac{1}{C_2}+\\frac{1}{C_3}+\\ldots',
+                                description: `
+                                    For capacitors in series, the reciprocal of the equivalent capacitance (${k('C_\\mathrm{eq}')}) is equal to the sum of the reciprocals of the capacitances of each capacitor (${k('C_1,C_2,\\ldots')}).
+                                `
+                            }, {
+                                latex: 'C_\\mathrm{eq}&=C_1+C_2+C_3+\\ldots',
+                                description: `
+                                    For capacitors in parallel, the equivalent capacitance (${k('C_\\mathrm{eq}')}) is equal to the sum of the capacitances of each capacitor (${k('C_1,C_2,\\ldots')}).
+                                `
+                            }, {
+                                latex: 'U&=\\frac{Q^2}{2C}=\\frac{1}{2}CV^2=\\frac{1}{2}QV',
+                                description: `
+                                    The potential energy in a capacitor, where
+                                    <ul>
+                                        <li>${k('Q')} is the magnitude of charge on each capacitor,</li>
+                                        <li>${k('C')} is the capacitance, and</li>
+                                        <li>${k('V')} is the electric potential between the two plates of the capacitor.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: 'u&=\\frac{1}{2}\\epsilon_0E^2',
+                                description: `
+                                    The electric potential energy density in a volume of space, where
+                                    <ul>
+                                        <li>${k('\\epsilon_0')} is the permitivitty of free space, and</li>
+                                        <li>${k('E')} is the magnitude of electric field in the space.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: 'K&=\\frac{C}{C_0}',
+                                description: `
+                                    The dielectric constant of a material, where
+                                    <ul>
+                                        <li>${k('C')} is the capacitance of a capacitor with the dielectric, and</li>
+                                        <li>${k('C_0')} is the capacitance of the capacitor without the dielectric (i.e., in vacuum).</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: 'E&=\\frac{E_0}{K}',
+                                description: `
+                                    The electric field between the plates of a conductor with a dielectric, where
+                                    <ul>
+                                        <li>${k('E_0')} is the electric field if there were no dielectric (i.e., in vacuum), and</li>
+                                        <li>${k('K')} is the dielectric constant of the dielectric.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: '\\sigma_\\mathrm{i}&=\\sigma\\left(1-\\frac{1}{K}\\right)',
+                                description: `
+                                    The induced surface charge density of a dielectric in a capacitor, where
+                                    <ul>
+                                        <li>${k('\\sigma')} is the surface charge density on each plate of the capacitor, and</li>
+                                        <li>${k('K')} is the dielectric constant of the dielectric.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: '\\epsilon&=K\\epsilon_0',
+                                description: `
+                                    The permitivitty of a material, where
+                                    <ul>
+                                        <li>${k('K')} is the dielectric constant of the material, and</li>
+                                        <li>${k('\\epsilon_0')} is the permitivitty of free space.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: 'C&=KC_0=\\epsilon\\frac{A}{d}',
+                                description: `
+                                    The capacitance of a parallel-plate capacitor with a dielectric between the plates, where
+                                    <ul>
+                                        <li>${k('K')} is the dielectric constant of the dielectric,</li>
+                                        <li>${k('C_0')} is the capacitance of the capacitor without the dielectric (i.e., in vacuum),</li>
+                                        <li>${k('\\epsilon')} is the permitivitty of the dielectric,</li>
+                                        <li>${k('A')} is the area of each plate, and</li>
+                                        <li>${k('d')} is the separation between the plates.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: 'u&=\\frac{1}{2}\\epsilon E^2',
+                                description: `
+                                    The electric potential energy density in a volume of space occupied by a dielectric, where
+                                    <ul>
+                                        <li>${k('\\epsilon_0')} is the permitivitty of the dielectric, and</li>
+                                        <li>${k('E')} is the magnitude of electric field in the space.</li>
+                                    </ul>
+                                `
+                            },
+                            'Chapter 25: Current, Resistance, and Electromotive Force',
+                            {
+                                latex: 'I&=\\frac{dQ}{dt}=n|q|v_\\mathrm{d}A',
+                                description: `
+                                    The definition of current through an area ${k('A')}, where
+                                    <ul>
+                                        <li>${k('\\frac{dQ}{dt}')} is the net flow of charge with respect to time,</li>
+                                        <li>${k('n')} is the concentration of moving charged particles,</li>
+                                        <li>${k('q')} is the charge per particle,</li>
+                                        <li>${k('v_\\mathrm{d}')} is the particle drift speed, and</li>
+                                        <li>${k('A')} is the cross-sectional area.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: 'J&=\\frac{I}{A}=n|q|v_\\mathrm{d}',
+                                description: `
+                                    The scalar definition of current density (the magnitude of the vector definition), where
+                                    <ul>
+                                        <li>${k('I')} is the current moving through an area ${k('A')},</li>
+                                        <li>${k('n')} is the concentration of moving charged particles,</li>
+                                        <li>${k('q')} is the charge per particle, and</li>
+                                        <li>${k('v_\\mathrm{d}')} is the particle drift speed.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: '\\mathbf{J}&=nq\\mathbf{v}_\\mathrm{d}',
+                                description: `
+                                    The vector definition of current density, where
+                                    <ul>
+                                        <li>${k('n')} is the concentration of moving charged particles,</li>
+                                        <li>${k('q')} is the charge per particle, and</li>
+                                        <li>${k('\\mathbf{v}_d')} is the particle drift velocity.</li>
+                                    </ul>
+                                    ${k('\\mathbf{J}')} is a vector quantity and ${k('I')} is not. This is because ${k('I')} typically describes current flowing through a wire, where direction is in either one direction or the other. In this case, it would not be terribly useful to define a vector current. However, ${k('\\mathbf{J}')} describes current per unit area, which is more "abstract"; it isn't a term typically used when describing current through a wire. In this case, it is important to know the direction of current flow since it could be in any direction.
+                                `
+                            }, {
+                                latex: '\\rho&=\\frac{E}{J}',
+                                description: `
+                                    The definition of resistivity of a material, where
+                                    <ul>
+                                        <li>${k('E')} is the magnitude of the magnetic field in the material, and</li>
+                                        <li>${k('J')} is the magnitude of current density caused by the electric field.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: '\\sigma&=\\frac{1}{\\rho}',
+                                description: `
+                                    The definition of conductivity of a material, where ${k('\\rho')} is the resistivity of the material.
+                                `
+                            }, {
+                                latex: '\\rho(T)&=\\rho_0\\cdot(1+\\alpha\\cdot(T-T_0))',
+                                description: `
+                                    The resistivity of a material as a function of temperature ${k('T')}. This is only accurate for temperatures of up to about 100 °C or so.
+                                    <ul>
+                                        <li>${k('\\rho_0')} is the resistivity at the reference temperature ${k('T_0')}, and</li>
+                                        <li>${k('\\alpha')} is the temperature coefficient of resistivity.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: 'R&=\\frac{\\rho L}{A}',
+                                description: `
+                                    The definition of resistance of a conductor, where
+                                    <ul>
+                                        <li>${k('\\rho')} is the resistivity of the conductor,</li>
+                                        <li>${k('L')} is the length of the conductor wire, and</li>
+                                        <li>${k('A')} is the cross-sectional area of the conductor wire.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: 'V&=IR',
+                                description: `
+                                    Ohm's law, where
+                                    <ul>
+                                        <li>${k('V')} is the voltage between the two ends of a conductor,</li>
+                                        <li>${k('I')} is the current in the conductor, and</li>
+                                        <li>${k('R')} is the resistance of the conductor.</li>
+                                    </ul>
+                                `
                             }
                         ]
                     },
@@ -1940,7 +2216,7 @@ let store = createStore(
                                 description: `The speed of sound in dry air at ${k('\\pu{20 °C}')}.`
                             }, {
                                 latex: 'k&=\\pu{8.98755e9 N m2 C-2}',
-                                description: 'Coulomb\s constant.'
+                                description: 'Coulomb\'s constant.'
                             }
                         ]
                     }
