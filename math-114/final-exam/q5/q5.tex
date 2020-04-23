@@ -1,0 +1,48 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{libertine}
+\usepackage[libertine]{newtxmath}
+
+\title{MATH 114 Final Exam Question 5}
+\author{Brandon Tsang}
+\date{April 14, 2020}
+
+\DeclareMathOperator{\proj}{proj}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}[label=\textbf{\arabic*.}, start=5]
+        \item{
+            \textbf{\boldmath Suppose I have a set of \(k\) nonzero vectors, \(\{\vec{\mathrm v}_1,\vec{\mathrm v}_2,\ldots,\vec{\mathrm v}_k\}\). These vectors are all orthogonal. That is, \(\vec{\mathrm v}_i\cdot\vec{\mathrm v}_j=0\) if \(i\neq j\). What is the result of applying the Gram-Schmidt technique to this set of vectors?}
+            \par
+            If the vectors are all orthogonal, the projection operations used in the Gram-Schmidt technique will always return the zero vector.
+            \begin{align*}
+                \proj_\mathbf{v}\mathbf{u}&=\frac{\mathbf{u}\cdot\mathbf{v}}{\mathbf{v}\cdot\mathbf{v}}\mathbf{v}\qquad\text{(The definition of \(\proj\))} \\
+                &=\frac{0}{\mathbf{v}\cdot\mathbf{v}}\mathbf{v}\qquad\text{(\(\mathbf{u}\cdot\mathbf{v}=0\))} \\
+                &=\mathbf{0}
+            \end{align*}
+            Let's define the Gram-Schmidt process for generating a set of orthogonal vectors \(\{\mathbf{u}_1,\mathbf{u}_2,\ldots,\mathbf{u_n}\}\) from a set of nonzero vectors \(\{\mathbf{s}_1,\mathbf{s}_2,\ldots,\mathbf{s_n}\}\) as follows:
+            \begin{align*}
+                \mathbf{u}_1&=\mathbf{s}_1 \\
+                \mathbf{u}_2&=\mathbf{s}_2-\proj_{\mathbf{u}_1}\mathbf{s_2} \\
+                \mathbf{u}_3&=\mathbf{s}_3-\proj_{\mathbf{u}_1}\mathbf{s_3}-\proj_{\mathbf{u}_2}\mathbf{s_3} \\
+                &\vdots
+            \end{align*}
+            When used on our set of already orthogonal vectors, the projections will return \(\mathbf{0}\):
+            \begin{align*}
+                \mathbf{u}_1&=\mathbf{s}_1 \\
+                \mathbf{u}_2&=\mathbf{s}_2-\mathbf{0} \\
+                \mathbf{u}_3&=\mathbf{s}_3-\mathbf{0}-\mathbf{0} \\
+                &\vdots
+            \end{align*}
+            Leaving us with an identical set of vectors.
+        }
+    \end{enumerate}
+\end{document}

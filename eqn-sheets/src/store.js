@@ -477,20 +477,48 @@ let store = createStore(
                         code: 'CV',
                         content: [
                             {
-                                latex: '\\pu{1 °C}&=\\pu{273.15 K}',
-                                description: '°C &#8594; degree Celsius<br>K &#8594; Kelvin'
+                                latex: 'n\\ \\pu{°C}&=(n + 273.15)\\ \\pu{K}',
+                                description: `
+                                    °C - degree celsius
+                                    <br>
+                                    K - kelvin
+                                `
                             }, {
-                                latex: '\\pu{1 bar}&=\\pu{100000 Pa}',
-                                description: `bar &#8594; bar<br>Pa &#8594; Pascal<br>1 bar is an approximation of 1 atm, but it is a neat multiple of ${k('10^5')} Pascals.`
+                                latex: '\\pu{1 bar}&=\\pu{1e5 Pa}',
+                                description: `
+                                    bar - bar
+                                    <br>
+                                    Pa - pascal
+                                    <br>
+                                    1 bar is an approximation of 1 atm, but it is a neat multiple of ${k('10^5')} pascals.
+                                `
                             }, {
                                 latex: '\\pu{1 atm}&=\\pu{101325 Pa}',
-                                description: 'atm &#8594; atmosphere<br>Pa &#8594; Pascal<br>Approximately equal to the mean sea-level pressure on Earth.'
+                                description: `
+                                    atm - atmosphere
+                                    <br>
+                                    Pa - pascal
+                                    <br>
+                                    Approximately equal to the mean sea-level pressure on Earth.
+                                `
                             }, {
                                 latex: '\\pu{1 mmHg}&=\\pu{133.322 Pa}',
-                                description: `mmHg &#8594; millimeters mercury<br>Pa &#8594; Pascal<br>Formerly defined as the amount of pressure exerted by a column of mercury 1 mm high.`
+                                description: `
+                                    mmHg - millimeters mercury
+                                    <br>
+                                    Pa - pascal
+                                    <br>
+                                    Formerly defined as the amount of pressure exerted per unit area by a column of mercury 1 mm high.
+                                `
                             }, {
                                 latex: '\\pu{1 cal}&=\\pu{4.184 J}',
-                                description: `cal &#8594; calorie<br>J &#8594; Joule<br>The calorie (cal) is not to be confused with the food calorie (Cal or kcal). ${k('\\pu{1 Cal}=\\pu{1000 cal}')}.`
+                                description: `
+                                    cal - calorie
+                                    <br>
+                                    J - joule
+                                    <br>
+                                    The calorie (cal) is not to be confused with the food calorie (Cal or kcal). ${k('\\pu{1 Cal}=\\pu{1000 cal}')}.
+                                `
                             }
                         ]
                     }
@@ -529,7 +557,7 @@ let store = createStore(
                                 latex: '\\frac{z}{w}&=z\\cdot w^{-1}',
                                 description: `The division of two complex numbers ${k('z')} and ${k('w\\neq0')}.`
                             }, {
-                                latex: '\\bar{z}=\\overline{a-bi}&=a-bi',
+                                latex: '\\bar{z}=\\overline{a+bi}&=a-bi',
                                 description: `The conjugate of any complex number ${k('z')}.`
                             }, {
                                 latex: '|z|=|a+bi|&=\\sqrt{a^2+b^2}',
@@ -1853,7 +1881,7 @@ let store = createStore(
                                         <li>${k('k')} is Coulomb's constant,</li>
                                         <li>${k('q_1')} and ${k('q_2')} are the charges on each object,</li>
                                         <li>${k('r')} is the distance between them, and</li>
-                                        <li>${k('\\epsilon_0')} is the permitivitty of free space.</li>
+                                        <li>${k('\\epsilon_0')} is the permittivity of vacuum.</li>
                                     </ul>
                                 `
                             }, {
@@ -1864,7 +1892,7 @@ let store = createStore(
                                 description: `
                                     The electric field caused by a point charge at a point, where
                                     <ul>
-                                        <li>${k('\\epsilon_0')} is the permitivitty of free space,</li>
+                                        <li>${k('\\epsilon_0')} is the permittivity of vacuum,</li>
                                         <li>${k('q')} is the value of the point charge,</li>
                                         <li>${k('r')} is the distance between the point charge and the point, and</li>
                                         <li>${k('\\hat{\\mathbf{r}}')} is the unit vector in the direction from the point charge to the point.</li>
@@ -1877,7 +1905,7 @@ let store = createStore(
                                     The magnitude of the electric field at a distance ${k('r')} from an infinite line charge.
                                     <ul>
                                         <li>${k('\\lambda')} is the linear charge density, and</li>
-                                        <li>${k('\\epsilon_0')} is the permitivitty of free space.</li>
+                                        <li>${k('\\epsilon_0')} is the permittivity of vacuum.</li>
                                     </ul>
                                 `
                             }, {
@@ -1886,7 +1914,7 @@ let store = createStore(
                                     The magnitude of the electric field caused by an infinite plane charge, where
                                     <ul>
                                         <li>${k('\\sigma')} is the surface charge density, and</li>
-                                        <li>${k('\\epsilon_0')} is the permitivitty of free space.</li>
+                                        <li>${k('\\epsilon_0')} is the permittivity of vacuum.</li>
                                     </ul>
                                     The magnitude of the field doesn't depend on distance from the plane.
                                 `
@@ -1896,7 +1924,7 @@ let store = createStore(
                                     The magnitude of the electric field caused by two infinite plane charges of opposite charge, where
                                     <ul>
                                         <li>${k('\\sigma')} is the surface charge density of both planes, and</li>
-                                        <li>${k('\\epsilon_0')} is the permitivitty of free space.</li>
+                                        <li>${k('\\epsilon_0')} is the permittivity of vacuum.</li>
                                     </ul>
                                     The magnitude of the field doesn't depend on distance from the planes.
                                 `
@@ -1933,7 +1961,7 @@ let store = createStore(
                             }, {
                                 latex: '\\Phi_E=\\oint\\mathbf{E}\\cdot\\,d\\mathbf{A}&=\\frac{Q}{\\epsilon_0}',
                                 description: `
-                                    Gauss's law, which states that the electric flux (${k('\\Phi_E')}) through a closed surface is equal to the total charge (${k('Q')}) enclosed by the surface divided by ${k('\\epsilon_0')} (the permitivitty of free space). The integral ${k('\\oint\\mathbf{E}\\cdot\\,d\\mathbf{A}')} is nearly identical to the previous equation, except that is integral is explicitly stated to be over a closed surface.
+                                    Gauss's law, which states that the electric flux (${k('\\Phi_E')}) through a closed surface is equal to the total charge (${k('Q')}) enclosed by the surface divided by ${k('\\epsilon_0')} (the permittivity of vacuum). The integral ${k('\\oint\\mathbf{E}\\cdot\\,d\\mathbf{A}')} is nearly identical to the previous equation, except that is integral is explicitly stated to be over a closed surface.
                                 `
                             }, {
                                 latex: 'E_\\perp&=\\frac{\\sigma}{\\epsilon_0}',
@@ -1941,7 +1969,7 @@ let store = createStore(
                                     On a charged surface, this is the perpendicular component of the electric field at a point on the surface.
                                     <ul>
                                         <li>${k('\\sigma')} is the surface charge density at the point, and</li>
-                                        <li>${k('\\epsilon_0')} is the permitivitty of free space.</li>
+                                        <li>${k('\\epsilon_0')} is the permittivity of vacuum.</li>
                                     </ul>
                                 `
                             },
@@ -1951,7 +1979,7 @@ let store = createStore(
                                 description: `
                                     The electric potential energy between two charges separated by a distance ${k('r')}.
                                     <ul>
-                                        <li>${k('\\epsilon_0')} is the permitivitty of free space, and</li>
+                                        <li>${k('\\epsilon_0')} is the permittivity of vacuum, and</li>
                                         <li>${k('q')} and ${k('q_0')} are the values of the two charges.</li>
                                     </ul>
                                 `
@@ -1960,7 +1988,7 @@ let store = createStore(
                                 description: `
                                     The electric potential energy between a charge ${k('q_0')} and multiple other charges ${k('q_i')}.
                                     <ul>
-                                        <li>${k('\\epsilon_0')} is the permitivitty of free space,</li>
+                                        <li>${k('\\epsilon_0')} is the permittivity of vacuum,</li>
                                         <li>${k('q_0')} and ${k('q_i')} are the values of each respective charge, and</li>
                                         <li>${k('r_i')} is the distance of charge ${k('i')}.</li>
                                     </ul>
@@ -1973,7 +2001,7 @@ let store = createStore(
                                 description: `
                                     The electric potential due to a charge ${k('q')}, where
                                     <ul>
-                                        <li>${k('\\epsilon_0')} is the permitivitty of free space,</li>
+                                        <li>${k('\\epsilon_0')} is the permittivity of vacuum,</li>
                                         <li>${k('q')} is the value of the charge, and</li>
                                         <li>${k('r')} is the distance from the charge to the point where voltage is being measured.</li>
                                     </ul>
@@ -1983,7 +2011,7 @@ let store = createStore(
                                 description: `
                                     The electric potential due to multiple charges, where
                                     <ul>
-                                        <li>${k('\\epsilon_0')} is the permitivitty of free space,</li>
+                                        <li>${k('\\epsilon_0')} is the permittivity of vacuum,</li>
                                         <li>${k('q_i')} is the value of the ${k('i')}th charge, and</li>
                                         <li>${k('r_i')} is the distance from the ${k('i')}th charge to the point where voltage is being measured.</li>
                                     </ul>
@@ -1993,7 +2021,7 @@ let store = createStore(
                                 description: `
                                     The electric potential due to a continuous distribution of charge, where
                                     <ul>
-                                        <li>${k('\\epsilon_0')} is the permitivitty of free space,</li>
+                                        <li>${k('\\epsilon_0')} is the permittivity of vacuum,</li>
                                         <li>${k('dq')} is the value of the charge element, and</li>
                                         <li>${k('r')} is the distance from the charge element to the point where voltage is being measured.</li>
                                     </ul>
@@ -2032,7 +2060,7 @@ let store = createStore(
                                 description: `
                                     The capacitance of a parallel-plate capacitor in a vacuum, where
                                     <ul>
-                                        <li>${k('\\epsilon_0')} is the permitivitty of of free space,</li>
+                                        <li>${k('\\epsilon_0')} is the permittivity of of vacuum,</li>
                                         <li>${k('A')} is the area of each plate, and</li>
                                         <li>${k('d')} is the distance separating the plates.</li>
                                     </ul>
@@ -2062,7 +2090,7 @@ let store = createStore(
                                 description: `
                                     The electric potential energy density in a volume of space, where
                                     <ul>
-                                        <li>${k('\\epsilon_0')} is the permitivitty of free space, and</li>
+                                        <li>${k('\\epsilon_0')} is the permittivity of vacuum, and</li>
                                         <li>${k('E')} is the magnitude of electric field in the space.</li>
                                     </ul>
                                 `
@@ -2096,10 +2124,10 @@ let store = createStore(
                             }, {
                                 latex: '\\epsilon&=K\\epsilon_0',
                                 description: `
-                                    The permitivitty of a material, where
+                                    The permittivity of a material, where
                                     <ul>
                                         <li>${k('K')} is the dielectric constant of the material, and</li>
-                                        <li>${k('\\epsilon_0')} is the permitivitty of free space.</li>
+                                        <li>${k('\\epsilon_0')} is the permittivity of vacuum.</li>
                                     </ul>
                                 `
                             }, {
@@ -2109,7 +2137,7 @@ let store = createStore(
                                     <ul>
                                         <li>${k('K')} is the dielectric constant of the dielectric,</li>
                                         <li>${k('C_0')} is the capacitance of the capacitor without the dielectric (i.e., in vacuum),</li>
-                                        <li>${k('\\epsilon')} is the permitivitty of the dielectric,</li>
+                                        <li>${k('\\epsilon')} is the permittivity of the dielectric,</li>
                                         <li>${k('A')} is the area of each plate, and</li>
                                         <li>${k('d')} is the separation between the plates.</li>
                                     </ul>
@@ -2119,7 +2147,7 @@ let store = createStore(
                                 description: `
                                     The electric potential energy density in a volume of space occupied by a dielectric, where
                                     <ul>
-                                        <li>${k('\\epsilon_0')} is the permitivitty of the dielectric, and</li>
+                                        <li>${k('\\epsilon_0')} is the permittivity of the dielectric, and</li>
                                         <li>${k('E')} is the magnitude of electric field in the space.</li>
                                     </ul>
                                 `
@@ -2394,7 +2422,7 @@ let store = createStore(
                                 description: `
                                     The magnetic field caused by a moving point charge, where
                                     <ul>
-                                        <li>${k('\\mu_0')} is the permeability of free space,</li>
+                                        <li>${k('\\mu_0')} is the permeability of vacuum,</li>
                                         <li>${k('q')} is the charge,</li>
                                         <li>${k('\\mathbf{v}')} is the velocity of the charge, and</li>
                                         <li>${k('\\mathbf{r}')} is the distance from the charge to the field point. (${k('\\mathbf{\\hat r}')} is the unit vector in this direction, and ${k('r')} is the magnitude.)</li>
@@ -2405,7 +2433,7 @@ let store = createStore(
                                 description: `
                                     The magnetic field caused by an infinitessimal current element, where
                                     <ul>
-                                        <li>${k('\\mu_0')} is the permeability of free space,</li>
+                                        <li>${k('\\mu_0')} is the permeability of vacuum,</li>
                                         <li>${k('I')} is the current,</li>
                                         <li>${k('d\\mathbf{l}')} is the length of the current element, and</li>
                                         <li>${k('\\mathbf{r}')} is the distance from the current element to the field point. (${k('\\mathbf{\\hat r}')} is the unit vector in this direction, and ${k('r')} is the magnitude.)</li>
@@ -2416,7 +2444,7 @@ let store = createStore(
                                 description: `
                                     The magnitude of magnetic field a distance ${k('r')} from an infinitely long current-carrying wire, where
                                     <ul>
-                                        <li>${k('\\mu_0')} is the permeability of free space, and</li>
+                                        <li>${k('\\mu_0')} is the permeability of vacuum, and</li>
                                         <li>${k('I')} is the current in the wire.</li>
                                     </ul>
                                 `
@@ -2425,7 +2453,7 @@ let store = createStore(
                                 description: `
                                     For two parallel, current-carrying conductors, this is the magnetic force per unit length between them.
                                     <ul>
-                                        <li>${k('\\mu_0')} is the permeability of free space,</li>
+                                        <li>${k('\\mu_0')} is the permeability of vacuum,</li>
                                         <li>${k('I')} and ${k('I\'')} are the currents through the conductors, and</li>
                                         <li>${k('r')} is the distance between them.</li>
                                     </ul>
@@ -2435,7 +2463,7 @@ let store = createStore(
                                 description: `
                                     The magnetic field a distance ${k('x')} on the axis of a circular current-carrying loop, where
                                     <ul>
-                                        <li>${k('\\mu_0')} is the permeability of free space,</li>
+                                        <li>${k('\\mu_0')} is the permeability of vacuum,</li>
                                         <li>${k('I')} is the current through the loop, and</li>
                                         <li>${k('a')} is the radius of the loop.</li>
                                     </ul>
@@ -2452,10 +2480,17 @@ let store = createStore(
                                     <ul>
                                         <li>${k('\\mathbf{B}')} is the magnetic field,</li>
                                         <li>${k('d\\mathbf{l}')} is an element of the line being integrated over,</li>
-                                        <li>${k('\\mu_0')} is the permeability of free space, and</li>
+                                        <li>${k('\\mu_0')} is the permeability of vacuum, and</li>
                                         <li>${k('I')} is the current enclosed by the line.</li>
                                     </ul>
                                     Makes a similar statement to Gauss's law, but for magnetic fields.
+                                `
+                            },
+                            'Chapter 29: Electromagnetic Induction',
+                            {
+                                latex: '\\mathcal{E}&=-\\frac{d\\Phi_B}{dt}',
+                                description: `
+                                    The induced emf in a closed loop is the time-derivative of the magnetic flux, ${k('\\Phi_B')}.
                                 `
                             }
                         ]
@@ -2474,13 +2509,13 @@ let store = createStore(
                                 description: 'Coulomb\'s constant.'
                             }, {
                                 latex: '\\epsilon_0&=\\pu{8.85418e-12 F m-1}',
-                                description: 'The permitivitty of free space.'
+                                description: 'The permittivity of vacuum.'
                             }, {
                                 latex: 'e&=\\pu{1.60218e-19 C}',
                                 description: 'The charge on an electron.'
                             }, {
                                 latex: '\\mu_0&=\\pu{1.25664e-6 m kg s-2 A-2}',
-                                description: 'The permeability of free space.'
+                                description: 'The permeability of vacuum.'
                             }
                         ]
                     }
@@ -2742,27 +2777,21 @@ let store = createStore(
                                     </ul>
                                 `
                             }, {
-                                latex: '\\lambda\'-\\lambda&=\\frac{h}{m_ec}(1-\\cos\\phi)',
+                                latex: '\\lambda\'-\\lambda&=\\frac{h}{m_\\mathrm{e}c}(1-\\cos\\phi)',
                                 description: `
                                     The difference in wavelength between incident and scattered radiation due to the Compton effect.
                                     <ul>
                                         <li>${k('\\lambda\'')} is the wavelength of the scattered light,</li>
                                         <li>${k('\\lambda')} is the wavelength of the incident light,</li>
                                         <li>${k('h')} is Plack's constant,</li>
-                                        <li>${k('m_e')} is the mass of the electron,</li>
+                                        <li>${k('m_\\mathrm{e}')} is the mass of the electron,</li>
                                         <li>${k('c')} is the speed of light in a vacuum, and</li>
                                         <li>${k('\\phi')} is the angle at which the photon scatters.</li>
                                     </ul>
                                     The scattered wavelength will always be longer than the incident wavelength.
                                 `
                             }, {
-                                latex: `
-                                    &\\begin{cases}
-                                        \\Delta x\\Delta p_x\\ge\\frac{\\hbar}{2} \\\\
-                                        \\Delta y\\Delta p_y\\ge\\frac{\\hbar}{2} \\\\
-                                        \\Delta z\\Delta p_z\\ge\\frac{\\hbar}{2}
-                                    \\end{cases}
-                                `,
+                                latex: '\\Delta x\\Delta p_x\\ge\\frac{\\hbar}{2}',
                                 description: `
                                     Heisenberg's uncertainty principle for position and momentum of a particle, where
                                     <ul>
@@ -2784,12 +2813,12 @@ let store = createStore(
                                     </ul>
                                 `
                             }, {
-                                latex: '\\lambda&=\\frac{h}{\\sqrt{2m_eeV_\\mathrm{AC}}}',
+                                latex: '\\lambda&=\\frac{h}{\\sqrt{2m_\\mathrm{e}eV_\\mathrm{AC}}}',
                                 description: `
                                     De Broglie wavelength of an electron from the Davisson-Germer experiment, where
                                     <ul>
                                         <li>${k('h')} is Planck's constant,</li>
-                                        <li>${k('m_e')} is the mass of an electron,</li>
+                                        <li>${k('m_\\mathrm{e}')} is the mass of an electron,</li>
                                         <li>${k('e')} is the charge on an electron, and</li>
                                         <li>${k('V_\\mathrm{AC}')} is the voltage required to accelerate the electron to its current speed.</li>
                                     </ul>
@@ -2807,11 +2836,11 @@ let store = createStore(
                                     With electron diffraction, the diffraction grating is the surface of a crystal, where the slits are the atoms on the surface separated by distance ${k('d')}.
                                 `
                             }, {
-                                latex: 'L_n=m_ev_nr_n&=n\\frac{h}{2\\pi}',
+                                latex: 'L_n=m_\\mathrm{e}v_nr_n&=n\\frac{h}{2\\pi}',
                                 description: `
                                     The angular momentum of an electron in its ${k('n')}th orbit of a neutral hydrogen atom, according to the Bohr model.
                                     <ul>
-                                        <li>${k('m_e')} is the mass of the electron,</li>
+                                        <li>${k('m_\\mathrm{e}')} is the mass of the electron,</li>
                                         <li>${k('v_n')} is the velocity of the electron at its energy level,</li>
                                         <li>${k('r_n')} is the radius of the electron's orbit at its energy level, and</li>
                                         <li>${k('h')} is Planck's constant.</li>
@@ -2819,13 +2848,13 @@ let store = createStore(
                                     ${k('n')} defines the orbit and also the energy level of the electron.
                                 `
                             }, {
-                                latex: 'r_n&=\\frac{\\epsilon_0n^2h^2}{\\pi m_ee^2}=n^2a_0',
+                                latex: 'r_n&=\\frac{\\epsilon_0n^2h^2}{\\pi m_\\mathrm{e}e^2}=n^2a_0',
                                 description: `
                                     The radius of the ${k('n')}th orbit of an electron in a neutral hydrogen atom, according to the Bohr model.
                                     <ul>
-                                        <li>${k('\\epsilon_0')} is the permitivitty of free space,</li>
+                                        <li>${k('\\epsilon_0')} is the permittivity of vacuum,</li>
                                         <li>${k('h')} is Planck's constant,</li>
-                                        <li>${k('m_e')} is the mass of the electron,</li>
+                                        <li>${k('m_\\mathrm{e}')} is the mass of the electron,</li>
                                         <li>${k('e')} is the magnitude of the charge on the electron, and</li>
                                         <li>${k('a_0')} is the Bohr radius, or the radius of the ${k('n=1')} orbit of the electron.</li>
                                     </ul>
@@ -2837,47 +2866,47 @@ let store = createStore(
                                     The velocity of an electron in its ${k('n')}th orbit of a neutral hydrogen atom, according to the Bohr model.
                                     <ul>
                                         <li>${k('e')} is the magnitude of the charge on the electron, and</li>
-                                        <li>${k('\\epsilon_0')} is the permitivitty of free space,</li>
+                                        <li>${k('\\epsilon_0')} is the permittivity of vacuum,</li>
                                         <li>${k('h')} is Planck's constant.</li>
                                     </ul>
                                     ${k('n')} defines the orbit and also the energy level of the electron.
                                 `
                             }, {
-                                latex: 'K_n=\\frac{1}{2}m_ev_n^2&=\\frac{1}{2}\\frac{m_ee^4}{4\\epsilon_0^2n^2h^2}',
+                                latex: 'K_n=\\frac{1}{2}m_\\mathrm{e}v_n^2&=\\frac{1}{2}\\frac{m_\\mathrm{e}e^4}{4\\epsilon_0^2n^2h^2}',
                                 description: `
                                     The kinetic energy of an electron in its ${k('n')}th orbit of a neutral hydrogen atom, according to the Bohr model.
                                     <ul>
-                                        <li>${k('m_e')} is the mass of the electron,</li>
+                                        <li>${k('m_\\mathrm{e}')} is the mass of the electron,</li>
                                         <li>${k('v_n')} is the velocity of the electron at its energy level,</li>
                                         <li>${k('e')} is the magnitude of the charge on the electron,</li>
-                                        <li>${k('\\epsilon_0')} is the permitivitty of free space, and</li>
+                                        <li>${k('\\epsilon_0')} is the permittivity of vacuum, and</li>
                                         <li>${k('h')} is Planck's constant.</li>
                                     </ul>
                                     ${k('n')} defines the orbit and also the energy level of the electron.
                                 `
                             }, {
-                                latex: 'U_n=-\\frac{e^2}{4\\pi\\epsilon_0r_n}&=-\\frac{m_ee^4}{4\\epsilon_0^2n^2h^2}',
+                                latex: 'U_n=-\\frac{e^2}{4\\pi\\epsilon_0r_n}&=-\\frac{m_\\mathrm{e}e^4}{4\\epsilon_0^2n^2h^2}',
                                 description: `
                                     The potential energy of an electron in its ${k('n')}th orbit of a neutral hydrogen atom, according to the Bohr model.
                                     <ul>
                                         <li>${k('e')} is the magnitude of the charge on the electron,</li>
-                                        <li>${k('\\epsilon_0')} is the permitivitty of free space,</li>
+                                        <li>${k('\\epsilon_0')} is the permittivity of vacuum,</li>
                                         <li>${k('r_n')} is the radius of the electron's orbit at its energy level,</li>
-                                        <li>${k('m_e')} is the mass of the electron, and</li>
+                                        <li>${k('m_\\mathrm{e}')} is the mass of the electron, and</li>
                                         <li>${k('h')} is Planck's constant.</li>
                                     </ul>
                                     ${k('n')} defines the orbit and also the energy level of the electron.
                                 `
                             }, {
-                                latex: 'E_n=K_n+U_n&=-\\frac{1}{2}\\frac{m_ee^4}{4\\epsilon_0^2n^2h^2}=-\\frac{hcR_\\ce{H}}{n^2}',
+                                latex: 'E_n=K_n+U_n&=-\\frac{1}{2}\\frac{m_\\mathrm{e}e^4}{4\\epsilon_0^2n^2h^2}=-\\frac{hcR_\\ce{H}}{n^2}',
                                 description: `
                                     The total energy of an electron in its ${k('n')}th orbit of a hydrogen atom, according to the Bohr model.
                                     <ul>
                                         <li>${k('K_n')} is the kinetic energy of the electron at its energy level,</li>
                                         <li>${k('U_n')} is the potential energy of the electron at its energy level,</li>
-                                        <li>${k('m_e')} is the mass of the electron,</li>
+                                        <li>${k('m_\\mathrm{e}')} is the mass of the electron,</li>
                                         <li>${k('e')} is the magnitude of the charge on the electron,</li>
-                                        <li>${k('\\epsilon_0')} is the permitivitty of free space,</li>
+                                        <li>${k('\\epsilon_0')} is the permittivity of vacuum,</li>
                                         <li>${k('h')} is Planck's constant,</li>
                                         <li>${k('c')} is the speed of light in a vacuum, and</li>
                                         <li>${k('R_\\ce{H}')} is the Rydberg constant for hydrogen.</li>
@@ -2885,7 +2914,7 @@ let store = createStore(
                                     ${k('n')} defines the orbit and also the energy level of the electron.
                                 `
                             }, {
-                                latex: 'm_r&=\\frac{m_1m_2}{m_1+m_2}',
+                                latex: 'm_\\mathrm{r}&=\\frac{m_1m_2}{m_1+m_2}',
                                 description: `
                                     The reduced mass of two orbiting bodies (e.g., an electron orbiting a nucleus), given the masses of both bodies. This turns a two-body problem (object ${k('A')} pulls on object ${k('B')} and vice versa) into a one-body problem (object ${k('A')} orbits a fixed point, or object ${k('B')} orbits a fixed point) by pretending that the other mass doesn't move. To compensate for the other mass not moving, we pretend that it is lighter (using this equation).
                                 `
@@ -3143,7 +3172,7 @@ let store = createStore(
                                     ${k('\\psi(x,y,z)')} describes a particle in a stationary state&mdash;that is, with definite (unchanging) energy.
                                 `
                             }, {
-                                latex: 'E_{n_X,n_Y,n_Z}&=\\frac{(n_X^2+n_Y^2+n_z^2)\\pi^2\\hbar^2}{2mL^2}',
+                                latex: 'E_{n_X,n_Y,n_Z}&=\\frac{(n_X^2+n_Y^2+n_Z^2)\\pi^2\\hbar^2}{2mL^2}',
                                 description: `
                                     The allowed energy levels for a particle in a three-dimensional box, where
                                     <ul>
@@ -3154,19 +3183,19 @@ let store = createStore(
                                     </ul>
                                 `
                             }, {
-                                latex: 'E_n&=-\\frac{m_re^4}{8\\epsilon_0^2n^2h^2}',
+                                latex: 'E_n&=-\\frac{m_\\mathrm{r}e^4}{8\\epsilon_0^2n^2h^2}=-\\frac{\\pu{13.6 eV}}{n^2}',
                                 description: `
                                     The allowed energy levels for an electron in a hydrogen atom, where
                                     <ul>
-                                        <li>${k('m_r')} is the reduced mass of the electron,</li>
+                                        <li>${k('m_\\mathrm{r}')} is the reduced mass of the electron,</li>
                                         <li>${k('e')} is the magnitude of charge on the electron,</li>
-                                        <li>${k('\\epsilon_0')} is the permitivitty of free space,</li>
+                                        <li>${k('\\epsilon_0')} is the permittivity of vacuum,</li>
                                         <li>${k('n\\in\\Z;n>0')} is the principal quantum number, and</li>
                                         <li>${k('h')} is Planck's constant.</li>
                                     </ul>
                                     This is almost exactly the same as the allowed energy levels in Bohr's model of the hydrogen atom, but with two very minor differences:
                                     <ul>
-                                        <li>${k('m_r')}, the reduced mass of the electron, is used in place of ${k('m_e')}, the rest mass of the electron. This could have been done in the Bohr model as well, though.</li>
+                                        <li>${k('m_\\mathrm{r}')}, the reduced mass of the electron, is used in place of ${k('m_\\mathrm{e}')}, the rest mass of the electron. This could have been done in the Bohr model as well, though.</li>
                                         <li>${k('n')} is now referred to as the "principal quantum number" as opposed to just the "quantum number". This is since there are now other quantum numbers to deal with.</li>
                                     </ul>
                                 `
@@ -3180,15 +3209,9 @@ let store = createStore(
                                     </ul>
                                 `
                             }, {
-                                latex: `
-                                    &\\begin{cases}
-                                        L_x=m_l\\hbar & \\text{or} \\\\
-                                        L_y=m_l\\hbar & \\text{or} \\\\
-                                        L_z=m_l\\hbar
-                                    \\end{cases}
-                                `,
+                                latex: 'L_z&=m_l\\hbar',
                                 description: `
-                                    The allowed values for the components of angular momentum of an electron in a hydrogen atom. Only pick one of these, as it is not possible to know the precise direction of ${k('\\mathbf{L}')} by the Heisenberg uncertainty principle.
+                                    The allowed values for the ${k('z')}-component of angular momentum of an electron.
                                     <ul>
                                         <li>${k('m_l\\in\\Z;-l\\le m_l\\le l')} is the orbital magnetic quantum number where ${k('l')} is the orbital quantum number, and</li>
                                         <li>${k('\\hbar')} is the reduced Planck constant.</li>
@@ -3204,6 +3227,257 @@ let store = createStore(
                                         <li>${k('\\psi(x,y,z)')} is the time-independent wave function.</li>
                                     </ul>
                                 `
+                            }, {
+                                latex: 'U&=-\\mu_zB=m_l\\mu_\\mathrm{B}B',
+                                description: `
+                                    The amount of energy that a magnetic field ${k('\\mathbf{B}')} would exert on an orbital.
+                                    <ul>
+                                        <li>${k('\\mu_z')} is the ${k('z')}-component of the magnetic dipole moment of the orbital</li>
+                                        <li>${k('m_l')} is the magnetic quantum number of the orbital, and</li>
+                                        <li>${k('\\mu_\\mathrm{B}')} is the Bohr magneton.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: 'S_z&=m_S\\hbar',
+                                description: `
+                                    The allowed values for the ${k('z')}-component of spin of an electron.
+                                    <ul>
+                                        <li>${k('m_S\\in\\{-\\frac{1}{2},+\\frac{1}{2}\\}')} is the spin quantum number, and</li>
+                                        <li>${k('\\hbar')} is the reduced Planck constant.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: 'S&=\\sqrt{\\frac{3}{2}}\\hbar',
+                                description: `
+                                    The magnitude of spin of an electron, where ${k('\\hbar')} is the reduced Planck constant.
+                                `
+                            }, {
+                                latex: '\\mu_z&=-1.00116\\frac{e}{m_\\mathrm{e}}S_z',
+                                description: `
+                                    The magnitude of the component of the magnetic dipole moment of an orbital in the direction of a magnetic field, with respect to spin (${k('S')}). The ${k('z')} in this equation could be replaced with ${k('x')} or ${k('y')}. It is only meant to imply that this equation calculates the magnetic dipole moment in only one direction.
+                                    <ul>
+                                        <li>${k('e')} is the magnitude of charge on an electron, and</li>
+                                        <li>${k('m_\\mathrm{e}')} is the mass of the electron.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: 'E_{n,j}&=-\\frac{\\pu{13.6 eV}}{n^2}\\left(1+\\frac{\\alpha^2}{n^2}\\left(\\frac{n}{j+\\frac{1}{2}}-\\frac{3}{4}\\right)\\right)',
+                                description: `
+                                    The allowed energy levels for an electron in a hydrogen atom (taking into account fine structure), where
+                                    <ul>
+                                        <li>${k('n')} is the principal quantum number of the electron,</li>
+                                        <li>${k('j')} is the total angular momentum of the electron (classical angular momentum + spin angular momentum), and</li>
+                                        <li>${k('\\alpha')} is the fine-structure constant.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: 'E_n&=-\\pu{13.6 eV}\\frac{Z_\\mathrm{eff}^2}{n^2}',
+                                description: `
+                                    The energy level of an electron with screening, where
+                                    <ul>
+                                        <li>${k('n')} is the principal quantum number of the electron, and</li>
+                                        <li>${k('Z_\\mathrm{eff}')} is the effective atomic number, equal to the actual atomic number minus the number of electrons involved in the screening.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: 'f&=(\\pu{2.48e15 Hz})(Z-1)^2',
+                                description: `
+                                    Moseley's law, where
+                                    <ul>
+                                        <li>${k('f')} is the frequency of maximum x-ray production on a bremsstrahlung spectrum for a given element, and</li>
+                                        <li>${k('Z')} is the atomic number of that element.</li>
+                                    </ul>
+                                `
+                            },
+                            'Chapter 42: Molecules and Condensed Matter',
+                            {
+                                latex: 'E_l&=l(l+1)\\frac{\\hbar^2}{2I}',
+                                description: `
+                                    The allowed rotational energy levels of a diatomic molecule, where
+                                    <ul>
+                                        <li>${k('l')} is the rotational quantum number,</li>
+                                        <li>${k('\\hbar')} is the reduced Planck constant, and</li>
+                                        <li>${k('I')} is the moment of inertia of the molecule about its center of mass.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: 'I&=m_\\mathrm{r}r^2',
+                                description: `
+                                    The moment of inertial of a diatomic molecule about its center of mass, where
+                                    <ul>
+                                        <li>${k('m_\\mathrm{r}')} is the reduced mass of the atoms, and</li>
+                                        <li>${k('r')} is the distance between the two atoms.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: 'E_n&=\\left(n+\\frac{1}{2}\\right)\\hbar\\omega=\\left(n+\\frac{1}{2}\\right)\\hbar\\sqrt{\\frac{k\'}{m_\\mathrm{r}}}',
+                                description: `
+                                    The allowed vibrational energy levels of a diatomic molecule, where
+                                    <ul>
+                                        <li>${k('n')} is the vibrational quantum number,</li>
+                                        <li>${k('\\hbar')} is the reduced Planck constant,</li>
+                                        <li>${k('\\omega')} is the angular frequency of the oscillation,</li>
+                                        <li>${k('k\'')} is the force constant (the same as the spring constant in Hooke's law), and</li>
+                                        <li>${k('m_\\mathrm{r}')} is the reduced mass of the atoms.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: 'g(E)&=\\frac{(2m_\\mathrm{e})^{3/2}V}{2\\pi^2\\hbar^3}\\sqrt{E}',
+                                description: `
+                                    The density of energy states in the free-electron model, where
+                                    <ul>
+                                        <li>${k('m_\\mathrm{e}')} is the mass of an electron,</li>
+                                        <li>${k('V')} is the volume of the object,</li>
+                                        <li>${k('\\hbar')} is the reduced Planck constant, and</li>
+                                        <li>${k('E')} is the energy of the electron.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: 'f(E)&=\\frac{1}{\\exp\\left(\\frac{E-E_\\mathrm{F}}{kT}\\right)+1}',
+                                description: `
+                                    The Fermi-Dirac distribution, where
+                                    <ul>
+                                        <li>${k('E')} is the energy of the state,</li>
+                                        <li>${k('E_\\mathrm{F}')} is the Fermi energy,</li>
+                                        <li>${k('k')} is the Boltzmann constant, and</li>
+                                        <li>${k('T')} is the absolute temperature.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: 'E_\\mathrm{F}&=\\frac{(9\\pi^4\\hbar^6n^2)^{1/3}}{2m_\\mathrm{e}}',
+                                description: `
+                                    The Fermi energy of a state in the free-electron model, where
+                                    <ul>
+                                        <li>${k('\\hbar')} is the reduced Planck constant,</li>
+                                        <li>${k('n')} is the electron concentration (${k('\\frac{\\text{\\# of electrons}}{\\text{volume}}')}), and</li>
+                                        <li>${k('m_\\mathrm{e}')} is the mass of an electron.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: 'E_\\mathrm{av}&=\\frac{3}{5}E_\\mathrm{F}',
+                                description: `
+                                    The average free-electron energy, where ${k('E_\\mathrm{F}')} is the Fermi energy of the electron's energy state.
+                                `
+                            }, {
+                                latex: 'I&=I_\\mathrm{S}\\left(\\exp\\left(\\frac{eV}{kT}\\right)-1\\right)',
+                                description: `
+                                    The current through a <i>p</i>-<i>n</i> junction, where
+                                    <ul>
+                                        <li>${k('I_\\mathrm{S}')} is the saturation current,</li>
+                                        <li>${k('e')} is the magnitude of charge on an electron,</li>
+                                        <li>${k('V')} is the voltage across the junction,</li>
+                                        <li>${k('k')} is the Boltzmann constant, and</li>
+                                        <li>${k('T')} is the absolute temperature.</li>
+                                    </ul>
+                                `
+                            },
+                            'Chapter 43: Nuclear Physics',
+                            {
+                                latex: 'R&=(\\pu{1.2e-15 m})A^{1/3}',
+                                description: `
+                                    The radius of an atomic nucleus, where ${k('A')} is the nucleon number.
+                                `
+                            }, {
+                                latex: '|\\mu_{sz}|_\\mathrm{proton}&=2.7928\\mu_\\mathrm{n}',
+                                description: `
+                                    The spin magnetic moment of a proton, where ${k('\\mu_\\mathrm{n}')} is the nuclear magneton.
+                                `
+                            }, {
+                                latex: 'E_\\mathrm{B}&=(ZM_\\ce{H}+Nm_\\mathrm{n}-{}^A_ZM)c^2',
+                                description: `
+                                    The binding energy of a nucleus, where
+                                    <ul>
+                                        <li>${k('Z')} is the atomic number,</li>
+                                        <li>${k('M_\\ce{H}')} is the mass of a hydrogen atom,</li>
+                                        <li>${k('N')} is the neutron number,</li>
+                                        <li>${k('m_\\mathrm{n}')} is the mass of a neutron,</li>
+                                        <li>${k('^A_ZM')} is the mass of the neutral atom with nucleon number ${k('A')} and atomic number ${k('Z')}, and</li>
+                                        <li>${k('c')} is the speed of light in a vacuum.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: '\\Delta M&=\\frac{E_\\mathrm{B}}{c^2}',
+                                description: `
+                                    The mass defect of a nucleus, where
+                                    <ul>
+                                        <li>${k('E_\\mathrm{B}')} is the binding energy of the nucleus, and</li>
+                                        <li>${k('c')} is the speed of light in a vacuum.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: 'E_\\mathrm{B}&=C_1A-C_2A^{2/3}-C_3Z(Z-1)A^{-1/3}-C_4(A-2Z)^2A^{-1}\\pm C_5A^{-4/3}',
+                                description: `
+                                    The nuclear binding energy of a nucleus according to the liquid-drop model, where
+                                    <ul>
+                                        <li>${k('C_1=\\pu{15.75 MeV}')},</li>
+                                        <li>${k('C_2=\\pu{17.80 MeV}')},</li>
+                                        <li>${k('C_3=\\pu{0.7100 MeV}')},</li>
+                                        <li>${k('C_4=\\pu{23.69 MeV}')},</li>
+                                        <li>${k('C_5=\\pu{39 MeV}')},</li>
+                                        <li>${k('A')} is the nucleon number of the nucleus, and</li>
+                                        <li>${k('Z')} is the atomic number of the nucleus.</li>
+                                    </ul>
+                                    ${k('C_5')} is positive when both ${k('Z')} and ${k('N')} are even, negative when they are odd, and zero otherwise.
+                                `
+                            }, {
+                                latex: '\\mathrm{n}&\\rightarrow\\mathrm{p}+\\beta^-+\\bar{\\nu}_\\mathrm{e}',
+                                description: `
+                                    Beta-minus decay, where
+                                    <ul>
+                                        <li>${k('\\mathrm{n}')} is a neutron,</li>
+                                        <li>${k('\\mathrm{p}')} is a proton,</li>
+                                        <li>${k('\\beta^-')} is an electron, and</li>
+                                        <li>${k('\\bar{\\nu}_\\mathrm{e}')} is an electron antineutrino.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: '\\mathrm{p}&\\rightarrow\\mathrm{n}+\\beta^++\\nu_\\mathrm{e}',
+                                description: `
+                                    Beta-plus decay, where
+                                    <ul>
+                                        <li>${k('\\mathrm{p}')} is a proton,</li>
+                                        <li>${k('\\beta^+')} is a positron, and</li>
+                                        <li>${k('\\nu_\\mathrm{e}')} is an electron neutrino.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: '\\mathrm{p}+\\beta^-&\\rightarrow\\mathrm{n}+\\nu_\\mathrm{e}',
+                                description: `
+                                    Electron capture beta decay, where
+                                    <ul>
+                                        <li>${k('\\mathrm{p}')} is a proton,</li>
+                                        <li>${k('\\beta^-')} is an electron,</li>
+                                        <li>${k('\\mathrm{n}')} is a neutron, and</li>
+                                        <li>${k('\\nu_\\mathrm{e}')} is an electron neutrino.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: 'N(t)&=N_0e^{-\\lambda t}',
+                                description: `
+                                    The number of remaining nuclei in a sample as a function of time ${k('t')}, where
+                                    <ul>
+                                        <li>${k('N_0')} is the initial number of nuclei, and</li>
+                                        <li>${k('\\lambda')} is the decay constant of the sample.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: 'T_\\mathrm{mean}&=\\frac{1}{\\lambda}=\\frac{T_{1/2}}{\\ln 2}',
+                                description: `
+                                    The lifetime of an unstable nucleus, where
+                                    <ul>
+                                        <li>${k('\\lambda')} is the decay constant of the sample, and</li>
+                                        <li>${k('T_{1/2}')} is the half life.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: 'Q&=(M_\\ce{A}+M_\\ce{B}-M_\\ce{C}-M_\\ce{D})c^2',
+                                description: `
+                                    The reaction energy of a nuclear reaction ${k('\\ce{A + B -> C + D}')}, where
+                                    <ul>
+                                        <li>${k('M_\\ce{X}')} is the mass of species X, and</li>
+                                        <li>${k('c')} is the speed of light in a vacuum.</li>
+                                    </ul>
+                                `
                             }
                         ]
                     },
@@ -3211,10 +3485,10 @@ let store = createStore(
                         code: 'C',
                         content: [
                             {
-                                latex: 'g&=\\pu{9.8067 m s-1}',
+                                latex: 'g&=\\pu{9.80665 m s-1}',
                                 description: 'T acceleration due to gravity on Earth.'
                             }, {
-                                latex: 'G&=\\pu{6.6738e-11 m3 kg-1 s-2}',
+                                latex: 'G&=\\pu{6.67430e-11 m3 kg-1 s-2}',
                                 description: `The gravitational constant. Used as the proportionality constant in the equation ${k('F_g=\\frac{Gm_1m_2}{r^2}\\text{.}', true)}`
                             }, {
                                 latex: 'R_\\oplus&=\\pu{6.3781e6 m}',
@@ -3235,31 +3509,28 @@ let store = createStore(
                                 latex: 'h&=\\pu{6.62607e-34 J s}',
                                 description: 'Planck\'s constant.'
                             }, {
-                                latex: 'h&=\\pu{4.13566e-15 eV s}',
-                                description: 'Planck\'s constant in electronvolt seconds.'
-                            }, {
                                 latex: 'e&=\\pu{1.60218e-19 C}',
                                 description: 'The charge on an electron.'
                             }, {
-                                latex: 'm_e&=\\pu{9.10938e-31 kg}',
+                                latex: 'm_\\mathrm{e}&=\\pu{9.10938e-31 kg}',
                                 description: 'The mass of a stationary electron.'
                             }, {
                                 latex: '\\hbar&=\\pu{1.05457e-34 J s}',
                                 description: `The reduced Planck constant, equal to ${k('\\frac{h}{2\\pi}')}.`
                             }, {
                                 latex: '\\epsilon_0&=\\pu{8.85418e-12 F m-1}',
-                                description: 'The permitivitty of free space.'
+                                description: 'The permittivity of vacuum.'
                             }, {
                                 latex: 'a_0&=\\pu{5.29177e-11 m}',
                                 description: 'The Bohr radius. Equal to the radius of the orbit of an electron in a neutral hydrogen atom, according to the Bohr model.'
                             }, {
                                 latex: 'R_\\ce{H}&=\\pu{1.09678e7 m-1}',
                                 description: `
-                                    The Rydberg constant for a hydrogen atom, calculated as ${k('R_\\ce{H}\\approx\\frac{m_ee^4}{8\\epsilon_0^2h^3c}')} where
+                                    The Rydberg constant for a hydrogen atom, defined as ${k('R_\\ce{H}\\approx\\frac{m_\\mathrm{e}e^4}{8\\epsilon_0^2h^3c}')} where
                                     <ul>
-                                        <li>${k('m_e')} is the mass of an electron,</li>
+                                        <li>${k('m_\\mathrm{e}')} is the mass of an electron,</li>
                                         <li>${k('e')} is the magnitude of the charge on an electron,</li>
-                                        <li>${k('\\epsilon_0')} is the permitivitty of free space,</li>
+                                        <li>${k('\\epsilon_0')} is the permittivity of vacuum,</li>
                                         <li>${k('h')} is Planck's constant, and</li>
                                         <li>${k('c')} is the speed of light in a vacuum.</li>
                                     </ul>
@@ -3273,6 +3544,46 @@ let store = createStore(
                             }, {
                                 latex: 'k_\\mathrm{B}&=\\pu{1.38065e-23 J K-1}',
                                 description: 'The Boltzmann constant.'
+                            }, {
+                                latex: '\\mu_\\mathrm{B}&=\\pu{9.27401e-24 J T-1}',
+                                description: `
+                                    The Bohr magneton, defined as ${k('\\mu_\\mathrm{B}=\\frac{e\\hbar}{2m_\\mathrm{e}}')}, where
+                                    <ul>
+                                        <li>${k('e')} is the magnitude of charge on an electron,</li>
+                                        <li>${k('\\hbar')} is the reduced Planck constant, and</li>
+                                        <li>${k('m_\\mathrm{e}')} is the mass of an electron.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: '\\alpha&=\\pu{7.29735e-3}',
+                                description: `
+                                    The fine-structure constant, defined as ${k('\\alpha=\\frac{1}{4\\pi\\epsilon_0}\\frac{e^2}{\\hbar c}')}, where
+                                    <ul>
+                                        <li>${k('\\epsilon_0')} is the permittivity of vacuum,</li>
+                                        <li>${k('e')} is the magnitude of charge on an electron,</li>
+                                        <li>${k('\\hbar')} is the reduced Planck constant, and</li>
+                                        <li>${k('c')} is the speed of light in a vacuum.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: 'm_\\mathrm{p}&=\\pu{1.67262e-27 kg}',
+                                description: 'The mass of a proton.'
+                            }, {
+                                latex: 'm_\\mathrm{n}&=\\pu{1.67493e-27 kg}',
+                                description: 'The mass of a neutron.'
+                            }, {
+                                latex: '\\mu_\\mathrm{n}&=\\pu{5.05078e-27 J T-1}',
+                                description: `
+                                    The nuclear magneton, defined as ${k('\\mu_\\mathrm{n}=\\frac{e\\hbar}{2m_\\mathrm{p}}')}, where
+                                    <ul>
+                                        <li>${k('e')} is the magnitude of charge on an electron,</li>
+                                        <li>${k('\\hbar')} is the reduced Planck constant, and</li>
+                                        <li>${k('m_\\mathrm{p}')} is the mass of a proton.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: 'M_\\ce{H}&=\\pu{1.67356e-27 kg}',
+                                description: 'The mass of a hydrogen atom.'
                             }
                         ]
                     },
@@ -3281,7 +3592,70 @@ let store = createStore(
                         content: [
                             {
                                 latex: '\\pu{1 eV}&=\\pu{1.60218e-19 J}',
-                                description: 'eV - electronvolt<br>J - Joule'
+                                description: `
+                                    eV - electronvolt
+                                    <br>
+                                    J - joule
+                                `
+                            }, {
+                                latex: '\\pu{1 u}&=\\pu{1.66054e-27 kg}',
+                                description: `
+                                    u - unified atomic mass unit
+                                    <br>
+                                    kg - kilogram
+                                `
+                            }, {
+                                latex: '\\pu{1 Bq}&=\\pu{1 s-1}',
+                                description: `
+                                    Bq - becquerel
+                                    <br>
+                                    s - second
+                                    <br>
+                                    Indentical to the hertz, but used only to measure the decays of atomic nuclei.
+                                `
+                            }, {
+                                latex: '\\pu{1 Ci}&=\\pu{3.70e10 Bq}',
+                                description: `
+                                    Ci - curie
+                                    <br>
+                                    Bq - becquerel
+                                `
+                            }, {
+                                latex: '\\pu{1 Gy}&=\\pu{1 J kg-1}',
+                                description: `
+                                    Gy - gray
+                                    <br>
+                                    J - joule
+                                    <br>
+                                    kg - kilogram
+                                    <br>
+                                    Measures joules of radiation energy absorbed per kilogram of matter.
+                                `
+                            }, {
+                                latex: '\\pu{1 rad}&=\\pu{0.01 Gy}',
+                                description: `
+                                    rad - rad
+                                    <br>
+                                    Gy - gray
+                                `
+                            }, {
+                                latex: 'n\\ \\pu{Sv}&=(\\mathrm{RBE}\\cdot n)\\ \\pu{Gy}',
+                                description: `
+                                    Sv - sievert
+                                    <br>
+                                    Gy - gray
+                                    <br>
+                                    RBE is the relative biological effectiveness of the radiation absorbed, and depends on the type of radiation.
+                                `
+                            }, {
+                                latex: 'n\\ \\pu{rem}&=(\\mathrm{RBE}\\cdot n)\\ \\pu{rad}',
+                                description: `
+                                    rem - rem
+                                    <br>
+                                    rad - rad
+                                    <br>
+                                    RBE is the relative biological effectiveness of the radiation absorbed, and depends on the type of radiation.
+                                `
                             }
                         ]
                     }

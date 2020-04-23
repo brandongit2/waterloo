@@ -1,0 +1,41 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{libertine}
+\usepackage[libertine]{newtxmath}
+
+\title{MATH 114 Final Exam Question 4}
+\author{Brandon Tsang}
+\date{April 14, 2020}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}[label=\textbf{\arabic*.}, start=4]
+        \item{
+            \textbf{\boldmath Let \(A\) be an invertible \(n\times n\) matrix and \(B\) be a \(n\times n\) matrix such that \(\det(B)=7\).}
+            \begin{enumerate}[label=\textbf{(\alph*)}]
+                \item{
+                    \textbf{\boldmath Is \(B\) invertible?}
+                    \par
+                    \(B\) is invertible since it is square and its determinant is not zero.
+                }
+                \item{
+                    \textbf{\boldmath Compute \(\det(ABA^{-1})\).}
+                    \par
+                    Matrix multiplication is associative, so we can do the following:
+                    \begin{align*}
+                        \det(ABA^{-1})&=\det(AA^{-1}B) \\
+                        &=\det(IB) \\
+                        &=7
+                    \end{align*}
+                }
+            \end{enumerate}
+        }
+    \end{enumerate}
+\end{document}

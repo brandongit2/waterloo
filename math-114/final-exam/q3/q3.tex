@@ -1,0 +1,41 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{libertine}
+\usepackage[libertine]{newtxmath}
+
+\title{MATH 114 Final Exam Question 3}
+\author{Brandon Tsang}
+\date{April 14, 2020}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}[label=\textbf{\arabic*.}, start=3]
+        \item{
+            \textbf{\boldmath Suppose \(S_1\) and \(S_2\) are 3-dimensional figures. The volume of \(S_1\) is 10, and the volume of \(S_2\) is 4. Also suppose that \(A_1\) and \(A_2\) are matrices such that \(A_1\) transforms \(S_1\) to \(S_3\) and \(A_2\) transforms \(S_2\) to the same \(S_3\).}
+            \begin{enumerate}[label=\textbf{(\alph*)}]
+                \item{
+                    \textbf{\boldmath Is \(\frac{\det(A_1)}{\det(A_2)}\) guaranteed to exist? Explain.}
+                    \par
+                    The only way for \(\frac{\det(A_1)}{\det(A_2)}\) to not exist is to have \(\det(A_2)=0\). This would only be the case when \(S_3\) has a volume of zero (i.e., \(A_2\) transforms a shape of nonzero volume to one with zero volume). In all other cases, \(\frac{\det(A_1)}{\det(A_2)}\) exists.
+                }
+                \item{
+                    \textbf{If it does exist, what is it?}
+                    \par
+                    \(A_1\) transforms an object from one that has a volume of 10 to one that has a volume of \(V\neq0\). So its determinant must be \(\frac{V}{10}\). Likewise, \(A_2\) transforms an object from one that has a volume of 4 to one that has a volume of that same \(V\). So its determinant must be \(\frac{V}{4}\). Putting these together, we get
+                    \begin{align*}
+                        \frac{\det(A_1)}{\det(A_2)}&=\frac{\frac{V}{10}}{\frac{V}{4}} \\
+                        &=\frac{4V}{10V} \\
+                        &=\frac{2}{5}
+                    \end{align*}
+                }
+            \end{enumerate}
+        }
+    \end{enumerate}
+\end{document}

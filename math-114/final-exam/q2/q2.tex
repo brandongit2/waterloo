@@ -1,0 +1,97 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{libertine}
+\usepackage[libertine]{newtxmath}
+
+\title{MATH 114 Final Exam Question 2}
+\author{Brandon Tsang}
+\date{April 14, 2020}
+
+\newenvironment{amatrix}[1]{%
+    \left[\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+    \end{array}\right]
+}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}[label=\textbf{\arabic*.}, start=2]
+        \item{
+            \textbf{\boldmath Find the eigenvectors and corresponding eigenvalues of the rotation matrix \\ \(\begin{bmatrix}\cos\theta & -\sin\theta \\ \sin\theta & \cos\theta\end{bmatrix}\).}
+            \par
+            Starting with \(A\mathbf{u}=\lambda\mathbf{u}\) (where \(\lambda\) is the eigenvalues):
+            \begin{align*}
+                A\mathbf{u}&=\lambda\mathbf{u} \\
+                (A-\lambda I)\mathbf{u}&=\mathbf{0} \\
+                \begin{bmatrix}\cos\theta-\lambda & -\sin\theta \\ \sin\theta & \cos\theta-\lambda\end{bmatrix}\mathbf{u}&=\mathbf{0} \\
+                \begin{vmatrix}\cos\theta-\lambda & -\sin\theta \\ \sin\theta & \cos\theta-\lambda\end{vmatrix}&=\mathbf{0} \\
+                (\cos\theta-\lambda)(\cos\theta-\lambda)-(-\sin\theta)(\sin\theta)&=\mathbf{0} \\
+                \cos^2\theta-2\lambda\cos\theta+\lambda^2+\sin^2\theta&=\mathbf{0} \\
+                \lambda^2-2\lambda\cos\theta+1&=\mathbf{0} \\
+                \lambda&=\frac{2\cos\theta\pm\sqrt{(-2\cos\theta)^2-4(1)(1)}}{2(1)} \\
+                &=\frac{2\cos\theta\pm\sqrt{4\cos^2\theta-4}}{2} \\
+                &=\cos\theta\pm\sqrt{\cos^2\theta-1} \\
+                &=\cos\theta\pm i\sin\theta
+            \end{align*}
+            Using these eigenvalues, we can find the eigenvectors. Starting with \(\lambda=\cos\theta+i\sin\theta\):
+            \begin{align*}
+                A\mathbf{u}&=\lambda\mathbf{u} \\
+                (A-\lambda I)\mathbf{u}&=\mathbf{0} \\
+                \begin{bmatrix}\cos\theta-(\cos\theta+i\sin\theta) & -\sin\theta \\ \sin\theta & \cos\theta-(\cos\theta+i\sin\theta)\end{bmatrix}\mathbf{u}&=\mathbf{0} \\
+                \begin{bmatrix}-i\sin\theta & -\sin\theta \\ \sin\theta & -i\sin\theta\end{bmatrix}\mathbf{u}&=\mathbf{0}
+            \end{align*}
+            As an augmented matrix:
+            \begin{gather*}
+                \begin{amatrix}{2}-i\sin\theta & -\sin\theta & 0 \\ \sin\theta & -i\sin\theta & 0\end{amatrix}
+                \sim
+                \begin{amatrix}{2}-i & -1 & 0 \\ 1 & -i & 0\end{amatrix}
+                \sim
+                \begin{amatrix}{2}1 & -i & 0 \\ 1 & -i & 0\end{amatrix}
+                \sim
+                \begin{amatrix}{2}1 & -i & 0 \\ 0 & 0 & 0\end{amatrix}
+            \end{gather*}
+            Using \(u_2=s\) as a free variable:
+            \begin{align*}
+                1u_1-iu_2&=0 \\
+                u_1&=si
+            \end{align*}
+            Then, the eigenvector is \(\begin{bmatrix}si \\ s\end{bmatrix}=s\begin{bmatrix}i \\ 1\end{bmatrix}\).
+            \par
+            Next, with \(\lambda=\cos\theta-i\sin\theta\):
+            \begin{align*}
+                A\mathbf{u}&=\lambda\mathbf{u} \\
+                (A-\lambda I)\mathbf{u}&=\mathbf{0} \\
+                \begin{bmatrix}\cos\theta-(\cos\theta-i\sin\theta) & -\sin\theta \\ \sin\theta & \cos\theta-(\cos\theta-i\sin\theta)\end{bmatrix}\mathbf{u}&=\mathbf{0} \\
+                \begin{bmatrix}i\sin\theta & -\sin\theta \\ \sin\theta & i\sin\theta\end{bmatrix}\mathbf{u}&=\mathbf{0}
+            \end{align*}
+            As an augmented matrix:
+            \begin{gather*}
+                \begin{amatrix}{2}i\sin\theta & -\sin\theta & 0 \\ \sin\theta & i\sin\theta & 0\end{amatrix}
+                \sim
+                \begin{amatrix}{2}i & -1 & 0 \\ 1 & i & 0\end{amatrix}
+                \sim
+                \begin{amatrix}{2}-1 & -i & 0 \\ 1 & i & 0\end{amatrix}
+                \sim
+                \begin{amatrix}{2}-1 & -i & 0 \\ 0 & 0 & 0\end{amatrix}
+            \end{gather*}
+            Using \(u_2=s\) as a free variable:
+            \begin{align*}
+                -1u_1-iu_2&=0 \\
+                u_1&=si
+            \end{align*}
+            and
+            \begin{align*}
+                1u_1-iu_2&=0 \\
+                u_1&=-si
+            \end{align*}
+            So the eigenvector is \(\begin{bmatrix}-si \\ s\end{bmatrix}=s\begin{bmatrix}-i \\ 1\end{bmatrix}\).
+        }
+    \end{enumerate}
+\end{document}
