@@ -1,0 +1,68 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{libertine}
+\usepackage[libertine]{newtxmath}
+\usepackage[detect-weight=true]{siunitx}
+
+\title{PHYS 124 Final Exam Question 3}
+\author{Brandon Tsang}
+\date{April 23, 2020}
+
+\DeclareSIUnit{\curie}{Ci}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}[label=\textbf{\arabic*.}, start=3]
+        \item{
+            \begin{enumerate}[label=\textbf{(\alph*)}]
+                \item{
+                    \textbf{\boldmath A parent nuclide of mass \(M\) decays into 4 neutrons and a different nuclide of mass \(m\). What is the condition on the masses for the reaction to be possible?}
+                    \par
+                    Since this is a beta decay, the reaction is possible whenever \(M>m\).
+                }
+                \item{
+                    \textbf{\boldmath An experiment is carried out and the nuclide in the final state is observed to be \(^3_1\mathrm{H}\) (tritium). The decay is exoergic, with an energy of 1.9510 MeV. What must the original (parent) nuclide have been? What must its rest mass have been? Give your answer in u, recalling that \(\SI{1}{\atomicmassunit}=\SI{931.50}{\MeV}/c^2\).}
+                    \par
+                    The rest mass of \(^3_1\mathrm{H}\) is \(\SI{3.01605}{\atomicmassunit}=\SI{5.00827e-27}{\kilogram}\). The rest energy is therefore \(mc^2=\SI{4.50119e-10}{\joule}=\SI{2.80942}{\GeV}\). If 1.9510 MeV of energy were released in the reaction, the original nuclide must have had a rest energy of \(\SI{2089.42}{\MeV}+\SI{1.9510}{\MeV}=\SI{2.09137}{\GeV}\). This gives a corresponding rest mass of \(\frac{E}{c^2}=\SI{3.72822e-27}{\kilogram}=\SI{2.24519}{\atomicmassunit}\).
+                }
+                \item{
+                    \textbf{\boldmath Ten picograms of this parent nuclide is produced and found to have an activity of \(\SI{6.95e11}{\tera\curie}\) where 1 TCi is one trillion curies. What is its half-life?}
+                    \par
+                    From the previous part, the rest mass of \(^3_1\mathrm{H}\) is \(\SI{3.01605}{\atomicmassunit}\). Also, \(\SI{10}{\pico\gram}=\SI{6.02214e12}{\atomicmassunit}\). Therefore, there are \(1.99670\times10^{12}\) particles of \(^3_1\mathrm{H}\) in the sample.
+                    \par
+                    \(\SI{6.95}{\tera\curie}=\SI{2.5715e34}{\becquerel}\). Using the equation \(-\frac{dN}{dt}=\lambda N\):
+                    \begin{align*}
+                        \SI{2.5715e34}{\becquerel}&=\lambda\cdot1.99670\times10^{12} \\
+                        \lambda&=\SI{1.28787e22}{\becquerel}
+                    \end{align*}
+                    Finding the half-life:
+                    \begin{align*}
+                        T_{1/2}&=\frac{\ln 2}{\lambda} \\
+                        &=\SI{5.38212e-23}{\second}
+                    \end{align*}
+                }
+                \item{
+                    \textbf{\boldmath The half-life of the top quark is \(5\times10^{-25}\) seconds. On average, a top/antitop quark pair is produced every second at the LHC. If all these pairs produced over the past 7 years (assuming the LHC is constantly running) could be produced all at once in a single sample, how many would decay during the half-life of his nuclide?}
+                    \par
+                    If the half-life of the top quark is \(5\times10^{-25}\) seconds, \(\lambda\) would be \(\frac{\ln 2}{T_{1/2}}=\SI{1.38629e24}{\becquerel}\).
+                    \par
+                    The number of seconds in 7 years (and therefore, the amount of quark pairs produced) is \(N_0=220752000\).
+                    \par
+                    Then, the number of quarks after this amount of time is
+                    \begin{align*}
+                        N(t)&=N_0e^{-\lambda t} \\
+                        N(\SI{5.38212e-23}{\second})&=220752000e^{-(\SI{1.38629e24}{\becquerel})(\SI{5.38212e-23}{\second})} \\
+                        &=8.71797\times10^{-25}
+                    \end{align*}
+                }
+            \end{enumerate}
+        }
+    \end{enumerate}
+\end{document}

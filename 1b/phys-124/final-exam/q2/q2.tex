@@ -1,0 +1,67 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{libertine}
+\usepackage[libertine]{newtxmath}
+\usepackage{siunitx}
+
+\title{PHYS 124 Final Exam Question 2}
+\author{Brandon Tsang}
+\date{April 23, 2020}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}[label=\textbf{\arabic*.}, start=2]
+        \item{
+            \begin{enumerate}[label=\textbf{(\alph*)}]
+                \item{
+                    \textbf{\boldmath The Friedmann equations describing our universe at large scales are
+                    \begin{equation}
+                        \label{eqn:1}
+                        \frac{1}{2}\left(\frac{da(t)}{dt}\right)^2-\frac{4\pi G\rho(t)}{3}a^2(t)=-\frac{kc^2}{2l^2}
+                    \end{equation}
+                    and
+                    \begin{equation}
+                        \label{eqn:2}
+                        \frac{d}{dt}(\rho(t)a^3(t))=-p(t)\frac{d}{dt}a^3(t)
+                    \end{equation}
+                    for the scale factor \(a(t)\). Explain the meaning of the quantities \(k\), \(l\), \(\rho\), and \(p\) in these equations.}
+                    \par
+                    \(k\) can be either \(+1\), \(0\), or \(-1\), and it defines the shape of the universe.
+                    \par
+                    \(\rho\) is the density of energy in the universe.
+                    \par
+                    \(p\) is the pressure of energy in the universe.
+                }
+                \item{
+                    \textbf{\boldmath Suppose that the scale factor \(a(t)=a_0t^{1/2}\). If \(k=0\), find the dependence of \(\rho\) and \(p\) on \(t\). What cosmic era does this correspond to?}
+                    \par
+                    Using equation \ref{eqn:1}:
+                    \begin{align*}
+                        \frac{1}{2}\left(\frac{da(t)}{dt}\right)^2-\frac{4\pi G\rho(t)}{3}a^2(t)&=-\frac{kc^2}{2l^2} \\
+                        \frac{1}{2}\left(\frac{1}{2}a_0t^{-1/2}\right)^2-\frac{4\pi G\rho(t)}{3}(a_0^2t^{1/2})&=0 \\
+                        \frac{1}{8t^{3/2}}a_0^2-\frac{4\pi G\rho(t)}{3}(a_0^2t^{1/2})&=0 \\
+                        \frac{1}{8t^{3/2}}&=\frac{4\pi G\rho(t)}{3}t^{1/2} \\
+                        \frac{3}{8}&=4\pi G\rho(t)t^2 \\
+                        \rho(t)&=\frac{3}{32\pi Gt^2}
+                    \end{align*}
+                    Then, with equation \ref{eqn:2}:
+                    \begin{align*}
+                        \frac{d}{dt}(\rho(t)a^3(t))&=-p(t)\frac{d}{dt}a^3(t) \\
+                        \frac{d}{dt}\left(\frac{3}{32\pi Gt^2}(a_0^3t^{3/2})\right)&=-p(t)\frac{d}{dt}(a_0^3t^{3/2}) \\
+                        \frac{3a_0^3}{32\pi G}\frac{d}{dt}\left(t^{-1/2}\right)&=-p(t)\left(\frac{3}{2}a_0^3t^{1/2}\right) \\
+                        \frac{1}{32\pi G}t^{-3/2}&=p(t)t^{1/2} \\
+                        p(t)&=\frac{1}{32\pi Gt^2}
+                    \end{align*}
+                }
+            \end{enumerate}
+            \textit{[The rest of this question was skipped.]}
+        }
+    \end{enumerate}
+\end{document}

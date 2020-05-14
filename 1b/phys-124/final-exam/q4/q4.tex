@@ -1,0 +1,44 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{libertine}
+\usepackage[libertine]{newtxmath}
+\usepackage[detect-weight=true]{siunitx}
+
+\title{PHYS 124 Final Exam Question 4}
+\author{Brandon Tsang}
+\date{April 23, 2020}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}[label=\textbf{\arabic*.}, start=4]
+        \item{
+            \textbf{\boldmath Certain structures called quantum wires behave as metals in which its gas of electrons is confined to a line (one spatial dimension). The density of states for a quantum wire of length \(L\) is \(g(E)=\frac{l}{\hbar\pi}\sqrt{\frac{m}{2E}}\) where \(m\) is the mass of an electron.}
+            \begin{enumerate}[label=\textbf{(\alph*)}]
+                \item{
+                    \textbf{\boldmath Find the number of electrons \(N\) in a quantum wire in terms of \(L\), \(E\), and \(m\).}
+                    \par
+                    Using the Fermi-Dirac distribution and the density of states, we can calculate the number of electrons. We can define a variable \(dN\) which represents the number of electrons in an infinitessimal energy band \(dE\):
+                    \begin{align*}
+                        dN&=\frac{g(E)}{\exp\left(\frac{E-E_\mathrm{F}}{kT}\right)+1}\,dE \\
+                        &=\frac{\frac{l}{\hbar\pi}\sqrt{\frac{m}{2E}}}{\exp\left(\frac{E-E_\mathrm{F}}{kT}\right)+1}\,dE
+                    \end{align*}
+                    where \(E_\mathrm{F}\) is the Fermi energy. When \(T\) approches zero, this becomes \[\frac{l}{\hbar\pi}\sqrt{\frac{m}{2E}}.\]
+                    I can integrate this from 0 to \(E_\mathrm{F}\):
+                    \begin{align*}
+                        N&=\int_0^{E_\mathrm{F}}\frac{l}{\hbar\pi}\sqrt{\frac{m}{2E}}\,dE \\
+                        &=\frac{\sqrt m}{\sqrt{2}\hbar\pi}\int_0^{E_\mathrm{F}}\frac{1}{\sqrt{E}}\,dE \\
+                        &=\frac{\sqrt m}{\sqrt{2}\hbar\pi}\left[2E^{1/2}\right]_0^{E_\mathrm{F}} \\
+                        &=\frac{2\sqrt m}{\sqrt{2}\hbar\pi}E_\mathrm{F}^{1/2}
+                    \end{align*}
+                }
+            \end{enumerate}
+        }
+    \end{enumerate}
+\end{document}

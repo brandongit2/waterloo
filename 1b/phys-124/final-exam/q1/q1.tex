@@ -1,0 +1,126 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{libertine}
+\usepackage[libertine]{newtxmath}
+\usepackage{siunitx}
+
+\title{PHYS 124 Final Exam Question 1}
+\author{Brandon Tsang}
+\date{April 23, 2020}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}[label=\textbf{\arabic*.}]
+        \item{
+            \begin{enumerate}[label=\textbf{(\alph*)}]
+                \item{
+                    \textbf{Which processes below are physically forbidden? Why?}
+                    \begin{enumerate}[label=\textbf{(\roman*)}]
+                        \item{
+                            \textbf{\boldmath \(\tau^++\tau^-\rightarrow\mu^++e^-\)}
+                            \par
+                            On the left side,
+                            \begin{align*}
+                                L_\tau&=-1+1=0 \\
+                                L_\mu&=0 \\
+                                L_\mathrm{e}&=0.
+                            \end{align*}
+                            On the right side,
+                            \begin{align*}
+                                L_\tau&=0 \\
+                                L_\mu&=-1 \\
+                                L_\mathrm{e}&=1.
+                            \end{align*}
+                            The conservation of \(L_\mu\) and \(L_\mathrm{e}\) are violated, so this is forbidden.
+                        }
+                        \item{
+                            \textbf{\boldmath \(\mathrm{p}+\bar{\mathrm{n}}\rightarrow\mathrm{p}+\mathrm{n}\)}
+                            \par
+                            On the left side, \(B=1-1=0\). On the right side, \(B=1+1=2\). The conservation of baryon number is violated, so this is forbidden.
+                        }
+                        \item{
+                            \textbf{\boldmath \(\mathrm{u}+\bar{\mathrm{u}}\rightarrow\bar{\mathrm{s}}+\mathrm{s}\)}
+                            \par
+                            On the left side,
+                            \begin{align*}
+                                Q/e&=\frac{2}{3}-\frac{2}{3}=0 \\
+                                B&=\frac{1}{3}-\frac{1}{3}=0 \\
+                                S&=0.
+                            \end{align*}
+                            On the right side,
+                            \begin{align*}
+                                Q/e&=\frac{1}{3}-\frac{1}{3}=0 \\
+                                B&=-\frac{1}{3}+\frac{1}{3}=0 \\
+                                S&=1-1=0.
+                            \end{align*}
+                            Charge, baryon number, and strangeness are all conserved, so this is allowed.
+                        }
+                        \item{
+                            \textbf{\boldmath \(\gamma+\gamma\rightarrow\mu^++\mu^-\)}
+                            \par
+                            On the left side, \(L_\mu=0\). On the right side, \(L_\mu=-1+1=0\). \(L_\mu\) is conserved, so this is allowed.
+                        }
+                        \item{
+                            \textbf{\boldmath \(\mathrm{n}+\pi^-\rightarrow\bar{\mathrm{p}}+\Lambda\)}
+                            \par
+                            On the left side,
+                            \begin{align*}
+                                Q/e&=0-1=-1 \\
+                                B&=1 \\
+                                S&=0.
+                            \end{align*}
+                            On the right side,
+                            \begin{align*}
+                                Q/e&=-1+0=-1 \\
+                                B&=-1+1=0 \\
+                                S&=-1.
+                            \end{align*}
+                            Charge, baryon number, and strangeness are all violated, so this is forbidden.
+                        }
+                        \item{
+                            \textbf{\boldmath \(\mathrm{p}+\bar{\mathrm{p}}\rightarrow\gamma+\gamma+\gamma\)}
+                            \par
+                            On the left side, \(B=1-1=0\). On the right side, \(B=0\). Baryon number is conserved, so this is allowed.
+                        }
+                    \end{enumerate}
+                }
+                \item{
+                    \textbf{The Future Circular Collider (FCC), if built, will collide two beams of protons, each beam having an average energy of 50 TeV. How much energy would a beam in a fixed-target experiment have to have to get the same average total amount of useable energy per collision?}
+                    \par
+                    The useable energy from the collision of a particle into a stationary particle with similar mass is given by \[E_\mathrm{a}^2=2mc^2(E_m+mc^2)\]
+                    where \(m\) is the mass of each particle and \(E_m\) is the total energy of the moving particle. Solving this for \(E_m\):
+                    \begin{align*}
+                        E_\mathrm{a}^2&=2mc^2(E_m+mc^2) \\
+                        E_m+mc^2&=\frac{E_\mathrm{a}^2}{2mc^2} \\
+                        E_m&=\frac{E_\mathrm{a}^2}{2mc^2}-mc^2 \\
+                        &=\tfrac{(\SI{8.01088e-6}{\joule})^2}{2(\SI{1.67262e-27}{\kilogram})(\SI{2.99792e8}{\meter\per\second})^2}-(\SI{1.67262e-27}{\kilogram})(\SI{2.99792e8}{\meter\per\second})^2 \\
+                        &=\SI{0.213448}{\joule}
+                    \end{align*}
+                }
+                \item{
+                    \textbf{\boldmath An experiment is performed at Fermilab to find a new particle \(X\) from the scattering process \[\mathrm{p}+\mathrm{p}\rightarrow K^++K^++X.\] What are the values of the electric charge, strangeness, and baryon number of the \(X\) particle? What quarks must it be made of?}
+                    \par
+                    On the left side, 
+                    \begin{align*}
+                        Q/e&=0 \\
+                        B&=1+1=2 \\
+                        S&=0.
+                    \end{align*}On the right side,
+                    \begin{align*}
+                        Q/e&=1+1+Q_X/e \\
+                        B&=0+B_X \\
+                        S&=S_X.
+                    \end{align*}
+                    To abide by the conservation laws, \(Q_X/e\) must be -2, \(B_X\) must be 2, and \(S_X\) must be 0.
+                }
+            \end{enumerate}
+        }
+    \end{enumerate}
+\end{document}

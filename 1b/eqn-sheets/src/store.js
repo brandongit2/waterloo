@@ -3478,6 +3478,38 @@ let store = createStore(
                                         <li>${k('c')} is the speed of light in a vacuum.</li>
                                     </ul>
                                 `
+                            },
+                            'Chapter 44: Particle Physics and Cosmology',
+                            {
+                                latex: 'E_\\mathrm{a}^2&=2Mc^2E_m+(Mc^2)^2+(mc^2)^2',
+                                description: `
+                                    The available energy in a particle collision, where
+                                    <ul>
+                                        <li>${k('M')} and ${k('m')} are the masses of the two particles (mass ${k('M')} is initially at rest),</li>
+                                        <li>${k('c')} is the speed of light in a vacuum, and</li>
+                                        <li>${k('E_m')} is the total energy of the particle with mass ${k('m')}.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: 'E_\\mathrm{a}^2&=2mc^2(E_m+mc^2)',
+                                description: `
+                                    The available energy in a particle collision, where both particles have the same mass. One of the particles is initially at rest.
+                                    <ul>
+                                        <li>${k('m')} is the mass of each particle,</li>
+                                        <li>${k('c')} is the speed of light in a vacuum, and</li>
+                                        <li>${k('E_m')} is the total energy of the moving particle.</li>
+                                    </ul>
+                                `
+                            }, {
+                                latex: 'E_\\mathrm{a}&=\\sqrt{2mc^2E_m}',
+                                description: `
+                                    The available energy in a particle collision, where both particles have the same mass and the energy of the moving particle is much greater than its rest energy (${k('E_m\\gg mc^2')}). The other particle is initially at rest.
+                                    <ul>
+                                        <li>${k('m')} is the mass of each particle,</li>
+                                        <li>${k('c')} is the speed of light in a vacuum, and</li>
+                                        <li>${k('E_m')} is the total energy of the moving particle.</li>
+                                    </ul>
+                                `
                             }
                         ]
                     },

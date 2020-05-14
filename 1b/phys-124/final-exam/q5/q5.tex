@@ -1,0 +1,67 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{libertine}
+\usepackage[libertine]{newtxmath}
+\usepackage[detect-weight=true]{siunitx}
+
+\title{PHYS 124 Final Exam Question 5}
+\author{Brandon Tsang}
+\date{April 23, 2020}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}[label=\textbf{\arabic*.}, start=5]
+        \item{
+            \textbf{\boldmath A particle of mass \(m\) is placed in a one-dimensional infinite square well potential of width \(L\).}
+            \begin{enumerate}[label=\textbf{(\alph*)}]
+                \item{
+                    \textbf{What is the zero-point energy of a particle placed in this well?}
+                    \par
+                    That is given by the equation \[E=\frac{\pi^2\hbar^2}{2mL^2}.\]
+                }
+                \item{
+                    \textbf{\boldmath Determine the probability \(P_n\) (\(0<x<L/a\)) that a particle in the \(n\)th energy state of \(\psi_n(x)\) is observed to be in a region \(1/a\) of the width of the well.}
+                    \par
+                    The wave function for the particle in the well is \[\psi_n(x)=\sqrt{\frac{2}{L}}\sin\frac{n\pi x}{L}.\]
+                    The probability for the particle to be at any point in the well is \(|\psi|^2\):
+                    \[|\psi_n(x)|^2=\frac{2}{L}\sin^2\left(\frac{n\pi x}{L}\right)\]
+                    Integrating from 0 to \(L/a\):
+                    \begin{align*}
+                        P_n&=\int_0^{L/a}\frac{2}{L}\sin^2\left(\frac{n\pi x}{L}\right)\,dx \\
+                        &=\frac{2}{L}\int_0^{L/a}\frac{1-\cos\left(\frac{2n\pi x}{L}\right)}{2}\,dx \\
+                        &=\frac{2}{L}\int_0^{L/a}\left(\frac{1}{2}-\frac{\cos\left(\frac{2n\pi x}{L}\right)}{2}\right)\,dx \\
+                        &=\frac{2}{L}\frac{L}{2a}-\frac{1}{L}\int_0^{L/a}\cos\left(\frac{2n\pi x}{L}\right)\,dx \\
+                        &=\frac{1}{a}-\frac{1}{L}\frac{L}{2n\pi}\left[\sin u\right]_0^{2n\pi/a} \\
+                        &=\frac{1}{a}-\frac{1}{2n\pi}\left(\sin\left(\frac{2n\pi}{a}\right)-0\right) \\
+                        &=\frac{1}{a}-\frac{1}{2n\pi}\sin\left(\frac{2n\pi}{a}\right)
+                    \end{align*}
+                }
+                \item{
+                    \textbf{\boldmath For what value of \(n\) is this probability the largest? What does your answer become if the region is chosen to be 1/3 the size of the box?}
+                    \par
+                    \(n=1\) will maximize the function, since \(\frac{1}{2n\pi}\) is larger for small \(n\)s, and \(n>0\).
+                    \par
+                    If \(a=3\), the function becomes \[\frac{1}{3}-\frac{1}{2n\pi}\sin\left(\frac{2n\pi}{3}\right).\]
+                    If \(a=3\) and \(n=1\), the probability of finding the particle in the region of the box becomes \(\frac{1}{3}-\frac{\sqrt 3}{4n\pi}\).
+                }
+                \item{
+                    \textbf{\boldmath What does the probability in part \textbf{(b)} become as \(n\) gets large?}
+                    \par
+                    The probability becomes \(\frac{1}{a}\).
+                }
+                \item{
+                    \textbf{\boldmath If the particle in part \textbf{(b)} were classical (no quantum physics), what would be the probability that it would be confined to a region of \(1/a\) of the width of the well? How does this compare to your answer in part \textbf{(d)}?}
+                    \par
+                    The probability for the classical particle would be \(\frac{1}{a}\). This is the same as my answer for part \textbf{(d)}. This makes sense, since high energy particles will have a higher momentum (by \(E=pc\)), and therefore less uncertainty in position.
+                }
+            \end{enumerate}
+        }
+    \end{enumerate}
+\end{document}
