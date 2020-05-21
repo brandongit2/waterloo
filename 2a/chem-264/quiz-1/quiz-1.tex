@@ -1,0 +1,106 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{chemfig}
+\usepackage{chemformula}
+\usepackage{chemmacros}
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{libertine}
+\usepackage[libertine]{newtxmath}
+\usepackage[detect-weight=true]{siunitx}
+
+\title{CHEM 264 Bonus Quiz}
+\author{Brandon Tsang}
+\date{May 15, 2020}
+
+\definecolor{main}{HTML}{3EAD0A}
+\definesubmol{num}2{(-[#1,0.4,,,draw=none]\textcolor{main}{\scriptstyle #2})}
+\definesubmol{label}3{(-[#1,0.6,#2,,draw=none]\textcolor{gray}{\scriptstyle #3})}
+
+\begin{document}
+    \maketitle
+    \setchemfig{atom sep=1.6em}
+    \textbf{(Questions 1--7.) Provide an IUPAC name for each of the following alkanes.}
+    To do these questions, I will draw the line-angle diagram, highlight the main chain, and number the carbons.
+    \begin{enumerate}[label=\textbf{\arabic*.}]
+        \item{
+            \textbf{\ch{CH3CH2CH2CH(CH3)2}}
+            \par
+            \begin{center}
+                \chemname{
+                    \chemfig{!{num}65-[:30,,,,main]!{num}64-[::-60,,,,main]!{num}63-[::60,,,,main](-[::60])!{num}62-[::-60,,,,main]!{num}61}
+                }{\iupac{2-methyl|pentane}}
+            \end{center}
+        }
+        \item{
+            \textbf{\ch{(CH3CH2)4C}}
+            \par
+            \begin{center}
+                \chemname{
+                    \chemfig{!{num}61-[:60,,,,main]!{num}{:-60}2-[,,,,main](-[2]-[::60])(-[6]-[::60])!{num}73-[,,,,main]!{num}{:120}4-[::60,,,,main]!{num}25}
+                }{\iupac{3,3-diethyl|pentane}}
+            \end{center}
+        }
+        \item{
+            \textbf{\boldmath \chemfig{CH_3CH_2CH_2CHCH_2CHCH_3(-[6,,7]CH_3)(-[6,,11]CH_3)}}
+            \par
+            \begin{center}
+                \chemname{
+                    \chemfig{!{num}67-[:30,,,,main]!{num}66-[::-60,,,,main]!{num}65-[::60,,,,main](-[2])!{num}64-[::-60,,,,main]!{num}63-[::60,,,,main](-[2])!{num}62-[::-60,,,,main]!{num}61}
+                }{\iupac{2,4-dimethyl|heptane}}
+            \end{center}
+        }
+        \item{
+            \textbf{\boldmath \chemfig{CH_3CH_2CHCH_2CCH_2CHCH_2CH_3(-[6,,5]CH_3)(-[6,,9]CH_3)(-[2,,9]CH_3)(-[6,,12]CH_2CH_3)}}
+            \par
+            \begin{center}
+                \chemname{
+                    \chemfig{!{num}69-[:30,,,,main]!{num}68-[::-60,,,,main](-[6])!{num}27-[::60,,,,main]!{num}66-[::-60,,,,main](-[::-90])(-[::90])!{num}65-[::0,,,,main]!{num}64-[::60,,,,main](-[2]-[::-60])!{num}63-[::-60,,,,main]!{num}62-[::60,,,,main]!{num}61}
+                }{\iupac{3-ethyl-5,5,7-trimethyl|nonane}}
+            \end{center}
+        }
+        \item{
+            \textbf{\boldmath \chemfig{CH_3CH_2CH_2CCH_2CH_2CH_2CH_2CH_2CH_3(-[6,,7]C(-[6]CH_3)(-[4]H_3C)(-CH_3))(-[2,,7]CH_2CH_3)}}
+            \par
+            \begin{center}
+                \chemname{
+                    \chemfig{!{num}61-[:30,,,,main]!{num}62-[::-60,,,,main]!{num}63-[::60,,,,main](-[::90]-[::-60])(-[::-90](-[::90])(-[::-90])-[::0])!{num}64-[::0,,,,main]!{num}65-[::-60,,,,main]!{num}66-[::60,,,,main]!{num}67-[::-60,,,,main]!{num}68-[::60,,,,main]!{num}69-[::-60,,,,main]!{num}6{10}}
+                }{\iupac{4-\tert-butyl-4-ethyl|decane}}
+            \end{center}
+        }
+        \item{
+            \textbf{\boldmath \chemfig{CH_3CH_2CHCH_2CH_2CH_2CH_2CH_3-[6,,5]C(-[4]H_3C)(-[6]CH_2CH_2CH_3)(-CH_3)}}
+            \par
+            \begin{center}
+                \chemname{
+                    \chemfig{-[:30]-[::-60](-[6,,,,main](-[4])(-)!{num}54-[6,,,,main]!{num}{:210}3-[::60,,,,main]!{num}{:210}2-[::-60,,,,main]!{num}{:210}1)!{num}25-[::60,,,,main]!{num}66-[::-60,,,,main]!{num}67-[::60,,,,main]!{num}68-[::-60,,,,main]!{num}69-[::60,,,,main]!{num}6{10}}
+                }{\iupac{5-ethyl-4,4-dimethyl|decane}}
+            \end{center}
+        }
+        \item{
+            \textbf{\boldmath \chemfig{CH_3CH_2CHCH_2CH_2CH_2CH_2CH_2CH_3-[6,,5]CH(-[5]H_3C)(-[7,,1]CH_3)}}
+            \par
+            \begin{center}
+                \chemname{
+                    \chemfig{-[:30]-[::-60](-[6,,,,main](!{num}{:150}2-[::-60,,,,main]!{num}{:150}1)-[::60])!{num}23-[::60,,,,main]!{num}64-[::-60,,,,main]!{num}65-[::60,,,,main]!{num}66-[::-60,,,,main]!{num}67-[::60,,,,main]!{num}68-[::-60,,,,main]!{num}69}
+                }{\iupac{3-ethyl-2-methyl|nonane}}
+            \end{center}
+        }
+        \item{
+            \textbf{For the following compound, indicate the hybridization (\ch{sp}, \ch{sp^2}, \ch{sp^3}) corresponding to each of the labeled elements (a to f). \begin{center}\boldmath \chemfig{H_2C!{label}62c=C!{label}61d=C(-[2]CN!{label}21a!{label}22b)(-CH_2!{label}61e-CHO!{label}61f)}\end{center}}
+            \par
+            The hybridizations are:
+            \begin{center}
+                \begin{tabular}{l l|l l|l l}
+                    \textbf{\textcolor{gray}{a}} & \ch{sp} & \textbf{\textcolor{gray}{b}} & \ch{sp} & \textbf{\textcolor{gray}{c}} & \ch{sp^2} \\
+                    \textbf{\textcolor{gray}{d}} & \ch{sp} & \textbf{\textcolor{gray}{e}} & \ch{sp^2} & \textbf{\textcolor{gray}{f}} & \ch{sp^2}
+                \end{tabular}
+            \end{center}
+        }
+    \end{enumerate}
+\end{document}

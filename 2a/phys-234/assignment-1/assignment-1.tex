@@ -1,0 +1,76 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{braket}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{libertine}
+\usepackage{mathtools}
+\usepackage[libertine]{newtxmath}
+\usepackage[detect-weight=true]{siunitx}
+
+\title{PHYS 234 Assignment 1}
+\author{Brandon Tsang}
+\date{May 18, 2020}
+
+\newcommand*\abs[1]{\lvert#1\rvert}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}[label=\textbf{\arabic*.}]
+        \item{
+            \textbf{Relationship between trigonometric functions and complex exponentials}
+            \begin{enumerate}[label=\textbf{(\alph*)}]
+                \item{
+                    \textbf{\boldmath Starting from the power series representation of the exponential function \(e^x\), derive Euler's formula: \[e^{i\theta}=\cos\theta+i\sin\theta\] where \(i=\sqrt{-1}\). \[e^x=\sum_{n=0}^\infty\frac{x^n}{n!},\quad\cos x=\sum_{n=0}^\infty\frac{(-1)^nx^{2n}}{(2n)!},\quad\sin x=\sum_{n=0}^\infty\frac{(-1)^nx^{2n+1}}{(2n+1)!}\]}
+                }
+                \par
+                To start, it could be useful to write out the infinite sums in full:
+                \begin{align*}
+                    e^x=\sum_{n=0}^\infty\frac{x^n}{n!}&=\frac{x^0}{0!}+\frac{x^1}{1!}+\frac{x^2}{2!}+\frac{x^3}{3!}+\frac{x^4}{4!}+\frac{x^5}{5!}+\frac{x^6}{6!}+\frac{x^7}{7!}+\frac{x^8}{8!}+\frac{x^9}{9!}+\ldots \\
+                    &=1+x+\frac{x^2}{2}+\frac{x^3}{3!}+\frac{x^4}{4!}+\frac{x^5}{5!}+\frac{x^6}{6!}+\frac{x^7}{7!}+\frac{x^8}{8!}+\frac{x^9}{9!}+\ldots
+                \end{align*}
+                \begin{align*}
+                    \cos x=\sum_{n=0}^\infty\frac{(-1)^nx^{2n}}{(2n)!}&=\frac{(-1)^0x^0}{0!}+\frac{(-1)^1x^2}{2!}+\frac{(-1)^2x^4}{4!}+\frac{(-1)^3x^6}{6!}+\frac{(-1)^4x^8}{8!}+\ldots \\
+                    &=1-\frac{x^2}{2}+\frac{x^4}{4!}-\frac{x^6}{6!}+\frac{x^8}{8!}-\ldots
+                \end{align*}
+                \begin{align*}
+                    \sin x=\sum_{n=0}^\infty\frac{(-1)^nx^{2n+1}}{(2n+1)!}&=\frac{(-1)^0x^1}{1!}+\frac{(-1)^1x^3}{3!}+\frac{(-1)^2x^5}{5!}+\frac{(-1)^3x^7}{7!}+\frac{(-1)^4x^9}{9!}+\ldots \\
+                    &=x-\frac{x^3}{3!}+\frac{x^5}{5!}-\frac{x^7}{7!}+\frac{x^9}{9!}-\ldots
+                \end{align*}
+                When written out like this, it is easy to see that the expansion of \(\cos x\) is extremely similar to that of \(\sin x\), but \(\cos x\) contains all the even terms, while \(\sin x\) contains all the odd terms. Another observation to make is that the expansion of \(e^x\) is astoundingly similar to \(\cos x+\sin x\):
+                \[\cos x+\sin x=1+x-\frac{x^2}{2}-\frac{x^3}{3!}+\frac{x^4}{4!}+\frac{x^5}{5!}-\frac{x^6}{6!}-\frac{x^7}{7!}+\frac{x^8}{8!}+\frac{x^9}{9!}-\ldots\]
+                The only difference is the signs on some of the terms. The pattern appears to be \(++--++--++--\ldots\), which is suspiciously similar to the signs of the powers of \(i\):
+                \[i^0=1,\ i^1=i,\ i^2=-1,\ i^3=-i,\ i^4=1,\ i^5=i,\ i^6=-1,\ \ldots\]
+                The thought comes to mind: what if instead of \(e^x\), we wrote out \(e^{ix}\) instead? Then, the \(x^n\) portion of that infinite sum would lead to the same sign pattern as in \(\cos x+\sin x\).
+                \begin{align*}
+                    e^{ix}&=1+ix+\frac{(ix)^2}{2}+\frac{(ix)^3}{3!}+\frac{(ix)^4}{4!}+\frac{(ix)^5}{5!}+\frac{(ix)^6}{6!}+\frac{(ix)^7}{7!}+\frac{(ix)^8}{8!}+\frac{(ix)^9}{9!}-\ldots \\
+                    &=1+ix-\frac{x^2}{2}-\frac{ix^3}{3!}+\frac{x^4}{4!}+\frac{ix^5}{5!}-\frac{x^6}{6!}-\frac{ix^7}{7!}+\frac{x^8}{8!}+\frac{ix^9}{9!}-\ldots
+                \end{align*}
+                Now the only difference between \(e^{ix}\) and \(\cos x+\sin x\) is a factor of \(i\) on the odd terms. But, as we saw earlier, the odd terms come from \(\sin x\)! If we instead write the expansion of \(\cos x+i\sin x\) (multiplying \(\sin x\) by \(i\)), we get the two expressions to exactly match. This leads us to writing the formula
+                \[e^{ix}=\cos x+i\sin x.\]
+            \end{enumerate}
+        }
+        \item{
+            \textbf{\boldmath Calculations using quantum states \begin{align*}\ket{\psi_1}&=3\ket{+}-i\ket{-} \\ \ket{\psi_2}&=e^{i\pi/3}\ket{+}+\ket{-} \\ \ket{\psi_3}&=7i\ket{+}-2\ket{-}\end{align*}}
+            \begin{enumerate}[label=\textbf{(\alph*)}]
+                \item{
+                    \textbf{\boldmath For each of the states \(\ket{\psi_j}\) above (\(j=1,2,3\)), find the corresponding normalized state \(\ket{\psi_j}_N\).}
+                }
+                \item{
+                    \textbf{\boldmath Using the bra-ket notation, calculate all 9 inner products \(\prescript{}{N}{\braket{\psi_i|\psi_j}_N}\) for \(i=1,2,3\) and \(j=1,2,3\) using the normalized states.}
+                }
+                \item{
+                    \textbf{\boldmath For each state \(\ket{\psi_i}\), find the state \(\ket{\phi_i}\) with unit norm, \(\braket{\phi_i|\phi_i}=1\) that is orthogonal to it. Recall the orthogonality conditions for the basis states: \(\braket{+|+}=\braket{-|-}=1\) and \(\braket{+|-}=\braket{-|+}=0\).}
+                }
+                \item{
+                    \textbf{\boldmath Postulate 4 of quantum mechanics tells us that the complex square of the inner product \(\abs{\braket{a|b}}^2\) is the probability of measuring a particular quantum state. For each of the normalized states \(\ket{\psi}_N\), calculate the probability of measuring each of the six states indicated below. \begin{align*}\ket{1}&=\ket{+} \\ \ket{2}&=\ket{-} \\ \ket{3}&=\frac{1}{\sqrt 2}(\ket{+}+\ket{-}) \\ \ket{4}&=\frac{1}{\sqrt 2}(\ket{+}-\ket{-}) \\ \ket{5}&=\frac{1}{\sqrt 2}(\ket{+}+i\ket{-}) \\ \ket{6}&=\frac{1}{\sqrt 2}(\ket{+}-i\ket{-})\end{align*}}
+                }
+            \end{enumerate}
+        }
+    \end{enumerate}
+\end{document}

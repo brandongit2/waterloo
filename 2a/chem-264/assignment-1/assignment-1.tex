@@ -1,0 +1,75 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{chemfig}
+\usepackage{chemformula}
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{libertine}
+\usepackage[libertine]{newtxmath}
+\usepackage[detect-weight=true]{siunitx}
+
+\title{CHEM 264 Assignment 1}
+\author{Brandon Tsang}
+\date{May 20, 2020}
+
+\setlength\parindent{0pt}
+\definecolor{green}{HTML}{3EAD0A}
+\newcommand\osplus{{\ooalign{\hidewidth\(\bigcirc\)\hidewidth\cr\(+\)}}}
+\newcommand\osminus{{\ooalign{\hidewidth\(\bigcirc\)\hidewidth\cr\(-\)}}}
+\setchemfig{atom sep=1.6em, arrow offset=12pt}
+
+\begin{document}
+    \maketitle
+    \textbf{\boldmath For each of the following species, draw \underline{all} valid resonance structures and identify the most important resonance contributor. Use curved arrows to show (mental) movement of electron pairs. \begin{center}\chemfig{\charge{90=\:,150:2pt={\tiny\(\osminus\)}}{C}H_2NO_2}\hspace{1in}\chemfig{H-[4]N*6(-=-\charge{180:4pt={\tiny\(\osplus\)}}{}---)}\hspace{1in}\chemfig{[:-54]N*5((-H)-O--(<:NH_2)-(=O)-)}\end{center}}
+    \par
+    \setchemfig{atom sep=3em}
+    Resonance structures for the first one:
+    \begin{center}
+        \schemestart
+            \chemfig{\charge{180=\:,125:4pt={\tiny\(\osminus\)}}{C}(-[2]H)(-[6]H)-\charge{120:4pt={\tiny\(\osplus\)}}{N}(=[:60]\charge{120=\:,0=\:}{O})(-[:-60]\charge{30=\:,-60=\:,-150=\:,45:4pt={\tiny\(\osminus\)}}{O})}
+            \arrow{<->}
+            \chemfig{\charge{180=\:,125:4pt={\tiny\(\osminus\)}}{C}(-[2]H)(-[6]H)-\charge{120:4pt={\tiny\(\osplus\)}}{N}(-[@{no1}:60]@{o1}\charge{150=\:,60=\:,-30=\:,45:4pt={\tiny\(\osminus\)}}{O})(=[@{no2}:-60]@{o2}\charge{0=\:,-120=\:}{O})}
+            \arrow{<->}
+            \chemfig{\charge{180=\:,125:4pt={\tiny\(\osminus\)}}{C}(-[2]H)(-[6]H)-\charge{120:4pt={\tiny2 \(\osplus\)}}{N}(-[:60]\charge{150=\:,60=\:,-30=\:,45:4pt={\tiny\(\osminus\)}}{O})(-[@{no3}:-60]@{o3}\charge{30=\:,-60=\:,-150=\:,45:4pt={\tiny\(\osminus\)}}{O})}
+            \arrow(--.mid west){<->}
+            \chemname{\chemfig{@{c}C(-[2]H)(-[6]H)=[@{cn}]\charge{120:4pt={\tiny\(\osplus\)}}{N}(-[:60]\charge{150=\:,60=\:,-30=\:,45:4pt={\tiny\(\osminus\)}}{O})(-[:-60]\charge{30=\:,-60=\:,-150=\:,45:4pt={\tiny\(\osminus\)}}{O})}}{most important}
+        \schemestop
+        \chemmove{
+            \draw[green, shorten <=2pt, shorten >=5pt] (no1) to[out=150, in=160, min distance=0.6cm] (o1);
+            \draw[green, shorten <=4pt, shorten >=4pt] (o2) to[out=200, in=210, min distance=0.6cm] (no2);
+            \draw[green, shorten <=4pt, shorten >=4pt] (c) to[out=70, in=90, min distance=0.5cm] (cn);
+            \draw[green, shorten <=2pt, shorten >=5pt] (no3) to[out=210, in=200, min distance=0.6cm] (o3);
+        }
+    \end{center}
+    Resonance structures for the second one:
+    \begin{center}
+        \schemestart
+            \chemname{\chemfig{H-[4]\charge{180=\:}{N}*6(-=-\charge{180:4pt={\tiny\(\osplus\)}}{}---)}}{most important}
+            \arrow(.mid east--){<->}
+            \chemfig{H-[4]\charge{180=\:}{N}*6(-\charge{60:4pt={\tiny\(\osplus\)}}{}-[@{sngl1}]=[@{dbl1}]---)}
+            \arrow{<->}
+            \chemfig{H-[4]@{n}\charge{60:4pt={\tiny\(\osplus\)}}{N}*6(=[@{dbl2}]-=---)}
+        \schemestop
+        \chemmove{
+            \draw[green, shorten <=2pt, shorten >=4pt] (sngl1) to[out=270, in=-30, min distance=0.5cm] (dbl1);
+            \draw[green, shorten <=2pt, shorten >=4pt] (n) to[out=180, in=210, min distance=0.5cm] (dbl2);
+        }
+    \end{center}
+    Resonance structures for the third one:
+    \begin{center}
+        \schemestart
+            \chemname{\chemfig{[:-54]N*5((-H)-O--(<:NH_2)-(=O)-)}}{most important}
+            \arrow(.mid east--){<->}
+            \chemfig{[:-54]@{n}\charge{70:4pt={\tiny\(\osplus\)}}{N}*5((-H)-O--(<:NH_2)-(-[@{sngl1}]@{o}\charge{45:2pt={\tiny\(\osminus\)}}{O})=[@{dbl}])}
+        \schemestop
+        \chemmove{
+            \draw[green, shorten <=2pt, shorten >=4pt] (n) to[out=-18, in=-54, min distance=0.5cm] (dbl);
+            \draw[green, shorten <=2pt, shorten >=2pt] (sngl1) to[out=180, in=180, min distance=0.5cm] (o);
+        }
+    \end{center}
+\end{document}
