@@ -1,0 +1,100 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{braket}
+\usepackage{booktabs}
+\usepackage[outline]{contour}
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{libertine}
+\usepackage{mathtools}
+\usepackage[libertine]{newtxmath}
+\usepackage{parskip}
+\usepackage[detect-weight=true]{siunitx}
+
+\title{PHYS 234 Assignment 1}
+\author{Brandon Tsang}
+\date{May 18, 2020}
+
+\contourlength{0.1em}
+
+\DeclareMathOperator\conj{conj}
+\newcommand\abs[1]{\lvert#1\rvert}
+\newcommand\Abs[1]{\left\lvert#1\right\rvert}
+\newcommand\uline[1]{\underline{\smash{#1}}\llap{\contour{white}{#1}}}
+
+\newenvironment{amatrix}[1]{%
+    \left[\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+    \end{array}\right]
+}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}[label=\textbf{\arabic*.}, start=4]
+        \item{
+            \textbf{\boldmath \uline{Matrix Operations} \\ Given the following matrices: \[A=\begin{bmatrix}-1 & 0 & i \\ 3 & 0 & 2 \\ i & -2i & 2\end{bmatrix}\qquad B=\begin{bmatrix}2 & 0 & i \\ 0 & i & 0 \\ 1 & 2 & 2\end{bmatrix}\] compute the following:}
+                \begin{enumerate}[label=\textbf{(\alph*)}]
+                    \item{
+                        \textbf{\boldmath \(A+B\)}
+                        \begin{align*}
+                            A+B&=\begin{bmatrix}-1 & 0 & i \\ 3 & 0 & 2 \\ i & -2i & 2\end{bmatrix}+\begin{bmatrix}2 & 0 & i \\ 0 & i & 0 \\ 1 & 2 & 2\end{bmatrix} \\
+                            &=\begin{bmatrix}1 & 0 & 2i \\ 3 & i & 2 \\ 1+i & 2-2i & 4\end{bmatrix}
+                        \end{align*}
+                    }
+                    \item{
+                        \textbf{\boldmath \(AB\)}
+                        \begin{align*}
+                            AB&=\begin{bmatrix}-1 & 0 & i \\ 3 & 0 & 2 \\ i & -2i & 2\end{bmatrix}\begin{bmatrix}2 & 0 & i \\ 0 & i & 0 \\ 1 & 2 & 2\end{bmatrix} \\
+                            &=\begin{bmatrix}-2+i & 2i & i \\ 8 & 4 & 4+3i \\ 2+2i & 6 & 3\end{bmatrix}
+                        \end{align*}
+                    }
+                    \item{
+                        \textbf{\boldmath \([A,B]\) (commutator of \(A\) and \(B\))}
+                        \par
+                        The commutator of two matrices is defined as
+                        \[[A,B]=AB-BA.\]
+                        We already know \(AB\), so we must find \(BA\).
+                        \begin{align*}
+                            BA&=\begin{bmatrix}2 & 0 & i \\ 0 & i & 0 \\ 1 & 2 & 2\end{bmatrix}\begin{bmatrix}-1 & 0 & i \\ 3 & 0 & 2 \\ i & -2i & 2\end{bmatrix} \\
+                            &=\begin{bmatrix}-3 & 2 & 4i \\ 3i & 0 & 2i \\ 5+2i & -4i & 8+i\end{bmatrix}
+                        \end{align*}
+                        Then,
+                        \begin{align*}
+                            [A,B]=AB-BA&=\begin{bmatrix}-2+i & 2i & i \\ 8 & 4 & 4+3i \\ 2+2i & 6 & 3\end{bmatrix}-\begin{bmatrix}-3 & 2 & 4i \\ 3i & 0 & 2i \\ 5+2i & -4i & 8+i\end{bmatrix} \\
+                            &=\begin{bmatrix}-5+i & -2+2i & -3i \\ 8-3i & 4 & 4+i \\ -3 & 6+4i & -5-i\end{bmatrix}
+                        \end{align*}
+                    }
+                    \item{
+                        \textbf{\boldmath \(A^\mathrm{T}\) (transpose)}
+                        \begin{equation*}
+                            A^\mathrm{T}=\begin{bmatrix}-1 & 3 & i \\ 0 & 0 & -2i \\ i & 2 & 2\end{bmatrix}
+                        \end{equation*}
+                    }
+                    \item{
+                        \textbf{\boldmath \(A^\dagger\) (complex transpose)}
+                        \begin{equation*}
+                            A^\mathrm{T}=\begin{bmatrix}-1 & 3 & -i \\ 0 & 0 & 2i \\ -i & 2 & 2\end{bmatrix}
+                        \end{equation*}
+                    }
+                    \item{
+                        \textbf{\boldmath Verify by direct calculation that \((AB)^\mathrm{T}=B^\mathrm{T}A^\mathrm{T}\).}
+                        \par
+                        First, we calculate \((AB)^\mathrm{T}\):
+                        \begin{equation*}
+                            (AB)^\mathrm{T}=\begin{bmatrix}-2+i & 8 & 2+2i \\ 2i & 4 & 6 \\ i & 4+3i & 3\end{bmatrix}
+                        \end{equation*}
+                        Next, we calculate \(B^\mathrm{T}A^\mathrm{T}\):
+                        \begin{align*}
+                                B^\mathrm{T}A^\mathrm{T}&=\begin{bmatrix}2 & 0 & 1 \\ 0 & i & 2 \\ i & 0 & 2\end{bmatrix}\begin{bmatrix}-1 & 3 & i \\ 0 & 0 & -2i \\ i & 2 & 2\end{bmatrix} \\
+                                &=\begin{bmatrix}-2+i & 8 & 2+2i \\ 2i & 4 & 6 \\ i & 4+3i & 3\end{bmatrix}
+                        \end{align*}
+                        We can see that they are the same, so it is true that \((AB)^\mathrm{T}=B^\mathrm{T}A^\mathrm{T}\).
+                    }
+                \end{enumerate}
+        }
+    \end{enumerate}
+\end{document}
