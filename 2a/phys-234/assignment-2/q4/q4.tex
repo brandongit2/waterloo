@@ -1,0 +1,86 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{braket}
+\usepackage{chemfig}
+\usepackage{chemformula}
+\usepackage[outline]{contour}
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{libertine}
+\usepackage{mathtools}
+\usepackage[libertine]{newtxmath}
+\usepackage{pgfplots}
+\usepackage[detect-weight=true]{siunitx}
+
+\title{PHYS 234 Assignment 2}
+\author{Brandon Tsang}
+\date{May 29, 2020}
+
+\pgfplotsset{compat=1.17}
+\contourlength{0.1em}
+\newcommand\uline[1]{\underline{\smash{#1}}\llap{\contour{white}{#1}}}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+\newenvironment{amatrix}[1]{%
+    \left[\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+    \end{array}\right]
+}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}[label=\textbf{\arabic*.}, start=4]
+        \item{
+            \textbf{\boldmath \uline{State Tomography} \\ It is known that there is a 90\% probability of obtaining \(S_z=\frac \hbar 2\) if a measurement of \(S_z\) is carried out on a spin-\(\frac 1 2\) particle. In addition, it is known that there is a 20\% probability of obtaining \(S_y=\frac \hbar 2\) if a measurement of \(S_y\) is carried out. Determine the spin state of a particle as completely as possible from this information. What is the probability of obtaining \(S_x=-\frac \hbar 2\) if a measurement of \(S_x\) is carried out?}
+            \par
+            From the first criterion:
+            \begin{align*}
+                \abs{\braket{+|\psi}}^2&=\tfrac{9}{10} \\
+                \abs{\braket{+|\psi}}&=\tfrac{3}{\sqrt{10}}
+            \end{align*}
+            If \(\ket\psi=a\ket{+}+b\ket{-}\):
+            \begin{align*}
+                \abs{\bra{+}(a\ket{+}+b\ket{-})}&=\tfrac{3}{\sqrt{10}} \\
+                \abs{a}&=\tfrac{3}{\sqrt{10}} \\
+                a&=\frac{3}{\sqrt{10}}e^{i\alpha}
+            \end{align*}
+            And from the second criterion: 
+            \begin{align*}
+                \abs{\prescript{}{y}{\braket{+|\psi}}}^2&=\frac 1 5 \\
+                \abs{\prescript{}{y}{\braket{+|\psi}}}^2&=\frac 1 5 \\
+                \abs{\tfrac{1}{\sqrt 2}(\bra{+}-i\bra{-})(a\ket{+}+b\ket{-})}^2&=\frac 1 5 \\
+                \abs{\tfrac{1}{\sqrt 2}(a-bi)}^2&=\frac 1 5 \\
+                \frac 1 2 (\abs{a}^2+\abs{b}^2+ab^*i-a^*bi)&=\frac 1 5 \\
+                1+ab^*i-a^*bi&=\frac 2 5 \\
+                a\abs{b}e^{-i\beta}i-a^*\abs{b}e^{i\beta}i&=-\frac 3 5 \\
+                \abs{b}\left(ae^{-i\beta}-a^*e^{i\beta}\right)&=\frac{3i}{5} \\
+                \abs{a}\abs{b}\left(e^{i\alpha}e^{-i\beta}-e^{-i\alpha}e^{i\beta}\right)&=\frac{3i}{5} \\
+                \abs{a}\abs{b}\left(e^{i(\alpha-\beta)}-e^{i(\beta-\alpha)}\right)&=\frac{3i}{5}
+            \end{align*}
+            Arbitrarily set \(\beta=0\):
+            \begin{align*}
+                \abs{a}\abs{b}\left(e^{i\alpha}-e^{-i\alpha}\right)&=\frac{3i}{5} \\
+                \abs{b}\left(e^{i\alpha}-e^{-i\alpha}\right)&=\frac{3\sqrt{10}i}{15} \\
+                b&=\frac{\sqrt{10}i}{5\left(e^{i\alpha}-e^{-i\alpha}\right)}
+            \end{align*}
+            So \(\ket\psi=\frac{3}{\sqrt{10}}e^{i\alpha}\ket{+}+\frac{\sqrt{10}i}{5\left(e^{i\alpha}-e^{-i\alpha}\right)}\ket{-}\).
+            \par
+            Now, we find the probability of measuring \(S_x=-\frac \hbar 2\):
+            \begin{align*}
+                \abs{\prescript{}{x}{\braket{-|\psi}}}^2&=\abs{\frac{1}{\sqrt 2}(\bra{+}-\bra{-})\left(\frac{3}{\sqrt{10}}e^{i\alpha}\ket{+}+\frac{\sqrt{10}i}{5\left(e^{i\alpha}-e^{-i\alpha}\right)}\ket{-}\right)}^2 \\
+                &=\abs{\frac{1}{\sqrt 2}\left(\frac{3}{\sqrt{10}}e^{i\alpha}-\frac{\sqrt{10}i}{5\left(e^{i\alpha}-e^{-i\alpha}\right)}\right)}^2 \\
+            \end{align*}
+        }
+    \end{enumerate}
+\end{document}

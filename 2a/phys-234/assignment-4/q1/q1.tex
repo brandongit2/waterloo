@@ -1,0 +1,123 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{braket}
+\usepackage[outline]{contour}
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{libertine}
+\usepackage{mathtools}
+\usepackage[libertine]{newtxmath}
+\usepackage{pgfplots}
+\usepackage{suffix}
+
+\title{PHYS 234 Assignment 4}
+\author{Brandon Tsang}
+\date{June 12, 2020}
+
+\pgfplotsset{compat=1.16}
+% Use \uline{text} to underline text. It ducks the line behind descenders.
+\newcommand\uline[1]{\underline{\smash{#1}}\llap{\contour{white}{#1}}}
+\DeclareMathOperator{\diff}{d}
+% d#1 / d#2. For example, \dd{y}{x} gives dy/dx.
+\newcommand\dd[2]{\frac{\diff #1}{\diff #2}}
+% d / d#1. For example, \dd*{t} gives d/dt.
+\WithSuffix\newcommand\dd*[1]{\frac{\diff{}}{\diff #1}\,}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}[label=\textbf{\arabic*.}]
+        \item{
+            \textbf{\boldmath A spin-1 particle is in the state \[\ket{\psi}\xrightarrow{S_z\text{ basis}}\frac{1}{\sqrt{14}}\begin{bmatrix}1 \\ 2 \\ 3i\end{bmatrix}.\]}
+            \begin{enumerate}[label=\textbf{(\alph*)}]
+                \item{
+                    \textbf{\boldmath What are the probabilities that a measurement of \(S_z\) will yield the value \(\hbar\), \(0\), or \(-\hbar\) for this state? What is \(\langle S_z\rangle\)?}
+                    \par
+                    The probability of \(\hbar\):
+                    \begin{align*}
+                        \abs{\braket{\psi|1}}^2&=\abs*{\frac{1}{\sqrt{14}}\begin{bmatrix}1 & 2 & -3i\end{bmatrix}\begin{bmatrix}1 \\ 0 \\ 0\end{bmatrix}}^2 \\
+                        &=\frac{1}{14}\abs*{1}^2 \\
+                        \Aboxed{\abs{\braket{\psi|1}}^2&=\frac{1}{14}}
+                    \end{align*}
+                    The probability of \(0\):
+                    \begin{align*}
+                        \abs{\braket{\psi|0}}^2&=\abs*{\frac{1}{\sqrt{14}}\begin{bmatrix}1 & 2 & -3i\end{bmatrix}\begin{bmatrix}0 \\ 1 \\ 0\end{bmatrix}}^2 \\
+                        &=\frac{1}{14}\abs*{2}^2 \\
+                        \Aboxed{\abs{\braket{\psi|0}}^2&=\frac{2}{7}}
+                    \end{align*}
+                    The probability of \(-\hbar\):
+                    \begin{align*}
+                        \abs{\braket{\psi|1}}^2&=\abs*{\frac{1}{\sqrt{14}}\begin{bmatrix}1 & 2 & -3i\end{bmatrix}\begin{bmatrix}0 \\ 0 \\ 1\end{bmatrix}}^2 \\
+                        &=\frac{1}{14}\abs*{-3i}^2 \\
+                        \Aboxed{\abs{\braket{\psi|1}}^2&=\frac{9}{14}}
+                    \end{align*}
+                    The expectation value can be calculated with
+                    \begin{equation*}
+                        \langle S\rangle=\sum_iP_ia_i
+                    \end{equation*}
+                    where \(S\) is the operator, and \(P_i\) is the probability of measuring the \(i\)th eigenvalue (\(a_i\)) of that operator. For \(S_z\), this is
+                    \begin{align*}
+                        \langle S_z\rangle&=\frac{1}{14}\hbar+\frac{2}{7}\cdot0+\frac{9}{14}\cdot-\hbar \\
+                        \Aboxed{\langle S_z\rangle&=-\frac{5}{7}\hbar}.
+                    \end{align*}
+                }
+                \item{
+                    \textbf{\boldmath What is \(\langle S_x\rangle\) for this state? \textit{Suggestion: Use matrix mechanics to evaluate the expectation value.}}
+                    \par
+                    The expectation value can also be calculated using
+                    \begin{equation*}
+                        \langle S\rangle=\bra{\psi}S\ket{\psi}.
+                    \end{equation*}
+                    First, we need to get \(\ket{\psi}\) in terms of \(S_x\) basis vectors. We need to find the transformation matrix which will do so:
+                    \begin{align*}
+                        U_{z\rightarrow x}=\begin{bmatrix}\prescript{}{x}{\braket{1|1}} & \prescript{}{x}{\braket{1|0}} & \prescript{}{x}{\braket{1|-1}} \\ \prescript{}{x}{\braket{0|1}} & \prescript{}{x}{\braket{0|0}} & \prescript{}{x}{\braket{0|-1}} \\ \prescript{}{x}{\braket{-1|1}} & \prescript{}{x}{\braket{-1|0}} & \prescript{}{x}{\braket{-1|-1}}\end{bmatrix}
+                    \end{align*}
+                    The \(S_x\) basis vectors are:
+                    \begin{equation*}
+                        \ket{1}_x=\begin{bmatrix}\frac 1 2 \\ \frac{1}{\sqrt 2} \\ \frac 1 2\end{bmatrix}\qquad
+                        \ket{0}_x=\begin{bmatrix}\frac{1}{\sqrt 2} \\ 0 \\ -\frac{1}{\sqrt 2}\end{bmatrix}\qquad
+                        \ket{-1}_x=\begin{bmatrix}\frac 1 2 \\ -\frac{1}{\sqrt 2} \\ \frac 1 2\end{bmatrix}
+                    \end{equation*}
+                    So
+                    \begin{align*}
+                        U_{z\rightarrow x}=\begin{bmatrix}\frac 1 2 & \frac{1}{\sqrt 2} & \frac 1 2 \\ \frac{1}{\sqrt 2} & 0 & -\frac{1}{\sqrt 2} \\ \frac 1 2 & -\frac{1}{\sqrt 2} & \frac 1 2\end{bmatrix}.
+                    \end{align*}
+                    Therefore, \(\ket{\psi}\) in the \(S_x\) basis is
+                    \begin{align*}
+                        U_{z\rightarrow x}\ket{\psi}&=\frac{1}{\sqrt{14}}\begin{bmatrix}\frac 1 2 & \frac{1}{\sqrt 2} & \frac 1 2 \\ \frac{1}{\sqrt 2} & 0 & -\frac{1}{\sqrt 2} \\ \frac 1 2 & -\frac{1}{\sqrt 2} & \frac 1 2\end{bmatrix}\begin{bmatrix}1 \\ 2 \\ 3i\end{bmatrix} \\
+                        &=\frac{1}{\sqrt{14}}\begin{bmatrix}\frac 1 2 +\frac{2\sqrt 2}{2}+\frac{3i}{2} \\ \frac{\sqrt 2}{2}+0-\frac{3i}{\sqrt 2} \\ \frac 1 2 -\frac{2\sqrt 2}{2}+\frac{3i}{2}\end{bmatrix} \\
+                        \ket{\psi}_x&=\frac{1}{2\sqrt{14}}\begin{bmatrix}1+2\sqrt 2+3i \\ \sqrt 2-3\sqrt 2 i \\ 1-2\sqrt 2+3i\end{bmatrix}
+                    \end{align*}
+                    The \(S_x\) operator is given by
+                    \begin{equation*}
+                        S_x=\frac{\hbar}{\sqrt 2}\begin{bmatrix}0 & 1 & 0 \\ 1 & 0 & 1 \\ 0 & 1 & 0\end{bmatrix},
+                    \end{equation*}
+                    so the expectation value is
+                    \begin{align*}
+                        \prescript{}{x}{\bra{\psi}S_x\ket{\psi}}_x&=\frac{\hbar}{56\sqrt2}\begin{bmatrix}1+2\sqrt 2+3i & \sqrt 2-3\sqrt 2 i & 1-2\sqrt 2+3i\end{bmatrix}\begin{bmatrix}0 & 1 & 0 \\ 1 & 0 & 1 \\ 0 & 1 & 0\end{bmatrix}\begin{bmatrix}1+2\sqrt 2+3i \\ \sqrt 2-3\sqrt 2 i \\ 1-2\sqrt 2+3i\end{bmatrix} \\
+                        &=\frac{\hbar}{56\sqrt2}\begin{bmatrix}1+2\sqrt 2+3i & \sqrt 2-3\sqrt 2 i & 1-2\sqrt 2+3i\end{bmatrix}\begin{bmatrix}\sqrt 2-3\sqrt 2i \\ 2+6i \\ \sqrt 2-e\sqrt 2i\end{bmatrix} \\
+                        &=\frac{\hbar}{56\sqrt2}\left(\sqrt2-3\sqrt2i\right)\left(1+2\sqrt2+3i+2+6i+1-2\sqrt2+3i\right) \\
+                        &=\frac{\hbar}{56\sqrt2}\left(\sqrt2-3\sqrt2i\right)(4+12i) \\
+                        &=\frac{\hbar}{56\sqrt2}\cdot40\sqrt2 \\
+                        \Aboxed{\langle S_z\rangle&=\frac{5}{7}\hbar}
+                    \end{align*}
+                }
+                \item{
+                    \textbf{\boldmath What is the probability that a measurement of \(S_x\) will yield the value \(\hbar\) for this state?}
+                    \begin{align*}
+                        \abs{\braket{\psi|1}_x}^2&=\abs*{\frac{1}{\sqrt{14}}\begin{bmatrix}1 & 2 & -3i\end{bmatrix}\begin{bmatrix}\frac 1 2 \\ \frac{1}{\sqrt 2} \\ \frac 1 2\end{bmatrix}}^2 \\
+                        &=\frac{1}{14}\abs*{\frac{1+2\sqrt2-3i}{2}}^2 \\
+                        &=\frac{1}{56}\left(1+2\sqrt2-3i\right)\left(1+2\sqrt2+3i\right) \\
+                        &=\frac{1}{56}\left(18+4\sqrt2\right) \\
+                        \Aboxed{\abs{\braket{\psi|1}_x}^2&=\frac{1}{28}\left(9+2\sqrt2\right)}
+                    \end{align*}
+                }
+            \end{enumerate}
+        }
+    \end{enumerate}
+\end{document}

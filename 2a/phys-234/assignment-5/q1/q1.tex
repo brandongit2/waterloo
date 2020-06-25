@@ -1,0 +1,108 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{braket}
+\usepackage[outline]{contour}
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{libertine}
+\usepackage{mathtools}
+\usepackage[libertine]{newtxmath}
+\usepackage{pgfplots}
+\usepackage{suffix}
+
+\title{PHYS 234 Assignment 5}
+\author{Brandon Tsang}
+\date{June 19, 2020}
+
+\pgfplotsset{compat=1.16}
+% Use \uline{text} to underline text. It ducks the line behind descenders.
+\newcommand\uline[1]{\underline{\smash{#1}}\llap{\contour{white}{#1}}}
+\DeclareMathOperator{\diff}{d}
+% d#1 / d#2. For example, \dd{y}{x} gives dy/dx.
+\newcommand\dd[2]{\frac{\diff #1}{\diff #2}}
+% d / d#1. For example, \dd*{t} gives d/dt.
+\WithSuffix\newcommand\dd*[1]{\frac{\diff{}}{\diff #1}\,}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}[label=\textbf{\arabic*.}]
+        \item{
+            \textbf{\boldmath Consider a spin-\(\frac 1 2\) particle with a magnetic moment. (You should consider the following parts of the question to follow each other in time.)}
+            \begin{enumerate}[label=\textbf{(\alph*)}]
+                \item{
+                    \textbf{\boldmath At time \(t=0\), the observable \(S_x\) is measured, with the result \(+\frac \hbar 2\). What is the state vector \(\ket{\psi(t=0)}\) immediately after the measurement?}
+                    \par
+                    The vector is \(\ket{\psi(0)}=\frac{1}{\sqrt 2}(\ket{+}+\ket{-})\).
+                }
+                \item{
+                    \textbf{\boldmath Immediately after the measurement, a magnetic field \(\vec{B}=B_0\hat{z}\) is applied and the particle is allowed to evolve for a time \(T\). What is the state of the system at time \(t=T\)? \textit{(What are the eigenstates of the Hamiltonian? Is the initial state (from (a)) an eigenstate of the Hamiltonian?)}}
+                    \par
+                    The Hamiltonian is \[H=\omega_0\mathbf{S}_z,\] where \(\omega_0=\frac{gqB_0}{2m}\).
+                    \par
+                    Since \(H\) and \(\mathbf{S}_z\) are proportional to each other, the eigenstates of \(H\) are the eigenstates of \(\mathbf{S}_z\), which we already know are \(\ket{+}\) and \(\ket{-}\).
+                    \par
+                    The initial state from part (a) is not an eigenstate of the Hamiltonian.
+                    \par
+                    The state of the system after a time \(T\) is
+                    \begin{align*}
+                        \ket{\psi(T)}&=\frac{1}{\sqrt 2}\left(e^{-iHt/\hbar}\ket{+}+e^{-iHt/\hbar}\ket{-}\right) \\
+                        &=\frac{1}{\sqrt 2}\left(e^{-i\omega_0T/2}\ket{+}+e^{i\omega_0T/2}\ket{-}\right) \\
+                        &=\frac{1}{\sqrt 2}e^{-i\omega_0T/2}\left(\ket{+}+e^{i\omega_0T}\ket{-}\right)
+                    \end{align*}
+                    We can ignore the overall phase factor, so
+                    \begin{equation*}
+                        \ket{\psi(T)}=\frac{1}{\sqrt 2}\left(\ket{+}+e^{i\omega_0T}\ket{-}\right)
+                    \end{equation*}
+                }
+                \item{
+                    \textbf{\boldmath At \(t=T\), the magnetic field is very rapidly changed to \(\vec{B}=B_0\hat{y}\). After another time interval \(T\), a measurement of \(S_x\) is carried out once more. What is the probability that a value \(+\frac \hbar 2\) is found?}
+                    \par
+                    First, I'll transform \(\ket{\psi(T)}\) to the new energy eigenbasis, which is \(\ket{+}_y\) and \(\ket{-}_y\), using the transformation matrix
+                    \[U_{z\rightarrow y}=\begin{bmatrix}\braket{+|+}_y & \braket{+|-}_y \\ \braket{-|+}_y & \braket{-|-}_y\end{bmatrix}=\frac{1}{\sqrt 2}\begin{bmatrix}1 & 1 \\ i & -i\end{bmatrix}.\]
+                    \begin{align*}
+                        \ket{\psi(T)}_y&=U_{z\rightarrow y}\ket{\psi(T)} \\
+                        &=\frac 1 2\begin{bmatrix}1 & 1 \\ i & -i\end{bmatrix}\begin{bmatrix}1 \\ e^{i\omega_0T}\end{bmatrix} \\
+                        &=\frac 1 2\begin{bmatrix}1+e^{i\omega_0T} \\ 1-e^{i\omega_0T}\end{bmatrix} \\
+                        &=\frac 1 2\left(1+e^{i\omega_0T}\right)\ket{+}_y+\frac i 2\left(1-e^{i\omega_0T}\right)\ket{-}_y
+                    \end{align*}
+                    After another time interval \(T\), the state becomes
+                    \begin{align*}
+                        \ket{\psi(2T)}_y&=\frac 1 2\left(1+e^{i\omega_0T}\right)e^{-i\omega_0T/2}\ket{+}_y+\frac i 2\left(1-e^{i\omega_0T}\right)e^{i\omega_0T/2}\ket{-}_y \\
+                        &=e^{-i\omega_0T/2}\left(\frac 1 2\left(1+e^{i\omega_0T}\right)\ket{+}_y+\frac i 2\left(1-e^{i\omega_0T}\right)e^{i\omega_0T}\ket{-}_y\right)
+                    \end{align*}
+                    Again, we can get rid of the overall phase factor:
+                    \begin{align*}
+                        \ket{\psi(2T)}_y&=\frac 1 2\left(1+e^{i\omega_0T}\right)\ket{+}_y+\frac i 2\left(1-e^{i\omega_0T}\right)e^{i\omega_0T}\ket{-}_y
+                    \end{align*}
+                    Now, to find the probability of measuring \(\ket{+}_x\), we need to get \(\ket{+}_x\) into the \(S_y\) basis using the transformation matrix
+                    \[U_{x\rightarrow y}=\begin{bmatrix}\prescript{}{x}{\braket{+|+}_y} & \prescript{}{x}{\braket{-|+}_y} \\ \prescript{}{x}{\braket{+|-}_y} & \prescript{}{x}{\braket{-|-}_y}\end{bmatrix}=\frac{1}{\sqrt 2}\begin{bmatrix}1+i & 1-i \\ 1+i & 1-i\end{bmatrix}.\]
+                    \begin{align*}
+                        \ket{{}+{}_x}_y&=U_{x\rightarrow y}\begin{bmatrix}1 \\ 0\end{bmatrix} \\
+                        &=\begin{bmatrix}1+i & 1-i \\ 1+i & 1-i\end{bmatrix}\begin{bmatrix}1 \\ 0\end{bmatrix} \\
+                        &=\frac 1 2\begin{bmatrix}1+i \\ 1-i\end{bmatrix}
+                    \end{align*}
+                    Then,
+                    \begin{align*}
+                        \abs{\prescript{}{y}{\braket{+_x|\psi(2T)}_y}}^2&=\abs*{\frac 1 4\begin{bmatrix}1-i & 1+i\end{bmatrix}\begin{bmatrix}1+e^{i\omega_0T} \\ i\left(1-e^{i\omega_0T}\right)e^{i\omega_0T}\end{bmatrix}}^2 \\
+                        &=\frac{1}{16}\abs*{(1-i)\left(1+e^{i\omega_0T}\right)+(1+i)\left(i\left(1-e^{i\omega_0T}\right)e^{i\omega_0T}\right)}^2 \\
+                        &=\frac{1}{16}\abs*{1+e^{i\omega_0T}-i-ie^{i\omega_0T}+(1+i)\left(ie^{i\omega_0T}-ie^{2i\omega_0T}\right)}^2 \\
+                        &=\frac{1}{16}\abs*{1+e^{i\omega_0T}-i-ie^{i\omega_0T}+ie^{i\omega_0T}-ie^{2i\omega_0T}-e^{i\omega_0T}+e^{2i\omega_0T}}^2 \\
+                        &=\frac{1}{16}\abs*{1-i-ie^{2i\omega_0T}+e^{2i\omega_0T}}^2 \\
+                        &=\frac{1}{16}\abs*{1-i+e^{2i\omega_0T}(1-i)}^2 \\
+                        &=\frac{1}{16}\abs*{(1-i)\left(1+e^{2i\omega_0T}\right)}^2 \\
+                        &=\frac{1}{16}(1-i)(1+i)\left(1+e^{2i\omega_0T}\right)\left(1+e^{-2i\omega_0T}\right) \\
+                        &=\frac{1}{16}\cdot2\cdot2(1+\cos(2\omega_0T)) \\
+                        &=\frac 1 4(1+\cos(2\omega_0T)) \\
+                        &=\frac{\cos^2(\omega_0T)}{2}
+                    \end{align*}
+                }
+            \end{enumerate}
+        }
+    \end{enumerate}
+\end{document}

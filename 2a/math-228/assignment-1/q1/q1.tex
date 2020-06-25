@@ -1,0 +1,57 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{chemfig}
+\usepackage{chemformula}
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{libertine}
+\usepackage{mathtools}
+\usepackage[libertine]{newtxmath}
+\usepackage{pgfplots}
+\usepackage[detect-weight=true]{siunitx}
+\usepackage{suffix}
+
+\title{MATH 228 Assignment 1}
+\author{Brandon Tsang}
+\date{June 10, 2020}
+
+\pgfplotsset{compat=1.16}
+\setlength{\parindent}{0pt}
+\DeclareMathOperator{\diff}{d}
+\newcommand\dd[2]{\frac{\diff #1}{\diff #2}}
+\WithSuffix\newcommand\dd*[1]{\frac{\diff{}}{\diff #1}\,}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}[label=\textbf{\arabic*.}]
+        \item{
+            \textbf{\boldmath Find the solution of the initial value problem \[y'-y=2te^t,\quad y(0)=1.\]}%
+            If we multiply both sides by some function \(\mu=\mu(t)\), we get
+            \begin{equation}
+                \label{eqn:1}
+                \mu y'-\mu y=2\mu te^t.
+            \end{equation}
+            And if we choose a \(\mu\) such that \[\dd{\mu}{t}=-\mu,\] the left side of equation (\ref{eqn:1}) will be equal to \(\dd*{t}\mu y\).
+            \begin{align*}
+                \dd{\mu}{t}&=-\mu \\
+                \frac 1 \mu \diff\mu&=-\diff t \\
+                \ln\abs{\mu}&=-t+C_1 \\
+                \abs\mu&=e^{-t}e^{C_1} \\
+                \mu&=ce^{-t}
+            \end{align*}
+            We can discard the constant \(c\) since we don't need the most general expression for \(\mu\). Next, we substitute \(\dd*{t}\mu y\) in for \(\mu y'-\mu y\) in equation (\ref{eqn:1}).
+            \begin{align*}
+                \dd*{t}\mu y&=2\mu te^t \\
+                \dd*{t}e^{-t}y&=2t \\
+                e^{-t}y&=t^2+C \\
+                \Aboxed{y&=e^tt^2+Ce^t}
+            \end{align*}
+        }
+    \end{enumerate}
+\end{document}

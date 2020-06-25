@@ -1,0 +1,38 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage[outline]{contour}
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{libertine}
+\usepackage{mathtools}
+\usepackage[libertine]{newtxmath}
+\usepackage{pgfplots}
+\usepackage{suffix}
+
+\title{PHYS 234 Assignment 5}
+\author{Brandon Tsang}
+\date{June 19, 2020}
+
+\pgfplotsset{compat=1.16}
+% Use \uline{text} to underline text. It ducks the line behind descenders.
+\newcommand\uline[1]{\underline{\smash{#1}}\llap{\contour{white}{#1}}}
+\DeclareMathOperator{\diff}{d}
+% d#1 / d#2. For example, \dd{y}{x} gives dy/dx.
+\newcommand\dd[2]{\frac{\diff #1}{\diff #2}}
+% d / d#1. For example, \dd*{t} gives d/dt.
+\WithSuffix\newcommand\dd*[1]{\frac{\diff{}}{\diff #1}\,}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}[label=\textbf{\arabic*.}]
+        \item{
+            \textbf{\boldmath A beam of identical neutral particles with spin \(\frac 1 2\) travels along the \(y\) axis. The beam passes through a series of two Stern-Gerlach spin analyzing magnets, each of which is designed to analyze the spin component along the \(z\) axis. The first Stern-Gerlach analyzer allows only particles with spin up (along the \(z\) axis) to pass through. The second Stern-Gerlach analyzer allows only particles with spin down (along the \(z\) axis) to pass through. The particles travel at a speed \(v\) between the two analyzers, which are separated by a region of length \(d\) in which there is a uniform magnetic field \(B_0\) pointing in the \(x\) direction. Determine the smallest value of \(d\) such that 25\% of the particles transmitted by the first analyzer are transmitted by the second analyzer.}
+        }
+    \end{enumerate}
+\end{document}

@@ -1,0 +1,46 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage[outline]{contour}
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{libertine}
+\usepackage{mathtools}
+\usepackage[libertine]{newtxmath}
+\usepackage{pgfplots}
+\usepackage{suffix}
+
+\title{MATH 228 Assignment 3}
+\author{Brandon Tsang}
+\date{June 10, 2020}
+
+\pgfplotsset{compat=1.16}
+% Use \uline{text} to underline text. It ducks the line behind descenders.
+\newcommand\uline[1]{\underline{\smash{#1}}\llap{\contour{white}{#1}}}
+\DeclareMathOperator{\diff}{d}
+% d#1 / d#2. For example, \dd{y}{x} gives dy/dx.
+\newcommand\dd[2]{\frac{\diff #1}{\diff #2}}
+% d / d#1. For example, \dd*{t} gives d/dt.
+\WithSuffix\newcommand\dd*[1]{\frac{\diff{}}{\diff #1}\,}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}[label=\textbf{\arabic*.}, start=3]
+        \item{
+            \textbf{\boldmath Solve the differential equation \[y'=\cos(x)\cos^2(2y).\]}
+            \vspace*{-24pt}
+            \begin{align*}
+                \dd{y}{x}&=\cos(x)\cos^2(2y) \\
+                \sec^2(2y)\diff y&=\cos(x)\diff x \\
+                \tfrac{1}{2}\tan 2y&=\sin x+C_1 \\
+                2y&=\tan^{-1}(2\sin x+C) \\
+                \Aboxed{y&=\tfrac{1}{2}\tan^{-1}(2\sin x+C)}
+            \end{align*}
+        }
+    \end{enumerate}
+\end{document}

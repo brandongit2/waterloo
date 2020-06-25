@@ -2,6 +2,9 @@
 
 \usepackage{amsmath}
 \usepackage{booktabs}
+\usepackage{chemfig}
+\usepackage{chemformula}
+\usepackage[outline]{contour}
 \usepackage{enumitem}
 \usepackage[T1]{fontenc}
 \usepackage[margin=1in]{geometry}
@@ -9,11 +12,16 @@
 \usepackage[utf8]{inputenc}
 \usepackage{libertine}
 \usepackage[libertine]{newtxmath}
+\usepackage{pgfplots}
 \usepackage[detect-weight=true]{siunitx}
 
 \title{Title here}
 \author{Brandon Tsang}
 \date{Date here}
+
+\pgfplotsset{compat=1.16}
+% Use \uline{text} to underline text. It ducks the line behind descenders.
+\newcommand\uline[1]{\underline{\smash{#1}}\llap{\contour{white}{#1}}}
 
 \begin{document}
     \maketitle

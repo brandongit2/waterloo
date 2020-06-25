@@ -1,0 +1,138 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{braket}
+\usepackage[outline]{contour}
+\usepackage{empheq}
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{libertine}
+\usepackage{mathtools}
+\usepackage[libertine]{newtxmath}
+\usepackage{pgfplots}
+\usepackage{suffix}
+
+\title{PHYS 234 Assignment 4}
+\author{Brandon Tsang}
+\date{June 12, 2020}
+
+\pgfplotsset{compat=1.16}
+% Use \uline{text} to underline text. It ducks the line behind descenders.
+\newcommand\uline[1]{\underline{\smash{#1}}\llap{\contour{white}{#1}}}
+\DeclareMathOperator{\diff}{d}
+% d#1 / d#2. For example, \dd{y}{x} gives dy/dx.
+\newcommand\dd[2]{\frac{\diff #1}{\diff #2}}
+% d / d#1. For example, \dd*{t} gives d/dt.
+\WithSuffix\newcommand\dd*[1]{\frac{\diff{}}{\diff #1}\,}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclareMathOperator{\tr}{tr}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}[label=\textbf{\arabic*.}, start=2]
+        \item{
+            \textbf{\boldmath Given the density operator \[\hat{\rho}=\frac 3 4 \ket{+}\bra{+}+\frac 1 4 \ket{-}\bra{-}\]}
+            \begin{enumerate}[label=\textbf{(\alph*)}]
+                \item{
+                    \textbf{Construct the density matrix.}
+                    \par
+                    \(\ket{+}\bra{+}\) is \(\begin{bmatrix}1 & 0 \\ 0 & 0\end{bmatrix}\) and \(\ket{-}\bra{-}\) is \(\begin{bmatrix}0 & 0 \\ 0 & 1\end{bmatrix}\), so
+                    \begin{align*}
+                        \hat\rho&=\frac 3 4 \begin{bmatrix}1 & 0 \\ 0 & 0\end{bmatrix}+\frac 1 4 \begin{bmatrix}0 & 0 \\ 0 & 1\end{bmatrix} \\
+                        &=\begin{bmatrix}\frac 3 4 & 0 \\ 0 & \frac 1 4\end{bmatrix}.
+                    \end{align*}
+                }
+                \item{
+                    \textbf{Show that this is the density operator for a mixed state.}
+                    \par
+                    If \(\hat\rho\neq\hat\rho^2\), then the density operator describes a mixed state.
+                    \begin{align*}
+                        \begin{bmatrix}\frac 3 4 & 0 \\ 0 & \frac 1 4\end{bmatrix}&\stackrel{?}{=}\begin{bmatrix}\frac 3 4 & 0 \\ 0 & \frac 1 4\end{bmatrix}\begin{bmatrix}\frac 3 4 & 0 \\ 0 & \frac 1 4\end{bmatrix} \\
+                        &\neq\begin{bmatrix}\frac{9}{16} & 0 \\ 0 & \frac 1 8\end{bmatrix} \\
+                    \end{align*}
+                    \(\hat\rho\neq\hat\rho^2\), so this density operator describes a mixed state.
+                }
+                \item{
+                    \textbf{\boldmath Determine \(\langle S_x\rangle\), \(\langle S_y\rangle\), and \(\langle S_z\rangle\) for this state.}
+                    \par
+                    If \(\hat\rho\) is the density operator for the state \(\ket{\psi}\), then to find the expectation value of the \(S_x\) operator:
+                    \begin{align*}
+                        \bra{\psi}S_x\ket{\psi}&=\tr(S_x\hat\rho) \\
+                        &=\tr\left(\frac{\hbar}{2}\begin{bmatrix}0 & 1 \\ 1 & 0\end{bmatrix}\begin{bmatrix}\frac 3 4 & 0 \\ 0 & \frac 1 4\end{bmatrix}\right) \\
+                        &=\frac{\hbar}{2}\tr\left(\begin{bmatrix}0 & \frac 1 4 \\ \frac 3 4 & 0\end{bmatrix}\right) \\
+                        \Aboxed{\langle S_x\rangle&=0\hbar}
+                    \end{align*}
+                    And then for the \(S_y\) operator:
+                    \begin{align*}
+                        \bra{\psi}S_y\ket{\psi}&=\tr(S_y\hat\rho) \\
+                        &=\tr\left(\frac{\hbar}{2}\begin{bmatrix}0 & -i \\ i & 0\end{bmatrix}\begin{bmatrix}\frac 3 4 & 0 \\ 0 & \frac 1 4\end{bmatrix}\right) \\
+                        &=\frac{\hbar}{2}\tr\left(\begin{bmatrix}0 & -\frac{i}{4} \\ \frac{3i}{4} & 0\end{bmatrix}\right) \\
+                        \Aboxed{\langle S_y\rangle&=0\hbar}
+                    \end{align*}
+                    And finally for the \(S_z\) operator:
+                    \begin{align*}
+                        \bra{\psi}S_z\ket{\psi}&=\tr(S_z\hat\rho) \\
+                        &=\tr\left(\frac{\hbar}{2}\begin{bmatrix}1 & 0 \\ 0 & -1\end{bmatrix}\begin{bmatrix}\frac 3 4 & 0 \\ 0 & \frac 1 4\end{bmatrix}\right) \\
+                        &=\frac{\hbar}{2}\tr\left(\begin{bmatrix}\frac 3 4 & 0 \\ 0 & -\frac 1 4\end{bmatrix}\right) \\
+                        &=\frac{\hbar}{2}\frac 1 2 \\
+                        \Aboxed{\langle S_z\rangle&=\frac{1}{4}\hbar}
+                    \end{align*}
+                }
+                \item{
+                    \textbf{\boldmath Find states \(\ket{\psi_1}\) and \(\ket{\psi_2}\) for which the density operator can be expressed in the form \[\hat\rho=\frac 1 2\ket{\psi_1}\bra{\psi_1}+\frac 1 2 \ket{\psi_2}\bra{\psi_2}.\]}
+                    \par
+                    Let \(\ket{\psi_1}=\begin{bmatrix}a \\ b\end{bmatrix}\) and \(\ket{\psi_2}=\begin{bmatrix}c \\ d\end{bmatrix}\). Then,
+                    \begin{align*}
+                        \hat\rho=\begin{bmatrix}\frac 3 4 & 0 \\ 0 & \frac 1 4\end{bmatrix}&=\frac 1 2 \begin{bmatrix}a \\ b\end{bmatrix}\begin{bmatrix}a & b\end{bmatrix}+\frac 1 2 \begin{bmatrix}c \\ d\end{bmatrix}\begin{bmatrix}c & d\end{bmatrix} \\
+                        &=\frac 1 2 \begin{bmatrix}a^2 & ab \\ ab & b^2\end{bmatrix}+\frac 1 2 \begin{bmatrix}c^2 & cd \\ cd & d^2\end{bmatrix} \\
+                        &=\frac 1 2 \begin{bmatrix}a^2+c^2 & ab+cd \\ ab+cd & b^2+d^2\end{bmatrix} \\
+                        \begin{bmatrix}\frac 3 2 & 0 \\ 0 & \frac 1 2\end{bmatrix}&=\begin{bmatrix}a^2+c^2 & ab+cd \\ ab+cd & b^2+d^2\end{bmatrix}
+                    \end{align*}
+                    This gives us three (linearly dependent) equations:
+                    \begin{gather*}
+                        a^2+c^2=\frac 3 2 \\
+                        b^2+d^2=\frac 1 2 \\
+                        ab+cd=0
+                    \end{gather*}
+                    And if we use the fact that the trace of \(\dfrac 1 2 \begin{bmatrix}a^2+c^2 & ab+cd \\ ab+cd & b^2+d^2\end{bmatrix}\) is 1, then we have a fourth:
+                    \begin{align*}
+                        \tr\left(\frac 1 2 \begin{bmatrix}a^2+c^2 & ab+cd \\ ab+cd & b^2+d^2\end{bmatrix}\right)&=1 \\
+                        \frac 1 2 (a^2+b^2+c^2+d^2)&=1 \\
+                        a^2+b^2+c^2+d^2&=2
+                    \end{align*}
+                    It is easier to guess solutions than to actually solve them, so I will do that.
+                    \par
+                    Since \(ab+cd=0\), a trivial solution would be to have [\(a\) or \(b\)] and [\(c\) or \(d\)] equal zero. That way, we'll get \(0+0=0\). I will arbitrarily choose \(b\) and \(c\) to equal zero.
+                    \par
+                    Next,
+                    \begin{align*}
+                        b^2+d^2&=\frac 1 2 \\
+                        d^2&=\frac 1 2 \\
+                        d&=\sqrt{\frac 1 2}
+                    \end{align*}
+                    and
+                    \begin{align*}
+                        a^2+c^2&=\frac 3 2 \\
+                        a^2&=\frac 3 2 \\
+                        a&=\sqrt{\frac 3 2}.
+                    \end{align*}
+                    To check if the solutions work:
+                    \begin{align*}
+                        \begin{bmatrix}\frac 3 4 & 0 \\ 0 & \frac 1 4\end{bmatrix}&\stackrel{?}{=}\frac 1 2 \begin{bmatrix}a^2+c^2 & ab+cd \\ ab+cd & b^2+d^2\end{bmatrix} \\
+                        &\stackrel{?}{=}\frac 1 2 \begin{bmatrix}\frac 3 2+0 & 0+0 \\ 0+0 & 0+\frac 1 2\end{bmatrix} \\
+                        &=\begin{bmatrix}\frac 3 4 & 0 \\ 0 & \frac 1 4\end{bmatrix}
+                    \end{align*}
+                    And we can confirm that this set of solutions is valid. These solutions give the states
+                    \begin{empheq}[box=\fbox]{gather*}
+                        \ket{\psi_1}=\sqrt{\frac 3 2}\ket{+} \\
+                        \ket{\psi_2}=\sqrt{\frac 1 2}\ket{-}.
+                    \end{empheq}
+                }
+            \end{enumerate}
+        }
+    \end{enumerate}
+\end{document}

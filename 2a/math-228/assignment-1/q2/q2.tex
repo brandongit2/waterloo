@@ -1,0 +1,76 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage[outline]{contour}
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{libertine}
+\usepackage{mathtools}
+\usepackage{mdframed}
+\usepackage[libertine]{newtxmath}
+\usepackage{pgfplots}
+\usepackage[detect-weight=true]{siunitx}
+\usepackage{suffix}
+
+\title{MATH 228 Assignment 1}
+\author{Brandon Tsang}
+\date{June 10, 2020}
+
+\pgfplotsset{compat=1.16}
+% Use \uline{text} to underline text. It ducks the line behind descenders.
+\newcommand\uline[1]{\underline{\smash{#1}}\llap{\contour{white}{#1}}}
+\DeclareMathOperator{\diff}{d}
+% d#1 / d#2. For example, \dd{y}{x} gives dy/dx.
+\newcommand\dd[2]{\frac{\diff #1}{\diff #2}}
+% d / d#1. For example, \dd*{t} gives d/dt.
+\WithSuffix\newcommand\dd*[1]{\frac{\diff{}}{\diff #1}\,}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}[label=\textbf{\arabic*.}, start=2]
+        \item{
+            \textbf{\boldmath A swimming pool contains an excessive amont of chlorine that must be removed before it can be used (unfortunately, the pool guy dumped too much chlorine into the pool because he made a mistake in his calculations!) The pool currently contains \SI{100000}{\litre}, with a chlorine concentration of \SI{0.1}{\gram\per\litre}. The pool water is to be diluted with fresh water flowing in at a rate of \SI{200}{\litre\per\minute}. Assume that the pool is well-mixed, and the pool water is flowing out at the same rate that it flows in (onto the neighbor's lawn). Find the time that will elapse before the concetration of chlorine in the pool reaches 10\% of its original value.}
+            \par
+            Let's define a function \(C(t)\) which represents the amount of chlorine in the pool in grams. The change in chlorine amount every minute is then
+            \begin{align*}
+                \dd{C}{t}&=-\frac{C(t)}{\SI{100000}{\litre}}\cdot\SI{200}{\litre\per\minute} \\
+                &=C(t)\cdot\SI{-0.002}{\per\minute}
+            \end{align*}
+            where \(\frac{C(t)}{\SI{100000}{\litre}}\) is the concentration of chlorine in the pool. We can solve this differntial equation to get the amount of chlorine in the pool at any given time:
+            \begin{align*}
+                \dd{C}{t}&=C(t)\cdot\SI{-0.002}{\per\minute} \\
+                \frac{1}{C(t)}\diff C&=\SI{-0.002}{\per\minute}\diff t \\
+                \ln\abs{C(t)}&=\SI{-0.002}{\per\minute}\cdot t+c_1 \\
+                \abs{C(t)}&=e^{\SI{-0.002}{\per\minute}\cdot t}e^{c_1} \\
+                C(t)&=ce^{\SI{-0.002}{\per\minute}\cdot t}
+            \end{align*}
+            To find \(c\), we'll need to know the initial amount of chlorine in the pool. The concentration at \(t=0\) is \SI{0.1}{\gram\per\litre}, so the amount is
+            \[\SI{0.1}{\gram\per\litre}\times\SI{100000}{\litre}=\SI{10000}{\gram}.\]
+            Then,
+            \begin{align*}
+                C(0)=ce^{0}&=\SI{10000}{\gram} \\
+                c&=\SI{10000}{\gram}
+            \end{align*}
+            and
+            \begin{equation*}
+                C(t)=\SI{10000}{\gram}\cdot e^{\SI{-0.002}{\per\minute}\cdot t}.
+            \end{equation*}
+            10\% of the initial concentration is \SI{0.01}{\gram\per\litre}, and with \SI{100000}{\litre} of water, this amounts to \SI{1000}{\gram} of chlorine.
+            \begin{align*}
+                C(t)=\SI{10000}{\gram}\cdot e^{\SI{-0.002}{\per\minute}\cdot t}&=\SI{1000}{\gram} \\
+                e^{\SI{-0.002}{\per\minute}\cdot t}&=0.1 \\
+                \SI{-0.002}{\per\minute}\cdot t&=\ln 0.1 \\
+                t&=-\frac{\ln 0.1}{0.002}\,\si{\minute} \\
+                &\approx\SI{1151}{\minute}
+            \end{align*}
+            \begin{mdframed}
+                It will take \textasciitilde{}\SI{1151}{\minute} for the concentration of chlorine in the pool to reach 10\% of its initial value.
+            \end{mdframed}
+        }
+    \end{enumerate}
+\end{document}

@@ -1,0 +1,1 @@
+\Aboxed{math goes here} (requires package mathtools)

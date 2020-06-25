@@ -1,0 +1,87 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{braket}
+\usepackage[outline]{contour}
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{libertine}
+\usepackage{mathtools}
+\usepackage[libertine]{newtxmath}
+\usepackage{pgfplots}
+\usepackage{suffix}
+
+\title{PHYS 234 Assignment 4}
+\author{Brandon Tsang}
+\date{June 12, 2020}
+
+\pgfplotsset{compat=1.16}
+% Use \uline{text} to underline text. It ducks the line behind descenders.
+\newcommand\uline[1]{\underline{\smash{#1}}\llap{\contour{white}{#1}}}
+\DeclareMathOperator{\diff}{d}
+% d#1 / d#2. For example, \dd{y}{x} gives dy/dx.
+\newcommand\dd[2]{\frac{\diff #1}{\diff #2}}
+% d / d#1. For example, \dd*{t} gives d/dt.
+\WithSuffix\newcommand\dd*[1]{\frac{\diff{}}{\diff #1}\,}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}[label=\textbf{\arabic*.}, start=3]
+        \item{
+            \textbf{\boldmath The density matrix for an ensemble of spin-\(\frac 1 2\) particles in the \(S_z\) basis is \[\hat\rho\xrightarrow[]{S_z\text{ basis}}\begin{bmatrix}\frac 1 4 & n \\ n^* & p\end{bmatrix}.\]}
+            \begin{enumerate}[label=\textbf{(\alph*)}]
+                \item{
+                    \textbf{\boldmath What value must \(p\) have? Why?}
+                    \par
+                    Since the trace of \(\hat\rho\) must be 1, \(p\) must be \(\frac 3 4\).
+                }
+                \item{
+                    \textbf{\boldmath What value(s) must \(n\) have for the density matrix to represent a pure state?}
+                    \par
+                    For \(\hat\rho\) to be a pure ensemble, \(\hat\rho\) must equal \(\hat\rho^2\).
+                    \begin{align*}
+                        \begin{bmatrix}\frac 1 4 & n \\ n^* & \frac 3 4\end{bmatrix}&=\begin{bmatrix}\frac 1 4 & n \\ n^* & \frac 3 4\end{bmatrix}\begin{bmatrix}\frac 1 4 & n \\ n^* & \frac 3 4\end{bmatrix} \\
+                        &=\begin{bmatrix}\frac 1 8+\abs{n}^2 & n \\ n^* & \frac 3 4\end{bmatrix}
+                    \end{align*}
+                    The only constraint we have on the value of \(n\) is that \(\frac 1 8 +\abs{n}^2=\frac 1 4\):
+                    \begin{align*}
+                        \frac 1 8 +\abs{n}^2=\frac 1 4 \\
+                        \abs{n}^2&=\frac 1 8 \\
+                        n&=\frac{1}{\sqrt 8}e^{i\theta}
+                    \end{align*}
+                    \(\theta\) is some angle.
+                }
+                \item{
+                    \textbf{\boldmath What pure state is represented when \(n\) takes its maximum possible real value? Express your answer in terms of the state \(\ket{+}_n\): \[\ket{+}_n=\cos\left(\frac \theta 2\right)\ket{+}+e^{i\phi}\sin\left(\frac \theta 2\right)\ket{-}\]}
+                    The maximum possible real value for \(n\) is \(\frac{1}{\sqrt 8}\). (\(\theta=0\))
+                    \begin{align*}
+                        \rho&=\ket{+}_n\prescript{}{n}{\bra{+}} \\
+                        &=\begin{bmatrix}\cos\frac \theta 2 \\ e^{i\phi}\sin\frac \theta 2\end{bmatrix}\begin{bmatrix}\cos\frac \theta 2 & e^{i\phi}\sin\frac \theta 2\end{bmatrix} \\
+                        &=\begin{bmatrix}\cos^2\frac \theta 2 & e^{i\phi}\sin\left(\frac \theta 2\right)\cos\left(\frac \theta 2\right) \\ e^{i\phi}\sin\left(\frac \theta 2\right)\cos\left(\frac \theta 2\right) & e^{2i\phi}\sin^2\frac \theta 2\end{bmatrix}
+                    \end{align*}
+                    So we have
+                    \begin{align*}
+                        \cos^2\frac \theta 2&=\frac 1 4 \\
+                        \cos\frac \theta 2&=\frac 1 2 \\
+                        \frac \theta 2&=\frac\pi 3 \\
+                        \theta&=\frac{2\pi}{3}
+                    \end{align*}
+                    and
+                    \begin{align*}
+                        e^{2i\phi}\sin^2\frac\pi 3&=\frac 3 4 \\
+                        e^{2i\phi}\frac 3 4&=\frac 3 4\\
+                        2i\phi&=0 \\
+                        \phi&=0.
+                    \end{align*}
+                    Finally, we get that
+                    \[\ket{+}_n=\frac{\sqrt 3}{2}\ket{+}+\frac 1 2\ket{-}.\]
+                }
+            \end{enumerate}
+        }
+    \end{enumerate}
+\end{document}

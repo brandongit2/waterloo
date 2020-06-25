@@ -1,0 +1,165 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{braket}
+\usepackage{chemfig}
+\usepackage{chemformula}
+\usepackage[outline]{contour}
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{libertine}
+\usepackage{mathtools}
+\usepackage[libertine]{newtxmath}
+\usepackage{pgfplots}
+\usepackage[detect-weight=true]{siunitx}
+
+\title{PHYS 234 Assignment 2}
+\author{Brandon Tsang}
+\date{May 29, 2020}
+
+\pgfplotsset{compat=1.17}
+\contourlength{0.1em}
+\newcommand\uline[1]{\underline{\smash{#1}}\llap{\contour{white}{#1}}}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+\newenvironment{amatrix}[1]{%
+    \left[\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+    \end{array}\right]
+}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}[label=\textbf{\arabic*.}]
+        \item{
+            \textbf{\boldmath \uline{Computing Probabilities} \\ A beam of spin-\(\tfrac 1 2\) particles is prepared in the state \[\ket{\psi}=\tfrac{3i}{5}\ket{+}_y+\tfrac 4 5\ket{-}_y.\]}%
+            The state is given in terms of the \(S_y\) eigenvectors. Since we derived relations for the \(S_z\) operator in class, I will express \(\ket \psi\) in terms of \(S_z\) eigenvectors to ease the calculations.
+            \par
+            First, I will confirm that \(\ket \psi\) is normalized:
+            \begin{align*}
+                \braket{\psi|\psi}&\stackrel{?}{=}1 \\
+                \left(-\tfrac{3i}{5}\prescript{}{y}{\bra{+}}+\tfrac 4 5\prescript{}{y}{\bra{-}}\right)\left(\tfrac{3i}{5}\ket{+}_y+\tfrac 4 5\ket{-}_y\right)&\stackrel{?}{=}1 \\
+                \frac{9}{25}+\frac{16}{25}&\stackrel{?}{=}1 \\
+                1&=1
+            \end{align*}
+            Then, I find the projection of \(\ket \psi\) onto \(\ket +\):
+            \begin{align*}
+                \braket{+|\psi}&=\bra{+}\left(\tfrac{3i}{5}\ket{+}_y+\tfrac 4 5\ket{-}_y\right) \\
+                &=\tfrac{3i}{5}\braket{+|+}_y+\tfrac 4 5 \braket{+|-}_y
+            \end{align*}
+            From class, \(\ket{+}_y=\frac{1}{\sqrt 2}(\ket{+}+i\ket{-})\) and \(\ket{-}_y=\frac{1}{\sqrt 2}(\ket{+}-i\ket{-})\):
+            \begin{align*}
+                &=\tfrac{3i}{5}\bra{+}\cdot\tfrac{1}{\sqrt 2}(\ket{+}+i\ket{-})+\tfrac 4 5 \bra{+}\cdot\tfrac{1}{\sqrt 2}(\ket{+}-i\ket{-}) \\
+                &=\tfrac{3i}{5\sqrt 2}(\braket{+|+}+i\braket{+|-})+\tfrac{4}{5\sqrt 2}(\braket{+|+}-i\braket{+|-}) \\
+                &=\frac{4+3i}{5\sqrt 2}
+            \end{align*}
+            And again with \(\ket -\):
+            \begin{align*}
+                \braket{-|\psi}&=\bra{-}\left(\tfrac{3i}{5}\ket{+}_y+\tfrac 4 5\ket{-}_y\right) \\
+                &=\tfrac{3i}{5}\braket{-|+}_y+\tfrac 4 5 \braket{-|-}_y \\
+                &=\tfrac{3i}{5}\bra{-}\cdot\tfrac{1}{\sqrt 2}(\ket{+}+i\ket{-})+\tfrac 4 5 \bra{-}\cdot\tfrac{1}{\sqrt 2}(\ket{+}-i\ket{-}) \\
+                &=\tfrac{3i}{5\sqrt 2}(\braket{-|+}+i\braket{-|-})+\tfrac{4}{5\sqrt 2}(\braket{-|+}-i\braket{-|-}) \\
+                &=\frac{3i^2}{5\sqrt 2}-\frac{4i}{5\sqrt 2} \\
+                &=\frac{-3-4i}{5\sqrt 2}
+            \end{align*}
+            So \(\ket \psi\) is then \[\ket \psi=\tfrac{1}{5\sqrt 2}((4+3i)\ket{+}-(3+4i)\ket{-}).\]
+            \begin{enumerate}[label=\textbf{(\alph*)}]
+                \item{
+                    \textbf{\boldmath What are the possible measurement results of the spin operator \(S_x\) and with what probability would they occur?}
+                    \par
+                    The two possible measurement results are \(+\frac \hbar 2\) and \(-\frac \hbar 2\).
+                    \par
+                    The probability of \(+\frac \hbar 2\) is:
+                    \begin{align*}
+                        \abs{\prescript{}{x}{\braket{+|\psi}}}^2&=\abs{\prescript{}{x}{\bra{+}}\cdot\tfrac{1}{5\sqrt 2}((4+3i)\ket{+}-(3+4i)\ket{-})}^2 \\
+                        &=\abs{\tfrac{4+3i}{5\sqrt 2}\prescript{}{x}{\braket{+|+}}-\tfrac{3+4i}{5\sqrt 2}\prescript{}{x}{\braket{+|-}}}^2
+                    \end{align*}
+                    From class, \(\ket{+}_x=\frac{1}{\sqrt 2}(\ket{+}+\ket{-})\):
+                    \begin{align*}
+                        &=\abs{\tfrac{4+3i}{5\sqrt 2}\cdot\tfrac{1}{\sqrt 2}(\bra{+}+\bra{-})\ket{+}-\tfrac{3+4i}{5\sqrt 2}\cdot\tfrac{1}{\sqrt 2}(\bra{+}+\bra{-})\ket{-}}^2 \\
+                        &=\abs{\frac{4+3i}{5\cdot 2}-\frac{3+4i}{5\cdot 2}}^2 \\
+                        &=\abs{\frac{1-i}{10}}^2 \\
+                        &=\frac{1+1}{100} \\
+                        &=\frac{1}{50}
+                    \end{align*}
+                    The probability of \(-\frac \hbar 2\) is:
+                    \begin{align*}
+                        \abs{\prescript{}{x}{\braket{-|\psi}}}^2&=\abs{\prescript{}{x}{\bra{+}}\cdot\tfrac{1}{5\sqrt 2}((4+3i)\ket{+}-(3+4i)\ket{-})}^2 \\
+                        &=\abs{\tfrac{4+3i}{5\sqrt 2}\prescript{}{x}{\braket{-|+}}-\tfrac{3+4i}{5\sqrt 2}\prescript{}{x}{\braket{-|-}}}^2
+                    \end{align*}
+                    From class, \(\ket{-}_x=\frac{1}{\sqrt 2}(\ket{+}-\ket{-})\):
+                    \begin{align*}
+                        &=\abs{\tfrac{4+3i}{5\sqrt 2}\cdot\tfrac{1}{\sqrt 2}(\bra{+}-\bra{-})\ket{+}-\tfrac{3+4i}{5\sqrt 2}\cdot\tfrac{1}{\sqrt 2}(\bra{+}-\bra{-})\ket{-}}^2 \\
+                        &=\abs{\frac{4+3i}{5\cdot 2}+\frac{3+4i}{5\cdot 2}}^2 \\
+                        &=\abs{\frac{7-7i}{10}}^2 \\
+                        &=\frac{49+49}{100} \\
+                        &=\frac{49}{50}
+                    \end{align*}
+                }
+                \item{
+                    \textbf{\boldmath What are the possible measurement results of the spin operator \(S_y\) and with what probability would they occur?}
+                    \par
+                    The two possible measurement results are \(+\frac \hbar 2\) and \(-\frac \hbar 2\).
+                    \par
+                    The probability of \(+\frac \hbar 2\) is:
+                    \begin{align*}
+                        \abs{\prescript{}{y}{\braket{+|\psi}}}^2&=\abs{\prescript{}{y}{\bra{+}}\cdot\tfrac{1}{5\sqrt 2}((4+3i)\ket{+}-(3+4i)\ket{-})}^2 \\
+                        &=\abs{\tfrac{4+3i}{5\sqrt 2}\prescript{}{y}{\braket{+|+}}-\tfrac{3+4i}{5\sqrt 2}\prescript{}{y}{\braket{+|-}}}^2
+                    \end{align*}
+                    From class, \(\ket{+}_y=\frac{1}{\sqrt 2}(\ket{+}+i\ket{-})\):
+                    \begin{align*}
+                        &=\abs{\tfrac{4+3i}{5\sqrt 2}\cdot\tfrac{1}{\sqrt 2}(\bra{+}+i\bra{-})\ket{+}-\tfrac{3+4i}{5\sqrt 2}\cdot\tfrac{1}{\sqrt 2}(\bra{+}+i\bra{-})\ket{-}}^2 \\
+                        &=\abs{\frac{4+3i}{5\cdot 2}-\frac{3+4i}{5\cdot 2}i}^2 \\
+                        &=\abs{\frac{4+3i}{5\cdot 2}-\frac{-4+3i}{5\cdot 2}}^2 \\
+                        &=\abs{\frac{8}{10}}^2 \\
+                        &=\frac{16}{25}
+                    \end{align*}
+                    The probability of \(-\frac \hbar 2\) is:
+                    \begin{align*}
+                        \abs{\prescript{}{y}{\braket{-|\psi}}}^2&=\abs{\prescript{}{y}{\bra{+}}\cdot\tfrac{1}{5\sqrt 2}((4+3i)\ket{+}-(3+4i)\ket{-})}^2 \\
+                        &=\abs{\tfrac{4+3i}{5\sqrt 2}\prescript{}{y}{\braket{-|+}}-\tfrac{3+4i}{5\sqrt 2}\prescript{}{y}{\braket{-|-}}}^2
+                    \end{align*}
+                    From class, \(\ket{-}_y=\frac{1}{\sqrt 2}(\ket{+}-i\ket{-})\):
+                    \begin{align*}
+                        &=\abs{\tfrac{4+3i}{5\sqrt 2}\cdot\tfrac{1}{\sqrt 2}(\bra{+}-i\bra{-})\ket{+}-\tfrac{3+4i}{5\sqrt 2}\cdot\tfrac{1}{\sqrt 2}(\bra{+}-i\bra{-})\ket{-}}^2 \\
+                        &=\abs{\frac{4+3i}{5\cdot 2}+\frac{3+4i}{5\cdot 2}i}^2 \\
+                        &=\abs{\frac{4+3i}{5\cdot 2}+\frac{-4+3i}{5\cdot 2}}^2 \\
+                        &=\abs{\frac{6i}{10}}^2 \\
+                        &=\frac{36}{100} \\
+                        &=\frac{9}{25}
+                    \end{align*}
+                }
+                \item{
+                    \textbf{\boldmath What are the possible measurement results of the spin operator \(S_z\) and with what probability would they occur?}
+                    \par
+                    The two possible measurement results are \(+\frac \hbar 2\) and \(-\frac \hbar 2\).
+                    \par
+                    The probability of \(+\frac \hbar 2\) is:
+                    \begin{align*}
+                        \abs{\braket{+|\psi}}^2&=\abs{\bra{+}\cdot\tfrac{1}{5\sqrt 2}((4+3i)\ket{+}-(3+4i)\ket{-})}^2 \\
+                        &=\abs{\frac{4+3i}{5\sqrt 2}}^2 \\
+                        &=\frac{16+9}{25\cdot 2} \\
+                        &=\frac 1 2
+                    \end{align*}
+                    The probability of \(-\frac \hbar 2\) is:
+                    \begin{align*}
+                        \abs{\braket{-|\psi}}^2&=\abs{\bra{-}\cdot\tfrac{1}{5\sqrt 2}((4+3i)\ket{+}-(3+4i)\ket{-})}^2 \\
+                        &=\abs{-\frac{3+4i}{5\sqrt 2}}^2 \\
+                        &=\frac{9+16}{25\cdot 2} \\
+                        &=\frac 1 2
+                    \end{align*}
+                }
+            \end{enumerate}
+        }
+    \end{enumerate}
+\end{document}

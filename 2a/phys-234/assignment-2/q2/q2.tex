@@ -1,0 +1,164 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{braket}
+\usepackage{chemfig}
+\usepackage{chemformula}
+\usepackage[outline]{contour}
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{libertine}
+\usepackage{mathtools}
+\usepackage[libertine]{newtxmath}
+\usepackage{pgfplots}
+\usepackage[detect-weight=true]{siunitx}
+
+\title{PHYS 234 Assignment 2}
+\author{Brandon Tsang}
+\date{May 29, 2020}
+
+\pgfplotsset{compat=1.17}
+\contourlength{0.1em}
+\newcommand\uline[1]{\underline{\smash{#1}}\llap{\contour{white}{#1}}}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+\newenvironment{amatrix}[1]{%
+    \left[\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+    \end{array}\right]
+}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}[label=\textbf{\arabic*.}, start=2]
+        \item{
+            \textbf{\boldmath \uline{Spin Operator in an Arbitrary Direction} \\ Find the representation of the spin operator \(S_n\coloneqq\vec{\mathrm S}\cdot\hat{\mathrm n}\) that measures the projection of the spin-\(\frac 1 2\) particle along the \(\hat{\mathrm n}\) direction. Calculate its representation in the \(S_z\)-basis. Here, \(\hat{\mathrm n}\) is the unit vector in spherical-polar coordinates. \begin{center}\includegraphics[width=2in]{234.PNG}\end{center} \[\hat{\mathrm n}=\sin(\theta)\cos(\phi)\hat{\mathrm x}+\sin(\theta)\sin(\phi)\hat{\mathrm y}+\cos(\theta)\hat{\mathrm z}\] and \[\vec{S}=S_x\hat{\mathrm x}+S_y\hat{\mathrm y}+S_z\hat{\mathrm z}\] where \(S_x\), \(S_y\), and \(S_z\) are the three components of the spin-\(\frac 1 2\) operator.}
+            \begin{enumerate}[label=\textbf{(\alph*)}]
+                \item{
+                    \textbf{\boldmath Show that \[S_n=\frac{\hbar}{2}\begin{bmatrix}\cos\theta & \sin(\theta)e^{-i\phi} \\ \sin(\theta)e^{i\phi} & -\cos\theta\end{bmatrix}.\]}
+                    \vspace*{-12pt}
+                    \begin{align*}
+                        S_n&=\mathbf{S}\cdot\mathbf{\hat n} \\
+                        &=S_x\sin(\theta)\cos(\phi)+S_y\sin(\theta)\sin(\phi)+S_z\cos(\theta)
+                    \end{align*}
+                    \begin{equation*}
+                        S_x=\frac \hbar 2 \begin{bmatrix}0 & 1 \\ 1 & 0\end{bmatrix}\qquad
+                        S_y=\frac \hbar 2 \begin{bmatrix}0 & -i \\ i & 0\end{bmatrix}\qquad
+                        S_z=\frac \hbar 2 \begin{bmatrix}1 & 0 \\ 0 & -1\end{bmatrix}
+                    \end{equation*}
+                    \begin{align*}
+                        S_n&=\frac \hbar 2 \left(\begin{bmatrix}0 & \sin\theta\cos\phi \\ \sin\theta\cos\phi & 0\end{bmatrix}+\begin{bmatrix}0 & -i\sin\theta\sin\phi \\ i\sin\theta\sin\phi & 0\end{bmatrix}+\begin{bmatrix}\cos\theta & 0 \\ 0 & -\cos\theta\end{bmatrix}\right) \\
+                        &=\frac \hbar 2 \begin{bmatrix}\cos\theta & \sin\theta\cos\phi-i\sin\theta\sin\phi \\ \sin\theta\cos\phi+i\sin\theta\sin\phi & -\cos\theta\end{bmatrix} \\
+                        &=\frac \hbar 2 \begin{bmatrix}\cos\theta & \sin\theta(\cos\phi-i\sin\phi) \\ \sin\theta(\cos\phi+i\sin\phi) & -\cos\theta\end{bmatrix} \\
+                        &=\frac \hbar 2 \begin{bmatrix}\cos\theta & \sin(\theta)e^{-i\phi} \\ \sin(\theta)e^{i\phi} & -\cos\theta\end{bmatrix} \\
+                    \end{align*}
+                }
+                \item{
+                    \textbf{\boldmath Show that the eigenvalues of \(S_n\) are \(\pm\frac{\hbar}{2}\), as expected from the S-G experiment.}
+                    \begin{align*}
+                        (S_n-\lambda I)\ket{\psi}&=\mathbf{0} \\
+                        \left(\frac \hbar 2 \begin{bmatrix}\cos\theta & \sin(\theta)e^{-i\phi} \\ \sin(\theta)e^{i\phi} & -\cos\theta\end{bmatrix}-\begin{bmatrix}\lambda & 0 \\ 0 & \lambda\end{bmatrix}\right)\ket{\psi}&=\mathbf{0} \\
+                        \begin{vmatrix}\frac \hbar 2 \cos\theta-\lambda & \frac \hbar 2 \sin(\theta)e^{-i\phi} \\ \frac \hbar 2 \sin(\theta)e^{i\phi} & -\frac \hbar 2 \cos\theta-\lambda\end{vmatrix}&=0 \\
+                        -\left(\tfrac \hbar 2 \cos\theta-\lambda\right)\left(\tfrac \hbar 2 \cos\theta+\lambda\right)-\left(\tfrac \hbar 2 \sin\theta\right)^2\left(e^{i\phi-i\phi}\right)&=0 \\
+                        -\left(\tfrac \hbar 2 \cos\theta\right)^2+\lambda^2-\left(\tfrac \hbar 2 \sin\theta\right)^2&=0 \\
+                        \lambda^2&=\left(\tfrac \hbar 2 \cos\theta\right)^2+\left(\tfrac \hbar 2 \sin\theta\right)^2 \\
+                        &=\left(\frac \hbar 2\right)^2 \\
+                        \lambda&=\pm\frac \hbar 2
+                    \end{align*}
+                }
+                \item{
+                    \textbf{\boldmath Show that the eigenvectors of \(S_n\) can be represented as \begin{gather*}\ket{+}_n=\cos\left(\tfrac \theta 2\right)\ket{+}+\sin\left(\tfrac \theta 2\right)e^{i\phi}\ket{-} \\ \ket{-}_n=\sin\left(\tfrac \theta 2\right)\ket{+}-\cos\left(\tfrac \theta 2\right)e^{i\phi}\ket{-}\end{gather*}}%
+                    The eigenvector \(\ket \psi\) corresponding to the eigenvalue \(\lambda=+\frac \hbar 2\) is \(\ket{+}_n\), and the eigenvector \(\ket \psi\) corresponding to the eigenvalue \(\lambda=-\frac \hbar 2\) is \(\ket{-}_n\).
+                    \begin{align*}
+                        (S_n-\lambda I)\ket{\psi}&=\mathbf{0} \\
+                        \left(\frac \hbar 2 \begin{bmatrix}\cos\theta & \sin(\theta)e^{-i\phi} \\ \sin(\theta)e^{i\phi} & -\cos\theta\end{bmatrix}-\frac \hbar 2 \begin{bmatrix}1 & 0 \\ 0 & 1\end{bmatrix}\right)\ket{+}_n&=\mathbf{0} \\
+                        \begin{bmatrix}\cos\theta-1 & \sin(\theta)e^{-i\phi} \\ \sin(\theta)e^{i\phi} & -\cos\theta-1\end{bmatrix}\ket{+}_n&=\mathbf{0}
+                    \end{align*}
+                    \begin{align*}
+                        \begin{amatrix}{2}\cos\theta-1 & \sin(\theta)e^{-i\phi} & 0 \\ \sin(\theta)e^{i\phi} & -\cos\theta-1 & 0\end{amatrix}
+                        \xrightarrow{R_2-\frac{\sin(\theta)e^{i\phi}}{\cos\theta-1}R_1}
+                        &\begin{amatrix}{2}\cos\theta-1 & \sin(\theta)e^{-i\phi} & 0 \\ 0 & -\cos\theta-1-\frac{(\sin(\theta)e^{-i\phi})(\sin(\theta)e^{i\phi})}{\cos\theta-1} & 0\end{amatrix} \\
+                        \sim
+                        &\begin{amatrix}{2}\cos\theta-1 & \sin(\theta)e^{-i\phi} & 0 \\ 0 & -\frac{(\cos\theta+1)(\cos\theta-1)}{\cos\theta-1}-\frac{\sin^2(\theta)}{\cos\theta-1} & 0\end{amatrix} \\
+                        \sim
+                        &\begin{amatrix}{2}\cos\theta-1 & \sin(\theta)e^{-i\phi} & 0 \\ 0 & -\frac{\cos^2(\theta)-1+\sin^2(\theta)}{\cos\theta-1} & 0\end{amatrix} \\
+                        \sim
+                        &\begin{amatrix}{2}\cos\theta-1 & \sin(\theta)e^{-i\phi} & 0 \\ 0 & 0 & 0\end{amatrix}
+                    \end{align*}
+                    If \(\ket{+}_n=a\ket{+}+b\ket{-}\), then the above matrix corresponds to the equation
+                    \begin{align*}
+                        (\cos\theta-1)a+\sin(\theta)e^{-i\phi}b&=0 \\
+                        (1-\cos\theta)a&=\sin(\theta)e^{-i\phi}b \\
+                        \sin^2\left(\tfrac \theta 2 \right)a&=\frac 1 2 \sin(\theta)e^{-i\phi}b \\
+                        \sin^2\left(\tfrac \theta 2 \right)e^{i\phi}a&=\sin(\theta)\cos^2\left(\tfrac \theta 2 \right)b
+                    \end{align*}
+                    So \(\ket{+}_n=\sin^2\left(\tfrac \theta 2 \right)e^{i\phi}\ket{+}+\sin(\theta)\cos^2\left(\tfrac \theta 2 \right)\ket{-}\).
+                    \par
+                    \textit{(I couldn't get the equation to match the form above.)}
+                }
+                \item{
+                    \textbf{\boldmath For which values of \(\theta\) and \(\phi\) does the state \(\ket{+}_n\) reduce to \(\ket{+}_x\) and \(\ket{+}_y\)?}
+                    \par
+                    \(\ket{+}_x\) was \(\frac{1}{\sqrt 2}(\ket{+}+\ket{-})\), so for \(\ket{+}_n\) to equal \(\ket{+}_x\), we must set \[\cos\frac \theta 2=\frac{1}{\sqrt 2}\] and \[\sin\left(\frac \theta 2\right)e^{i\phi}=\frac{1}{\sqrt 2}.\] Starting with the first equation:
+                    \begin{align*}
+                        \cos\frac \theta 2&=\frac{1}{\sqrt 2} \\
+                        \frac \theta 2&=\frac \pi 4 \\
+                        \theta&=\frac \pi 2
+                    \end{align*}
+                    Then the second equation:
+                    \begin{align*}
+                        \sin\left(\frac \theta 2\right)e^{i\phi}&=\frac{1}{\sqrt 2} \\
+                        \frac{1}{\sqrt 2}e^{i\phi}&=\frac{1}{\sqrt 2} \\
+                        e^{i\phi}&=1 \\
+                        \phi&=0
+                    \end{align*}
+                    So for \(\ket{+}_n\) to reduce to \(\ket{+}_x\), \(\theta\) must be \(\frac \pi 2\), and \(\phi\) must be 0.
+                    \par
+                    Next, \(\ket{+}_y\) was \(\frac{1}{\sqrt 2}(\ket{+}+i\ket{-})\), so for \(\ket{+}_n\) to equal \(\ket{+}_y\), we must set \[\cos\frac \theta 2=\frac{1}{\sqrt 2}\] and \[\sin\left(\frac \theta 2\right)e^{i\phi}=i\frac{1}{\sqrt 2}.\] The solution to the first equation we found earlier to be \(\theta=\frac \pi 2\). We then only have to solve the second equation:
+                    \begin{align*}
+                        \sin\left(\frac \theta 2\right)e^{i\phi}&=i\frac{1}{\sqrt 2} \\
+                        \frac{1}{\sqrt 2}e^{i\phi}&=i\frac{1}{\sqrt 2} \\
+                        e^{i\phi}&=i \\
+                        \phi&=\frac \pi 2
+                    \end{align*}
+                    So for \(\ket{+}_n\) to reduce to \(\ket{+}_y\), both \(\theta\) and \(\phi\) must be \(\frac \pi 2\).
+                }
+                \item{
+                    \textbf{\boldmath Suppose that a measurement of \(S_z\) is carried out on a particle in the \(\ket{-}_n\) state. What is the probability that the measurement yields:}
+                    \begin{enumerate}[label=\textbf{(\roman*)}]
+                        \item{
+                            \textbf{\boldmath \(\frac \hbar 2\)?}
+                            \par
+                            The probability is:
+                            \begin{align*}
+                                \abs{\braket{+|-}_n}^2&=\abs{\bra{+}\left(\sin\left(\tfrac \theta 2\right)\ket{+}-\cos\left(\tfrac \theta 2\right)e^{i\phi}\ket{-}\right)}^2 \\
+                                &=\abs{\sin\left(\tfrac \theta 2\right)}^2 \\
+                                &=\sin^2\left(\tfrac \theta 2\right)
+                            \end{align*}
+                        }
+                        \item{
+                            \textbf{\boldmath \(-\frac \hbar 2\)?}
+                            \par
+                            The probability is:
+                            \begin{align*}
+                                \abs{\braket{-|-}_n}^2&=\abs{\bra{-}\left(\sin\left(\tfrac \theta 2\right)\ket{+}-\cos\left(\tfrac \theta 2\right)e^{i\phi}\ket{-}\right)}^2 \\
+                                &=\abs{-\cos\left(\tfrac \theta 2\right)e^{i\phi}}^2 \\
+                                &=\cos^2\left(\tfrac \theta 2\right)
+                            \end{align*}
+                        }
+                    \end{enumerate}
+                }
+            \end{enumerate}
+        }
+    \end{enumerate}
+\end{document}
